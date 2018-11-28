@@ -1,0 +1,44 @@
+{
+    "name": "veseluy-rodjer/crud-generator",
+    "license": "MIT",
+    "description": "Package for using crud in adminka in Laravel 5.7",
+    "keywords": [
+        "laravel",
+        "crud",
+        "crud generator",
+        "laravel crud generator",
+        "api generator"
+    ],
+    "authors": [
+        {
+            "name": "Nikolay M",
+            "email": "nikolas-ja@meta.ua"
+        }
+    ],
+    "require": {
+        "php": ">=5.5.9",
+        "illuminate/support": "^5.1",
+        "laravelcollective/html": "^5.1"
+    },
+    "require-dev": {
+        "mockery/mockery": "^0.9.6",
+        "phpunit/phpunit": "^5.7",
+        "orchestra/testbench": "^3.3",
+        "veseluy-rodjer/crud-generator": "^3.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "VeseluyRodjer\\CrudGenerator\\": "src/"
+        },
+        "classmap": [
+            "tests"
+        ]
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "VeseluyRodjer\\CrudGenerator\\CrudGeneratorServiceProvider"
+            ]
+        }
+    }
+}
