@@ -1,8 +1,8 @@
 ## Installation
 
-To get started, you should add the `appzcoder/crud-generator` Composer dependency to your project:
+To get started, you should add the `veseluy-rodjer/supercrud` Composer dependency to your project:
 ```
-composer require veseluy-rodjer/crud-generator --dev
+composer require veseluy-rodjer/supercrud --dev
 ```
 Once the package is installed, you should register the `Appzcoder\CrudGenerator\CrudGeneratorServiceProvider` service provider. Normally, Laravel 5.5+ will register the service provider automatically.
 
