@@ -112,8 +112,9 @@ class DummyClass extends Controller
      */
     public function destroy($id)
     {
-        {{modelName}}::destroy($id);
-
+        $del = {{modelName}}::findOrFail($id);
+        {{fileSnippetDelPicture}}
+        $del->delete();
         return redirect('{{routeGroup}}{{viewName}}')->with('flash_message', '{{modelName}} deleted!');
     }
 }

@@ -138,11 +138,17 @@ EOD;
                 ->store('uploads', 'public');
         }
 EOD;
+            $snippetDelPicture = <<<EOD
+        if (!empty(\$del->{{fieldName}})) {
+            Storage::public()->delete(\$del->{{fieldName}});
+        }
+EOD;
         }
 
 
         $fieldsArray = explode(';', $fields);
         $fileSnippet = '';
+        $fileSnippetDelPicture = '';
         $whereSnippet = '';
 
         if ($fields) {
@@ -152,6 +158,7 @@ EOD;
 
                 if (trim($itemArray[1]) == 'file') {
                     $fileSnippet .= str_replace('{{fieldName}}', trim($itemArray[0]), $snippet) . "\n";
+                    $fileSnippetDelPicture .= str_replace('{{fieldName}}', trim($itemArray[0]), $snippetDelPicture) . "\n";
                 }
 
                 $fieldName = trim($itemArray[0]);
@@ -176,6 +183,7 @@ EOD;
             ->replaceValidationRules($stub, $validationRules)
             ->replacePaginationNumber($stub, $perPage)
             ->replaceFileSnippet($stub, $fileSnippet)
+            ->replaceFileSnippetDelPicture($stub, $fileSnippetDelPicture)
             ->replaceWhereSnippet($stub, $whereSnippet)
             ->replaceClass($stub, $name);
     }
@@ -376,6 +384,21 @@ EOD;
     protected function replaceFileSnippet(&$stub, $fileSnippet)
     {
         $stub = str_replace('{{fileSnippet}}', $fileSnippet, $stub);
+
+        return $this;
+    }
+
+    /**
+     * Replace the file snippet for the given stub
+     *
+     * @param $stub
+     * @param $fileSnippetDelPicture
+     *
+     * @return $this
+     */
+    protected function replaceFileSnippetDelPicture(&$stub, $fileSnippetDelPicture)
+    {
+        $stub = str_replace('{{fileSnippetDelPicture}}', $fileSnippetDelPicture, $stub);
 
         return $this;
     }
