@@ -134,13 +134,16 @@ EOD;
         } else {
             $snippet = <<<EOD
         if (\$request->hasFile('{{fieldName}}')) {
+            if (!empty(\$up->{{fieldName}})) {
+            Storage::disk('public')->delete(\$up->{{fieldName}});
+            }
             \$requestData['{{fieldName}}'] = \$request->file('{{fieldName}}')
                 ->store('uploads', 'public');
         }
 EOD;
             $snippetDelPicture = <<<EOD
         if (!empty(\$del->{{fieldName}})) {
-            Storage::public()->delete(\$del->{{fieldName}});
+            Storage::disk('public')->delete(\$del->{{fieldName}});
         }
 EOD;
         }

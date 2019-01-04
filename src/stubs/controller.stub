@@ -7,6 +7,7 @@ use DummyRootNamespaceHttp\Controllers\Controller;
 
 use DummyRootNamespace{{modelNamespace}}{{modelName}};
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class DummyClass extends Controller
 {
@@ -95,10 +96,11 @@ class DummyClass extends Controller
     public function update(Request $request, $id)
     {
         {{validationRules}}
+        $up = {{modelName}}::findOrFail($id);
         $requestData = $request->all();
         {{fileSnippet}}
-        ${{crudNameSingular}} = {{modelName}}::findOrFail($id);
-        ${{crudNameSingular}}->update($requestData);
+
+        $up->update($requestData);
 
         return redirect('{{routeGroup}}{{viewName}}')->with('flash_message', '{{modelName}} updated!');
     }
