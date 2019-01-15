@@ -336,9 +336,9 @@ class CrudViewCommand extends Command
 
         $i = 0;
         foreach ($this->formFields as $key => $value) {
-            if ($i == $this->defaultColumnsToShow) {
-                break;
-            }
+//            if ($i == $this->defaultColumnsToShow) {
+//                break;
+//            }
 
             $field = $value['name'];
             $label = ucwords(str_replace('_', ' ', $field));
