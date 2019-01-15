@@ -185,7 +185,7 @@
 <script src='{{ asset('admin/bower_components/moment/min/moment.min.js') }}'></script>
 <script src='{{ asset('admin/bower_components/fullcalendar/dist/fullcalendar.min.js') }}'></script>
 <!-- data table plugin -->
-<script src='{{ asset('admin/js/jquery.dataTables.min.js') }}'></script>
+{{--<script src='{{ asset('admin/js/jquery.dataTables.min.js') }}'></script>--}}
 
 <!-- select or dropdown enhancer -->
 <script src="{{ asset('admin/bower_components/chosen/chosen.jquery.min.js') }}"></script>
