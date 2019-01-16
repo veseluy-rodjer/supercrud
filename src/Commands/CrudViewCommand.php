@@ -347,7 +347,12 @@ class CrudViewCommand extends Command
             }
             $this->formHeadingHtml .= '<th>' . $label . '</th>';
             $this->formBodyHtml .= '<td>{{ $item->' . $field . ' }}</td>';
-            $this->formBodyHtmlForShowView .= '<tr><th> ' . $label . ' </th><td> {{ $%%crudNameSingular%%->' . $field . ' }} </td></tr>';
+            if ($value['type'] === 'file') {
+                $this->formBodyHtmlForShowView .= '<tr><th> ' . $label . ' </th><td><img style="width: 300px" src="{{ asset($%%crudNameSingular%%->' . $field . ') }}"> </td></tr>';
+            }
+            else {
+                $this->formBodyHtmlForShowView .= '<tr><th> ' . $label . ' </th><td> {{ $%%crudNameSingular%%->' . $field . ' }} </td></tr>';
+            }
 
             $i++;
         }
