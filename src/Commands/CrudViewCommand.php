@@ -450,7 +450,13 @@ class CrudViewCommand extends Command
      */
     protected function wrapField($item, $field)
     {
-        $formGroup = File::get($this->viewDirectoryPath . 'form-fields/wrap-field.blade.stub');
+        if ($item['type'] === 'file') {
+            $formGroup = File::get($this->viewDirectoryPath . 'form-fields/wrap-field-picture.blade.stub');
+        }
+        else {
+            $formGroup = File::get($this->viewDirectoryPath . 'form-fields/wrap-field.blade.stub');
+        }
+//        $formGroup = File::get($this->viewDirectoryPath . 'form-fields/wrap-field.blade.stub');
 
         $labelText = "'" . ucwords(strtolower(str_replace('_', ' ', $item['name']))) . "'";
 

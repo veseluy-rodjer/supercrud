@@ -38,6 +38,8 @@
     <link href='{{ asset("admin/css/jquery.iphone.toggle.css") }}' rel='stylesheet'>
     <link href='{{ asset("admin/css/uploadify.css") }}' rel='stylesheet'>
     <link href='{{ asset("admin/css/animate.min.css") }}' rel='stylesheet'>
+    <!-- uploadPreview styles -->
+    <link href='{{ asset("admin/css/uploadPreview.css") }}' rel='stylesheet'>
 
     <!-- jQuery -->
     <script src="{{ asset('admin/bower_components/jquery/jquery.min.js') }}"></script>
@@ -209,7 +211,8 @@
 <script src="{{ asset('admin/js/jquery.history.js') }}"></script>
 <!-- application script for Charisma demo -->
 <script src="{{ asset('admin/js/charisma.js') }}"></script>
-
+<!-- show picture by upload -->
+<script src="{{ asset('admin/js/jquery.uploadPreview.js') }}"></script>
 
 </body>
 </html>
