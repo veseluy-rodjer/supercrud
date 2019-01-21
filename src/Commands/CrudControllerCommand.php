@@ -46,8 +46,8 @@ class CrudControllerCommand extends GeneratorCommand
     protected function getStub()
     {
         return config('crudgenerator.custom_template')
-        ? config('crudgenerator.path') . '/controller.stub'
-        : __DIR__ . '/../stubs/controller.stub';
+            ? config('crudgenerator.path') . '/controller.stub'
+            : __DIR__ . '/../stubs/controller.stub';
     }
 
     /**
@@ -122,7 +122,7 @@ class CrudControllerCommand extends GeneratorCommand
         }
 
         if (\App::VERSION() < '5.3') {
-            $snippet = <<<EOD
+            $snippetUp = <<<EOD
         if (\$request->hasFile('{{fieldName}}')) {
             \$file = \$request->file('{{fieldName}}');
             \$fileName = str_random(40) . '.' . \$file->getClientOriginalExtension();
@@ -132,7 +132,13 @@ class CrudControllerCommand extends GeneratorCommand
         }
 EOD;
         } else {
-            $snippet = <<<EOD
+            $snippetCreate = <<<EOD
+        if (\$request->hasFile('{{fieldName}}')) {
+            \$requestData['{{fieldName}}'] = \$request->file('{{fieldName}}')
+                ->store('uploads', 'public');
+        }
+EOD;
+            $snippetUp = <<<EOD
         if (\$request->hasFile('{{fieldName}}')) {
             if (!empty(\$up->{{fieldName}})) {
             Storage::disk('public')->delete(\$up->{{fieldName}});
@@ -150,7 +156,8 @@ EOD;
 
 
         $fieldsArray = explode(';', $fields);
-        $fileSnippet = '';
+        $fileSnippetCreate = '';
+        $fileSnippetUp = '';
         $fileSnippetDelPicture = '';
         $whereSnippet = '';
 
@@ -160,7 +167,8 @@ EOD;
                 $itemArray = explode('#', $item);
 
                 if (trim($itemArray[1]) == 'file') {
-                    $fileSnippet .= str_replace('{{fieldName}}', trim($itemArray[0]), $snippet) . "\n";
+                    $fileSnippetCreate .= str_replace('{{fieldName}}', trim($itemArray[0]), $snippetCreate) . "\n";
+                    $fileSnippetUp .= str_replace('{{fieldName}}', trim($itemArray[0]), $snippetUp) . "\n";
                     $fileSnippetDelPicture .= str_replace('{{fieldName}}', trim($itemArray[0]), $snippetDelPicture) . "\n";
                 }
 
@@ -185,7 +193,8 @@ EOD;
             ->replaceRoutePrefixCap($stub, $routePrefixCap)
             ->replaceValidationRules($stub, $validationRules)
             ->replacePaginationNumber($stub, $perPage)
-            ->replaceFileSnippet($stub, $fileSnippet)
+            ->replaceFileSnippetCreate($stub, $fileSnippetCreate)
+            ->replaceFileSnippetUp($stub, $fileSnippetUp)
             ->replaceFileSnippetDelPicture($stub, $fileSnippetDelPicture)
             ->replaceWhereSnippet($stub, $whereSnippet)
             ->replaceClass($stub, $name);
@@ -377,22 +386,37 @@ EOD;
     }
 
     /**
-     * Replace the file snippet for the given stub
+     * Replace the file snippetCreate for the given stub
      *
      * @param $stub
-     * @param $fileSnippet
+     * @param $fileSnippetCreate
      *
      * @return $this
      */
-    protected function replaceFileSnippet(&$stub, $fileSnippet)
+    protected function replaceFileSnippetCreate(&$stub, $fileSnippetCreate)
     {
-        $stub = str_replace('{{fileSnippet}}', $fileSnippet, $stub);
+        $stub = str_replace('{{fileSnippetCreate}}', $fileSnippetCreate, $stub);
 
         return $this;
     }
 
     /**
-     * Replace the file snippet for the given stub
+     * Replace the file snippetUp for the given stub
+     *
+     * @param $stub
+     * @param $fileSnippetUp
+     *
+     * @return $this
+     */
+    protected function replaceFileSnippetUp(&$stub, $fileSnippetUp)
+    {
+        $stub = str_replace('{{fileSnippetUp}}', $fileSnippetUp, $stub);
+
+        return $this;
+    }
+
+    /**
+     * Replace the file snippetDelPicture for the given stub
      *
      * @param $stub
      * @param $fileSnippetDelPicture
