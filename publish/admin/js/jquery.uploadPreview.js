@@ -23,6 +23,8 @@
                             var file = files[0];
                             var reader = new FileReader();
 
+                            $(this).parent().children("img").hide();
+
                             // Load file
                             reader.addEventListener("load",function(event) {
                                 var loadedFile = event.target;

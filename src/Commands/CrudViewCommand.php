@@ -4,6 +4,7 @@ namespace VeseluyRodjer\CrudGenerator\Commands;
 
 use File;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Storage;
 
 class CrudViewCommand extends Command
 {
@@ -452,6 +453,20 @@ class CrudViewCommand extends Command
     {
         if ($item['type'] === 'file') {
             $formGroup = File::get($this->viewDirectoryPath . 'form-fields/wrap-field-picture.blade.stub');
+            $scr ='
+            $(document).ready(function() {
+            $.uploadPreview({
+            input_field: "#' . $item['name'] . '",   // По умолчанию: .image-upload
+            preview_box: "#div-' . $item['name'] . '",  // По умолчанию: .image-preview
+            label_field: "#label-' . $item['name'] . '",    // По умолчанию: .image-label
+            label_default: "Choose File",   // По умолчанию: Choose File
+            label_selected: "Загрузить",  // По умолчанию: Change File
+            no_label: false,                // По умолчанию: false
+            success_callback: null          // По умолчанию: null
+            });
+            });
+            ';
+            Storage::disk('public')->append('admin/js/jquery.uploadPreview.js', $scr);
         }
         else {
             $formGroup = File::get($this->viewDirectoryPath . 'form-fields/wrap-field.blade.stub');
