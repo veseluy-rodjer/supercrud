@@ -1,4 +1,4 @@
 @if ('%%fieldType%%' === 'file' && !empty($%%crudNameSingular%%->%%itemName%%))
     <img style="width: 120px" src="{{ asset($%%crudNameSingular%%->%%itemName%%) }}">
 @endif
-<input class="form-control" name="%%itemName%%" type="%%fieldType%%" id="%%itemName%%" value="{{ $%%crudNameSingular%%->%%itemName%% ?? ''}}" %%required%%>
+<input class="form-control" name="%%itemName%%" type="%%fieldType%%" id="%%itemName%%" value="{{ $%%crudNameSingular%%->%%itemName%% ?? ''}}">
