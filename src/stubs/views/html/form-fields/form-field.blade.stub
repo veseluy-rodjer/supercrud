@@ -1,4 +1,8 @@
 @if ('%%fieldType%%' === 'file' && !empty($%%crudNameSingular%%->%%itemName%%))
     <img style="width: 120px" src="{{ asset($%%crudNameSingular%%->%%itemName%%) }}">
 @endif
+@if (!empty(old("%%itemName%%")))
+<input class="form-control" name="%%itemName%%" type="%%fieldType%%" id="%%itemName%%" value="{{ old("%%itemName%%") }}">
+@else
 <input class="form-control" name="%%itemName%%" type="%%fieldType%%" id="%%itemName%%" value="{{ $%%crudNameSingular%%->%%itemName%% ?? ''}}">
+@endif

@@ -1,1 +1,5 @@
-<input class="form-control" name="%%itemName%%" type="%%fieldType%%" id="%%itemName%%" value="{{ $%%crudNameSingular%%->%%itemName%% ?? ''}}">
+@if (!empty(old("%%itemName%%")))
+    <input class="form-control" name="%%itemName%%" type="%%fieldType%%" id="%%itemName%%" value="{{ old("%%itemName%%") }}">
+@else
+    <input class="form-control" name="%%itemName%%" type="%%fieldType%%" id="%%itemName%%" value="{{ $%%crudNameSingular%%->%%itemName%% ?? ''}}">
+@endif
