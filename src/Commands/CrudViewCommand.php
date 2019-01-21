@@ -348,8 +348,8 @@ class CrudViewCommand extends Command
             }
             $this->formHeadingHtml .= '<th>' . $label . '</th>';
             if ($value['type'] === 'file') {
-                $this->formBodyHtml .= '<td><img style="width: 120px" src="{{ asset($item->' . $field . ') }}"></td>';
-                $this->formBodyHtmlForShowView .= '<tr><th> ' . $label . ' </th><td><img style="width: 300px" src="{{ asset($%%crudNameSingular%%->' . $field . ') }}"> </td></tr>';
+                $this->formBodyHtml .= '<td>@if (!empty($item->' . $field . '))<img style="width: 120px" src="{{ asset($item->' . $field . ') }}">@endif</td>';
+                $this->formBodyHtmlForShowView .= '<tr><th> ' . $label . ' </th><td>@if (!empty($%%crudNameSingular%%->' . $field . '))<img style="width: 300px" src="{{ asset($%%crudNameSingular%%->' . $field . ') }}">@endif</td></tr>';
             }
             else {
                 $this->formBodyHtml .= '<td>{{ $item->' . $field . ' }}</td>';
@@ -459,7 +459,7 @@ class CrudViewCommand extends Command
             input_field: "#' . $item['name'] . '",   // По умолчанию: .image-upload
             preview_box: "#div-' . $item['name'] . '",  // По умолчанию: .image-preview
             label_field: "#label-' . $item['name'] . '",    // По умолчанию: .image-label
-            label_default: "Choose File",   // По умолчанию: Choose File
+            label_default: "Загрузить",   // По умолчанию: Choose File
             label_selected: "Загрузить",  // По умолчанию: Change File
             no_label: false,                // По умолчанию: false
             success_callback: null          // По умолчанию: null
