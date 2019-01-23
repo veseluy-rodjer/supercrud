@@ -47,7 +47,7 @@ class CrudViewCommand extends Command
         'string' => 'text',
         'char' => 'text',
         'varchar' => 'text',
-        'text' => 'textarea',
+        'text' => 'textareaOnly',
         'mediumtext' => 'textarea',
         'longtext' => 'textarea',
         'json' => 'textarea',
@@ -351,6 +351,10 @@ class CrudViewCommand extends Command
                 $this->formBodyHtml .= '<td>@if (!empty($item->' . $field . '))<img style="width: 120px" src="{{ asset($item->' . $field . ') }}">@endif</td>';
                 $this->formBodyHtmlForShowView .= '<tr><th> ' . $label . ' </th><td>@if (!empty($%%crudNameSingular%%->' . $field . '))<img style="width: 300px" src="{{ asset($%%crudNameSingular%%->' . $field . ') }}">@endif</td></tr>';
             }
+            elseif ($value['type'] === 'text') {
+                $this->formBodyHtml .= '<td>{!! $item->' . $field . ' !!}</td>';
+                $this->formBodyHtmlForShowView .= '<tr><th> ' . $label . ' </th><td> {!! $%%crudNameSingular%%->' . $field . ' !!} </td></tr>';
+            }
             else {
                 $this->formBodyHtml .= '<td>{{ $item->' . $field . ' }}</td>';
                 $this->formBodyHtmlForShowView .= '<tr><th> ' . $label . ' </th><td> {{ $%%crudNameSingular%%->' . $field . ' }} </td></tr>';
@@ -499,6 +503,8 @@ class CrudViewCommand extends Command
                 return $this->createInputField($item);
             case 'radio':
                 return $this->createRadioField($item);
+            case 'textareaOnly':
+                return $this->createTextareaOnlyField($item);
             case 'textarea':
                 return $this->createTextareaField($item);
             case 'select':
@@ -623,6 +629,32 @@ class CrudViewCommand extends Command
         $required = $item['required'] ? 'required' : '';
 
         $markup = File::get($this->viewDirectoryPath . 'form-fields/textarea-field.blade.stub');
+        $markup = str_replace($start . 'required' . $end, $required, $markup);
+        $markup = str_replace($start . 'fieldType' . $end, $this->typeLookup[$item['type']], $markup);
+        $markup = str_replace($start . 'itemName' . $end, $item['name'], $markup);
+        $markup = str_replace($start . 'crudNameSingular' . $end, $this->crudNameSingular, $markup);
+
+        return $this->wrapField(
+            $item,
+            $markup
+        );
+    }
+
+    /**
+     * Create a textareaOnly field using the form helper.
+     *
+     * @param  array $item
+     *
+     * @return string
+     */
+    protected function createTextareaOnlyField($item)
+    {
+        $start = $this->delimiter[0];
+        $end = $this->delimiter[1];
+
+        $required = $item['required'] ? 'required' : '';
+
+        $markup = File::get($this->viewDirectoryPath . 'form-fields/textareaOnly-field.blade.stub');
         $markup = str_replace($start . 'required' . $end, $required, $markup);
         $markup = str_replace($start . 'fieldType' . $end, $this->typeLookup[$item['type']], $markup);
         $markup = str_replace($start . 'itemName' . $end, $item['name'], $markup);

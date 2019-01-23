@@ -40,6 +40,8 @@
     <link href='{{ asset("admin/css/animate.min.css") }}' rel='stylesheet'>
     <!-- uploadPreview styles -->
     <link href='{{ asset("admin/css/uploadPreview.css") }}' rel='stylesheet'>
+    <!-- editorSummernote styles -->
+    <link href='{{ asset("admin/css/editorSummernote.css") }}' rel='stylesheet'>
 
     <!-- jQuery -->
     <script src="{{ asset('admin/bower_components/jquery/jquery.min.js') }}"></script>
@@ -213,6 +215,8 @@
 <script src="{{ asset('admin/js/charisma.js') }}"></script>
 <!-- show picture by upload -->
 <script src="{{ asset('admin/js/jquery.uploadPreview.js') }}"></script>
+<!-- editorSummernote -->
+<script src="{{ asset('admin/js/jquery.editorSummernote.js') }}"></script>
 
 </body>
 </html>

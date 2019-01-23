@@ -1,0 +1,7 @@
+@if (!empty(old("%%itemName%%")))
+    <textarea class="form-control summernote" rows="5" name="%%itemName%%" type="%%fieldType%%" id="%%itemName%%">{!! old("%%itemName%%") !!}</textarea>
+@else
+    <textarea class="form-control summernote" rows="5" name="%%itemName%%" type="%%fieldType%%" id="%%itemName%%">{!! $%%crudNameSingular%%->%%itemName%% ?? '' !!}</textarea>
+@endif
+
+
