@@ -137,6 +137,11 @@ class CrudCommand extends Command
             $this->callSilent('optimize');
         }
 
+        // Updating list of tables into sidebar.php file
+        $pathToListFile = resource_path('views/admin/layouts/list.blade.php');
+        $list ='<li><a class="ajax-link" href="{{ route("' . lcfirst($name) . '.index") }}"><i class="glyphicon glyphicon-align-justify"></i><span>' . $name . '</span></a></li>';
+        File::append($pathToListFile, $list . "\n");
+
         // Updating the Http/routes.php file
         $routeFile = app_path('Http/routes.php');
 
