@@ -28,6 +28,10 @@ class CrudGeneratorServiceProvider extends ServiceProvider
             __DIR__ . '/../publish/views/' => base_path('resources/views/'),
         ]);
 
+        $this->publishes([
+            __DIR__ . '/../publish/admin/' => public_path('admin/'),
+        ]);
+
         if (\App::VERSION() <= '5.2') {
             $this->publishes([
                 __DIR__ . '/../publish/css/app.css' => public_path('css/app.css'),
