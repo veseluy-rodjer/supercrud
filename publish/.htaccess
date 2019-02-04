@@ -1,0 +1,27 @@
+<IfModule mod_rewrite.c>
+    <IfModule mod_negotiation.c>
+        Options -MultiViews -Indexes
+    </IfModule>
+
+    RewriteEngine On
+
+    # Handle Authorization Header
+    RewriteCond %{HTTP:Authorization} .
+    RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+
+    # Redirect Trailing Slashes If Not A Folder...
+    RewriteRule ^admin/bower_components/(.*)$ admin/bower_components/$1 [L]
+    RewriteRule ^admin/css/(.*)$ admin/css/$1 [L]
+    RewriteRule ^admin/fonts/(.*)$ admin/fonts/$1 [L]
+    RewriteRule ^admin/img/(.*)$ admin/img/$1 [L]
+    RewriteRule ^admin/js/(.*)$ admin/js/$1 [L]
+    RewriteRule ^admin/misc/(.*)$ admin/misc/$1 [L]
+    RewriteRule ^admin/(.*)$ index.php [L]
+    RewriteCond %{REQUEST_URI} (.+)/$
+    RewriteRule ^ %1 [L,R=301]
+
+    # Handle Front Controller...
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^ index.php [L]
+</IfModule>
