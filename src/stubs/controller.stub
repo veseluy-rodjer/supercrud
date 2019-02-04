@@ -19,7 +19,7 @@ class DummyClass extends Controller
     public function index(Request $request)
     {
         $keyword = $request->search;
-        $perPage = {{pagination}};
+        $perPage = $request->pages ?? 10;
 
         if (!empty($keyword)) {
             ${{crudName}} = {{modelName}}::{{whereSnippet}}latest()->paginate($perPage);

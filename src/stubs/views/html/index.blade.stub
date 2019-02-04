@@ -26,11 +26,12 @@
                         <div style="text-align: left">
                             <form method="GET" action="{{ route('%%viewName%%.index') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-right" role="search">
                                 <p><select name="pages">
-                                        <option selected value="10">10</option>
-                                        <option value="25">25</option>
-                                        <option value="50">50</option>
-                                        <option value="100">100</option>
+                                        <option {{ (request('pages') == 10 || request('pages') === null) ? 'selected' : null }} value="10">10</option>
+                                        <option {{ request('pages') == 25 ? 'selected' : null }} value="25">25</option>
+                                        <option {{ request('pages') == 50 ? 'selected' : null }} value="50">50</option>
+                                        <option {{ request('pages') == 100 ? 'selected' : null }} value="100">100</option>
                                     </select></p>
+                                <input type="hidden" name="search" value="{{ request('search') }}">
                                 <p><input type="submit" style="display: none"></p>
                             </form>
                         </div>
@@ -38,6 +39,7 @@
                             <form method="GET" action="{{ route('%%viewName%%.index') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-right" role="search">
                                 <div class="input-group">
                                     <input type="text" class="glyphicon glyphicon-search" name="search" placeholder="Search..." value="{{ request('search') }}">
+                                    <input type="hidden" name="pages" value="{{ request('pages') }}">
                                     <span class="input-group-append">
                                         <button class="glyphicon glyphicon-search" type="submit">
                                             <i class="fa fa-search"></i>
@@ -80,7 +82,7 @@
                                 @endforeach
                             </tbody>
                         </table>
-                        <div class="pagination-wrapper"> {!! $%%crudName%%->appends(['search' => Request::get('search')])->render() !!} </div>
+                        <div class="pagination-wrapper"> {{ $%%crudName%%->appends(['pages' => request('pages'), 'search' => request('search')])->links() }} </div>
                     </div>
                 </div>
             </div>
