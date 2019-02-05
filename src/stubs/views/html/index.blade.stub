@@ -82,7 +82,7 @@
                                 @endforeach
                             </tbody>
                         </table>
-                        <div class="pagination-wrapper"> {{ $%%crudName%%->appends(['pages' => request('pages'), 'search' => request('search')])->links() }} </div>
+                        <div class="pagination-wrapper" style="text-align: center"> {{ $%%crudName%%->appends(['pages' => request('pages'), 'search' => request('search')])->links() }} </div>
                     </div>
                 </div>
             </div>
