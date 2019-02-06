@@ -8,6 +8,7 @@ use DummyRootNamespaceHttp\Controllers\Controller;
 use DummyRootNamespace{{modelNamespace}}{{modelName}};
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
 
 class DummyClass extends Controller
 {
