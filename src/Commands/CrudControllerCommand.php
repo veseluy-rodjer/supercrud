@@ -133,9 +133,15 @@ class CrudControllerCommand extends GeneratorCommand
 EOD;
         } else {
             $snippetCreate = <<<EOD
-        if (\$request->hasFile('{{fieldName}}')) {
-            \$requestData['{{fieldName}}'] = \$request->file('{{fieldName}}')
-                ->store('uploads', 'public');
+        if (\$request->has('{{fieldName}}')) {
+            \$namePicture = str_random(40) . '.' . \$request->{{fieldName}}->extension();
+            \$requestData['{{fieldName}}'] = 'uploads/' . \$namePicture;
+            Image::make(\$request->{{fieldName}})->resize(120, 120, function (\$constraint) {
+                \$constraint->aspectRatio();
+            })->save(public_path(\$requestData['{{fieldName}}']));
+            Image::make(\$request->{{fieldName}})->resize(300, 300, function (\$constraint) {
+                \$constraint->aspectRatio();
+            })->save(public_path('uploads/big' . \$namePicture));
         }
 EOD;
             $snippetUp = <<<EOD

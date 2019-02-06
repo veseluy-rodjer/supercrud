@@ -54,7 +54,7 @@ class DummyClass extends Controller
         {{fileSnippetCreate}}
         {{modelName}}::create($requestData);
 
-        return redirect('{{routeGroup}}{{viewName}}')->with('flash_message', '{{modelName}} added!');
+        return redirect()->route('{{crudName}}.index')->with('flash_message', '{{modelName}} added!');
     }
 
     /**
