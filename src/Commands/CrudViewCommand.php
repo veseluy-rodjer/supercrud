@@ -4,7 +4,6 @@ namespace VeseluyRodjer\CrudGenerator\Commands;
 
 use File;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Storage;
 
 class CrudViewCommand extends Command
 {
@@ -470,7 +469,7 @@ class CrudViewCommand extends Command
             });
             });
             ';
-            Storage::disk('public')->append('admin/js/jquery.uploadPreview.js', $scr);
+            File::append(public_path('admin/js/jquery.uploadPreview.js'), $scr);
         }
         else {
             $formGroup = File::get($this->viewDirectoryPath . 'form-fields/wrap-field.blade.stub');

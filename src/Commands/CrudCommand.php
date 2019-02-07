@@ -142,6 +142,10 @@ class CrudCommand extends Command
         $list ='<li><a class="ajax-link" href="{{ route("' . lcfirst($name) . '.index") }}"><i class="glyphicon glyphicon-align-justify"></i><span> ' . $name . '</span></a></li>';
         File::append($pathToListFile, $list . "\n");
 
+        // Updating path into config.paths.php file
+        $pathToPathsFile = config_path('paths.php');
+        str_replace("];", lcfirst($name) . " => /uploads/" . lcfirst($name) . "/\n];", File::get($pathToPathsFile)) ;
+
         // Updating the Http/routes.php file
         $routeFile = app_path('Http/routes.php');
 
