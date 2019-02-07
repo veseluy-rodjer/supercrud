@@ -53,8 +53,6 @@ class DummyClass extends Controller
         {{validationRules}}
         $requestData = $request->all();
         {{fileSnippetCreate}}
-        {{modelName}}::create($requestData);
-
         return redirect()->route('{{crudName}}.index')->with('flash_message', '{{modelName}} added!');
     }
 

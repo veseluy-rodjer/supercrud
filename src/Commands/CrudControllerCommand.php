@@ -134,14 +134,21 @@ EOD;
         } else {
             $snippetCreate = <<<EOD
         if (\$request->has('{{fieldName}}')) {
-            \$namePicture = str_random(40) . '.' . \$request->{{fieldName}}->extension();
-            \$requestData['{{fieldName}}'] = 'uploads/' . \$namePicture;
+           \$namePicture = str_random(40) . '.' . \$request->{{fieldName}}->extension();
+            \$requestData['{{fieldName}}'] = \$namePicture;
+            \$store = {{modelName}}::create(\$requestData);
+            \$path = 'uploads/{{crudName}}/' . \$store->id . '/';
+            config(['pathstouploads.{{crudName}}' => url(\$path)]);
+            Storage::makeDirectory(\$path );
             Image::make(\$request->{{fieldName}})->resize(120, 120, function (\$constraint) {
-                \$constraint->aspectRatio();
-            })->save(public_path(\$requestData['{{fieldName}}']));
+            \$constraint->aspectRatio();
+            })->save(public_path(\$path . \$namePicture));
             Image::make(\$request->{{fieldName}})->resize(300, 300, function (\$constraint) {
-                \$constraint->aspectRatio();
-            })->save(public_path('uploads/big' . \$namePicture));
+            \$constraint->aspectRatio();
+            })->save(public_path(\$path . 'big' . \$namePicture));
+        }
+        else {
+            {{modelName}}::create(\$requestData);
         }
 EOD;
             $snippetUp = <<<EOD
