@@ -144,7 +144,7 @@ class CrudCommand extends Command
 
         // Updating path into config.paths.php file
         $pathToPathsFile = config_path('paths.php');
-        File::put($pathToPathsFile, str_replace('];', '"' . lcfirst($name) . '" => "/uploads/' . lcfirst($name) . '",' . "\n" . '];', File::get($pathToPathsFile)));
+        File::put($pathToPathsFile, str_replace('];', '"' . lcfirst($name) . '" => "/uploads/' . lcfirst($name) . '/",' . "\n" . '];', File::get($pathToPathsFile)));
 
         // Updating the Http/routes.php file
         $routeFile = app_path('Http/routes.php');
