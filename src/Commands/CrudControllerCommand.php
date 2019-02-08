@@ -138,7 +138,6 @@ EOD;
             \$requestData['{{fieldName}}'] = \$namePicture;
             \$store = {{modelName}}::create(\$requestData);
             \$path = 'uploads/{{crudName}}/' . \$store->id . '/';
-            config(['pathstouploads.{{crudName}}' => url(\$path)]);
             Storage::makeDirectory(\$path );
             Image::make(\$request->{{fieldName}})->resize(120, 120, function (\$constraint) {
             \$constraint->aspectRatio();
@@ -180,7 +179,7 @@ EOD;
                 $itemArray = explode('#', $item);
 
                 if (trim($itemArray[1]) == 'file') {
-                    $fileSnippetCreate .= str_replace('{{fieldName}}', trim($itemArray[0]), $snippetCreate) . "\n";
+                    $fileSnippetCreate .= str_replace(['{{fieldName}}', '{{crudName}}', '{{modelName}}'], [trim($itemArray[0]), $crudName, $modelName], $snippetCreate) . "\n";
                     $fileSnippetUp .= str_replace('{{fieldName}}', trim($itemArray[0]), $snippetUp) . "\n";
                     $fileSnippetDelPicture .= str_replace('{{fieldName}}', trim($itemArray[0]), $snippetDelPicture) . "\n";
                 }
