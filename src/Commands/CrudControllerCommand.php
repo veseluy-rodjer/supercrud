@@ -132,22 +132,22 @@ class CrudControllerCommand extends GeneratorCommand
         }
 EOD;
         } else {
-            $snippetCreate = <<<EOD
+            $snippetCreateOne = <<<EOD
         if (\$request->has('{{fieldName}}')) {
-           \$namePicture = str_random(40) . '.' . \$request->{{fieldName}}->extension();
-            \$requestData['{{fieldName}}'] = \$namePicture;
-            \$store = {{modelName}}::create(\$requestData);
-            \$path = 'uploads/{{crudName}}/' . \$store->id . '/';
+            \${{fieldName}}Name = str_random(40) . '.' . \$request->{{fieldName}}->extension();
+            \$requestData['{{fieldName}}'] = \${{fieldName}}Name;
+        }
+EOD;
+            $snippetCreateTwo = <<<EOD
+        if (\$request->has('{{fieldName}}')) {
+            \$path = '/uploads/{{crudName}}/' . \$store->id . '/';
             Storage::makeDirectory(\$path );
             Image::make(\$request->{{fieldName}})->resize(120, 120, function (\$constraint) {
-            \$constraint->aspectRatio();
-            })->save(public_path(\$path . \$namePicture));
+                \$constraint->aspectRatio();
+            })->save(public_path(\$path . \${{fieldName}}Name));
             Image::make(\$request->{{fieldName}})->resize(300, 300, function (\$constraint) {
-            \$constraint->aspectRatio();
-            })->save(public_path(\$path . 'big' . \$namePicture));
-        }
-        else {
-            {{modelName}}::create(\$requestData);
+                \$constraint->aspectRatio();
+            })->save(public_path(\$path . 'big' . \${{fieldName}}Name));
         }
 EOD;
             $snippetUp = <<<EOD
@@ -168,7 +168,8 @@ EOD;
 
 
         $fieldsArray = explode(';', $fields);
-        $fileSnippetCreate = '';
+        $fileSnippetCreateOne = '';
+        $fileSnippetCreateTwo = '';
         $fileSnippetUp = '';
         $fileSnippetDelPicture = '';
         $whereSnippet = '';
@@ -179,7 +180,8 @@ EOD;
                 $itemArray = explode('#', $item);
 
                 if (trim($itemArray[1]) == 'file') {
-                    $fileSnippetCreate .= str_replace(['{{fieldName}}', '{{crudName}}', '{{modelName}}'], [trim($itemArray[0]), $crudName, $modelName], $snippetCreate) . "\n";
+                    $fileSnippetCreateOne .= str_replace(['{{fieldName}}', '{{crudName}}', '{{modelName}}'], [trim($itemArray[0]), $crudName, $modelName], $snippetCreateOne) . "\n";
+                    $fileSnippetCreateTwo .= str_replace(['{{fieldName}}', '{{crudName}}', '{{modelName}}'], [trim($itemArray[0]), $crudName, $modelName], $snippetCreateTwo) . "\n";
                     $fileSnippetUp .= str_replace('{{fieldName}}', trim($itemArray[0]), $snippetUp) . "\n";
                     $fileSnippetDelPicture .= str_replace('{{fieldName}}', trim($itemArray[0]), $snippetDelPicture) . "\n";
                 }
@@ -205,7 +207,8 @@ EOD;
             ->replaceRoutePrefixCap($stub, $routePrefixCap)
             ->replaceValidationRules($stub, $validationRules)
             ->replacePaginationNumber($stub, $perPage)
-            ->replaceFileSnippetCreate($stub, $fileSnippetCreate)
+            ->replaceFileSnippetCreateOne($stub, $fileSnippetCreateOne)
+            ->replaceFileSnippetCreateTwo($stub, $fileSnippetCreateTwo)
             ->replaceFileSnippetUp($stub, $fileSnippetUp)
             ->replaceFileSnippetDelPicture($stub, $fileSnippetDelPicture)
             ->replaceWhereSnippet($stub, $whereSnippet)
@@ -398,16 +401,31 @@ EOD;
     }
 
     /**
-     * Replace the file snippetCreate for the given stub
+     * Replace the file snippetCreateOne for the given stub
      *
      * @param $stub
-     * @param $fileSnippetCreate
+     * @param $fileSnippetCreateOne
      *
      * @return $this
      */
-    protected function replaceFileSnippetCreate(&$stub, $fileSnippetCreate)
+    protected function replaceFileSnippetCreateOne(&$stub, $fileSnippetCreateOne)
     {
-        $stub = str_replace('{{fileSnippetCreate}}', $fileSnippetCreate, $stub);
+        $stub = str_replace('{{fileSnippetCreateOne}}', $fileSnippetCreateOne, $stub);
+
+        return $this;
+    }
+
+    /**
+     * Replace the file snippetCreateTwo for the given stub
+     *
+     * @param $stub
+     * @param $fileSnippetCreateTwo
+     *
+     * @return $this
+     */
+    protected function replaceFileSnippetCreateTwo(&$stub, $fileSnippetCreateTwo)
+    {
+        $stub = str_replace('{{fileSnippetCreateTwo}}', $fileSnippetCreateTwo, $stub);
 
         return $this;
     }

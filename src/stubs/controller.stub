@@ -52,7 +52,9 @@ class DummyClass extends Controller
     {
         {{validationRules}}
         $requestData = $request->all();
-        {{fileSnippetCreate}}
+        {{fileSnippetCreateOne}}
+        $store = {{modelName}}::create($requestData);
+        {{fileSnippetCreateTwo}}
         return redirect()->route('{{crudName}}.index')->with('flash_message', '{{modelName}} added!');
     }
 
