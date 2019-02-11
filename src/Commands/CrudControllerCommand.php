@@ -151,12 +151,21 @@ EOD;
         }
 EOD;
             $snippetUp = <<<EOD
-        if (\$request->hasFile('{{fieldName}}')) {
+        if (\$request->has('{{fieldName}}')) {
+            \${{fieldName}}Name = str_random(40) . '.' . \$request->{{fieldName}}->extension();
+            \$requestData['{{fieldName}}'] = \${{fieldName}}Name;
+            \$path = '/uploads/{{crudName}}/' . \$up->id . '/';
             if (!empty(\$up->{{fieldName}})) {
-            Storage::disk('public')->delete(\$up->{{fieldName}});
+                Storage::delete(\$path . \$up->{{fieldName}});
+                Storage::delete(\$path . 'big' . \$up->{{fieldName}});
             }
-            \$requestData['{{fieldName}}'] = \$request->file('{{fieldName}}')
-                ->store('uploads', 'public');
+            Storage::makeDirectory(\$path );
+            Image::make(\$request->{{fieldName}})->resize(120, 120, function (\$constraint) {
+                \$constraint->aspectRatio();
+            })->save(public_path(\$path . \${{fieldName}}Name));
+            Image::make(\$request->{{fieldName}})->resize(300, 300, function (\$constraint) {
+                \$constraint->aspectRatio();
+            })->save(public_path(\$path . 'big' . \${{fieldName}}Name));
         }
 EOD;
             $snippetDelPicture = <<<EOD
@@ -182,7 +191,7 @@ EOD;
                 if (trim($itemArray[1]) == 'file') {
                     $fileSnippetCreateOne .= str_replace(['{{fieldName}}', '{{crudName}}', '{{modelName}}'], [trim($itemArray[0]), $crudName, $modelName], $snippetCreateOne) . "\n";
                     $fileSnippetCreateTwo .= str_replace(['{{fieldName}}', '{{crudName}}', '{{modelName}}'], [trim($itemArray[0]), $crudName, $modelName], $snippetCreateTwo) . "\n";
-                    $fileSnippetUp .= str_replace('{{fieldName}}', trim($itemArray[0]), $snippetUp) . "\n";
+                    $fileSnippetUp .= str_replace(['{{fieldName}}', '{{crudName}}', '{{modelName}}'], [trim($itemArray[0]), $crudName, $modelName], $snippetUp) . "\n";
                     $fileSnippetDelPicture .= str_replace('{{fieldName}}', trim($itemArray[0]), $snippetDelPicture) . "\n";
                 }
 

@@ -21,13 +21,11 @@ class DummyClass extends Controller
     {
         $keyword = $request->search;
         $perPage = $request->pages ?? 10;
-
         if (!empty($keyword)) {
             ${{crudName}} = {{modelName}}::{{whereSnippet}}latest()->paginate($perPage);
         } else {
             ${{crudName}} = {{modelName}}::latest()->paginate($perPage);
         }
-
         return view('{{viewPath}}{{viewName}}.index', compact('{{crudName}}'));
     }
 
@@ -68,7 +66,6 @@ class DummyClass extends Controller
     public function show($id)
     {
         ${{crudNameSingular}} = {{modelName}}::findOrFail($id);
-
         return view('{{viewPath}}{{viewName}}.show', compact('{{crudNameSingular}}'));
     }
 
@@ -82,7 +79,6 @@ class DummyClass extends Controller
     public function edit($id)
     {
         ${{crudNameSingular}} = {{modelName}}::findOrFail($id);
-
         return view('{{viewPath}}{{viewName}}.edit', compact('{{crudNameSingular}}'));
     }
 
@@ -100,10 +96,8 @@ class DummyClass extends Controller
         $up = {{modelName}}::findOrFail($id);
         $requestData = $request->all();
         {{fileSnippetUp}}
-
         $up->update($requestData);
-
-        return redirect('{{routeGroup}}{{viewName}}')->with('flash_message', '{{modelName}} updated!');
+        return redirect()->route('{{crudName}}.index')->with('flash_message', '{{modelName}} added!');
     }
 
     /**
