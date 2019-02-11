@@ -170,7 +170,8 @@ EOD;
 EOD;
             $snippetDelPicture = <<<EOD
         if (!empty(\$del->{{fieldName}})) {
-            Storage::disk('public')->delete(\$del->{{fieldName}});
+            \$path = '/uploads/{{crudName}}/' . \$del->id . '/';
+                Storage::deleteDirectory(\$path);
         }
 EOD;
         }
@@ -192,7 +193,7 @@ EOD;
                     $fileSnippetCreateOne .= str_replace(['{{fieldName}}', '{{crudName}}', '{{modelName}}'], [trim($itemArray[0]), $crudName, $modelName], $snippetCreateOne) . "\n";
                     $fileSnippetCreateTwo .= str_replace(['{{fieldName}}', '{{crudName}}', '{{modelName}}'], [trim($itemArray[0]), $crudName, $modelName], $snippetCreateTwo) . "\n";
                     $fileSnippetUp .= str_replace(['{{fieldName}}', '{{crudName}}', '{{modelName}}'], [trim($itemArray[0]), $crudName, $modelName], $snippetUp) . "\n";
-                    $fileSnippetDelPicture .= str_replace('{{fieldName}}', trim($itemArray[0]), $snippetDelPicture) . "\n";
+                    $fileSnippetDelPicture .= str_replace(['{{fieldName}}', '{{crudName}}', '{{modelName}}'], [trim($itemArray[0]), $crudName, $modelName], $snippetDelPicture) . "\n";
                 }
 
                 $fieldName = trim($itemArray[0]);

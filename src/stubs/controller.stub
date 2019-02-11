@@ -97,7 +97,7 @@ class DummyClass extends Controller
         $requestData = $request->all();
         {{fileSnippetUp}}
         $up->update($requestData);
-        return redirect()->route('{{crudName}}.index')->with('flash_message', '{{modelName}} added!');
+        return redirect()->route('{{crudName}}.index')->with('flash_message', '{{modelName}} updated!');
     }
 
     /**
@@ -112,6 +112,6 @@ class DummyClass extends Controller
         $del = {{modelName}}::findOrFail($id);
         {{fileSnippetDelPicture}}
         $del->delete();
-        return redirect('{{routeGroup}}{{viewName}}')->with('flash_message', '{{modelName}} deleted!');
+        return redirect()->route('{{crudName}}.index')->with('flash_message', '{{modelName}} deleted!');
     }
 }
