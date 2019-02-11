@@ -347,8 +347,8 @@ class CrudViewCommand extends Command
             }
             $this->formHeadingHtml .= '<th>' . $label . '</th>';
             if ($value['type'] === 'file') {
-                $this->formBodyHtml .= '<td>@if (!empty($item->' . $field . '))<img style="width: 120px" src="{{ asset($item->' . $field . ') }}">@endif</td>';
-                $this->formBodyHtmlForShowView .= '<tr><th> ' . $label . ' </th><td>@if (!empty($%%crudNameSingular%%->' . $field . '))<img style="width: 300px" src="{{ asset($%%crudNameSingular%%->' . $field . ') }}">@endif</td></tr>';
+                $this->formBodyHtml .= '<td>@if (!empty($item->' . $field . '))<img src="{{ config(\'paths.' . $this->varName . '\') . $item->id . \'/\' . $item->' . $field . ' }}">@endif</td>';
+                $this->formBodyHtmlForShowView .= '<tr><th> ' . $label . ' </th><td>@if (!empty($%%crudNameSingular%%->' . $field . '))<img src="{{ config(\'paths.' . $this->varName . '\') . $%%crudNameSingular%%->id . \'/big\' . $%%crudNameSingular%%->' . $field . ' }}">@endif</td></tr>';
             }
             elseif ($value['type'] === 'text') {
                 $this->formBodyHtml .= '<td>{!! $item->' . $field . ' !!}</td>';
@@ -509,7 +509,7 @@ class CrudViewCommand extends Command
             case 'select':
             case 'enum':
                 return $this->createSelectField($item);
-            default: // text
+            default: // file
                 return $this->createFormField($item);
         }
     }
