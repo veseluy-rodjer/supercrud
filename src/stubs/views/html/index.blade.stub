@@ -54,19 +54,27 @@
                         <table class="table table-striped table-bordered bootstrap-datatable datatable responsive">
                             <thead>
                             <tr>
-                                <th>#</th>
+                                <th><input type="checkbox" id="arrDeleteAll" value="1"></th>
                                 %%formHeadingHtml%%
                                 <th>
                                     <a href="{{ route('%%viewName%%.create') }}" class="btn btn-success">
                                         <i class="glyphicon glyphicon-plus" aria-hidden="true"></i> Добавить
                                     </a>
                                 </th>
+                        <th>
+                            <form id="arrDelete" action="{{ route('%%viewName%%.arrDelete') }}" method="post">
+                                {{ csrf_field() }}
+                                {{ method_field('DELETE') }}
+                                <input type="submit" class="del" id="del" value="Удалить отмеченные" disabled>
+                            </form>
+                        </th>
                             </tr>
                             </thead>
                             <tbody>
                                 @foreach($%%crudName%% as $item)
                                     <tr>
-                                        <td>{{ $loop->iteration ?? $item->%%primaryKey%% }}</td>
+                                        {{-- <td>{{ $loop->iteration ?? $item->%%primaryKey%% }}</td> --}}
+										<td><input class="arrDelete" type="checkbox" form="arrDelete" name="%%primaryKey%%" value="1"></td>
                                         %%formBodyHtml%%
                                         <td>
                                             <a class="btn btn-success" href="{{ route('%%viewName%%.show', [$item->%%primaryKey%%]) }}"><i class="glyphicon glyphicon-zoom-in icon-white"></i></a>
