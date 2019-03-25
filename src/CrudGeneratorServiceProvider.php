@@ -3,6 +3,7 @@
 namespace VeseluyRodjer\CrudGenerator;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Storage;
 
 class CrudGeneratorServiceProvider extends ServiceProvider
 {
