@@ -226,6 +226,8 @@
 <script src="{{ asset('admin/js/jquery.uploadPreview.js') }}"></script>
 <!-- editorSummernote -->
 <script src="{{ asset('admin/js/jquery.editorSummernote.js') }}"></script>
+<!-- myScripts -->
+<script src="{{ asset('admin/js/jquery.myJs.js') }}"></script>
 
 </body>
 </html>

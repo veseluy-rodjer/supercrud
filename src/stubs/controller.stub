@@ -131,7 +131,7 @@ class DummyClass extends Controller
 				$del->delete();
 			}
 		}
-		return redirect()->route('wosts.index')->with('flash_message', 'Wost deleted!');
+        return redirect()->route('{{crudName}}.index')->with('flash_message', '{{modelName}} deleted!');
 	}
 }
 

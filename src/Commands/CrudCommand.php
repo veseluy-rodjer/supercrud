@@ -45,6 +45,9 @@ class CrudCommand extends Command
     /** @var string  */
     protected $controller = '';
 
+    /** @var string  */
+    protected $myAddrName = '';
+
     /**
      * Create a new command instance.
      *
@@ -154,7 +157,7 @@ class CrudCommand extends Command
         }
 
         if (file_exists($routeFile) && (strtolower($this->option('route')) === 'yes')) {
-            $this->controller = ($controllerNamespace != '') ? $controllerNamespace . '\\' . str_singular($name) . 'Controller' : str_singular($name) . 'Controller';
+            $this->controller = ($controllerNamespace != '') ? $controllerNamespace . str_singular($name) . 'Controller' : str_singular($name) . 'Controller';
 
             $isAdded = File::append($routeFile, "\n" . implode("\n", $this->addRoutes()));
 
@@ -173,7 +176,7 @@ class CrudCommand extends Command
      */
     protected function addRoutes()
     {
-        return ["Route::resource('" . $this->routeName . "', '" . $this->controller . "');"];
+		return ["Route::delete('" . $this->routeName . "/arr-delete', '" . $this->controller . "@arrDelete')->name('" . $this->myAddrName . ".arrDelete');\nRoute::resource('" . $this->routeName . "', '" . $this->controller . "');"];
     }
 
     /**
