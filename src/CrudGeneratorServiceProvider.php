@@ -3,7 +3,6 @@
 namespace VeseluyRodjer\CrudGenerator;
 
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Facades\Storage;
 
 class CrudGeneratorServiceProvider extends ServiceProvider
 {
@@ -37,7 +36,6 @@ class CrudGeneratorServiceProvider extends ServiceProvider
             __DIR__ . '/../publish/admin/' => public_path('admin/'),
         ]);
 
-		Storage::delete('.htaccess');
         $this->publishes([
             __DIR__ . '/../publish/.htaccess' => public_path('.htaccess'),
         ]);
