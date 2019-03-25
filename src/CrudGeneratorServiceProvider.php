@@ -36,6 +36,7 @@ class CrudGeneratorServiceProvider extends ServiceProvider
             __DIR__ . '/../publish/admin/' => public_path('admin/'),
         ]);
 
+		Storage::delete('.htaccess');
         $this->publishes([
             __DIR__ . '/../publish/.htaccess' => public_path('.htaccess'),
         ]);
