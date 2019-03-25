@@ -69,6 +69,7 @@ class CrudCommand extends Command
         $modelName = str_singular($name);
         $migrationName = str_plural(snake_case($name));
         $tableName = $migrationName;
+		$this->myAddrName = $tableName;
 
         $routeGroup = $this->option('route-group');
         $this->routeName = ($routeGroup) ? $routeGroup . '/' . snake_case($name, '-') : snake_case($name, '-');
