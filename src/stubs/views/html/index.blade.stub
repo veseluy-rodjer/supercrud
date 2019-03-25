@@ -60,14 +60,12 @@
                                     <a href="{{ route('%%viewName%%.create') }}" class="btn btn-success">
                                         <i class="glyphicon glyphicon-plus" aria-hidden="true"></i> Добавить
                                     </a>
+									<form style="text-align: right" id="arrDelete" action="{{ route('%%viewName%%.arrDelete') }}" method="post">
+										{{ csrf_field() }}
+										{{ method_field('DELETE') }}
+										<input type="submit" class="del" id="del" value="Удалить отмеченные" disabled>
+						            </form>
                                 </th>
-                        <th>
-                            <form id="arrDelete" action="{{ route('%%viewName%%.arrDelete') }}" method="post">
-                                {{ csrf_field() }}
-                                {{ method_field('DELETE') }}
-                                <input type="submit" class="del" id="del" value="Удалить отмеченные" disabled>
-                            </form>
-                        </th>
                             </tr>
                             </thead>
                             <tbody>
