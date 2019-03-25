@@ -72,7 +72,7 @@
                                 @foreach($%%crudName%% as $item)
                                     <tr>
                                         {{-- <td>{{ $loop->iteration ?? $item->%%primaryKey%% }}</td> --}}
-										<td><input class="arrDelete" type="checkbox" form="arrDelete" name="%%primaryKey%%" value="1"></td>
+										<td><input class="arrDelete" type="checkbox" form="arrDelete" name="{{ $item->%%primaryKey%% }}" value="1"></td>
                                         %%formBodyHtml%%
                                         <td>
                                             <a class="btn btn-success" href="{{ route('%%viewName%%.show', [$item->%%primaryKey%%]) }}"><i class="glyphicon glyphicon-zoom-in icon-white"></i></a>
