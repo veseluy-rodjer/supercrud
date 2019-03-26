@@ -88,6 +88,11 @@
                                 @endforeach
                             </tbody>
                         </table>
+						<div>
+							<span>
+								Showing {{ $%%crudName%%->currentPage() * $%%crudName%%->perPage() - $%%crudName%%->perPage() + 1 }} to {{ $%%crudName%%->currentPage() * $%%crudName%%->perPage() }} of {{ $%%crudName%%->total() }} entries
+							</span>
+						</div>
                         <div class="pagination-wrapper" style="text-align: center"> {{ $%%crudName%%->appends(['pages' => request('pages'), 'search' => request('search')])->links() }} </div>
                     </div>
                 </div>
