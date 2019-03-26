@@ -63,7 +63,7 @@
 									<form style="text-align: right" id="arrDelete" action="{{ route('%%viewName%%.arrDelete') }}" method="post">
 										{{ csrf_field() }}
 										{{ method_field('DELETE') }}
-										<input confirm(&quot;Confirm delete?&quot;)" type="submit" class="del" id="del" value="Удалить отмеченные" disabled>
+										<input onclick="return confirm(&quot;Confirm delete?&quot;)" type="submit" class="del" id="del" value="Удалить отмеченные" disabled>
 						            </form>
                                 </th>
                             </tr>
