@@ -179,15 +179,6 @@
 
 </div><!--/.fluid-container-->
 
-{{--send number line for paginate--}}
-<script>
-    $(document).ready(function() {
-        $('select[name="pages"]').change(function() {
-            $(this).parentsUntil('div').last().find('input').eq(1).click();
-        });
-    });
-</script>
-
 <!-- external javascript -->
 
 <script src="{{ asset('admin/bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
