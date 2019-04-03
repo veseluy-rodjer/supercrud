@@ -21,10 +21,34 @@ class DummyClass extends Controller
     {
         $keyword = $request->search;
         $perPage = $request->pages ?? 10;
-        if (!empty($keyword)) {
-            ${{crudName}} = {{modelName}}::{{whereSnippet}}latest()->paginate($perPage);
-        } else {
-            ${{crudName}} = {{modelName}}::latest()->paginate($perPage);
+		$sort = $request->sort;
+		$toggle = stripos($request->toggle, 'glyphicon-arrow-up');
+
+		if (!empty($keyword)) {
+			if (!empty($sort)) {
+				if ($toggle !== false) {
+					${{crudName}} = {{modelName}}::{{whereSnippet}}orderBy($sort, 'desc')->paginate($perPage);
+				}
+				else {
+					${{crudName}} = {{modelName}}::{{whereSnippet}}orderBy($sort)->paginate($perPage);
+				}
+			}
+			else {
+				${{crudName}} = {{modelName}}::{{whereSnippet}}latest()->paginate($perPage);
+			}
+		}
+		else {
+			if (!empty($sort)) {
+				if ($toggle !== false) {
+					${{crudName}} = {{modelName}}::orderBy($sort, 'desc')->paginate($perPage);
+				}
+				else {
+					${{crudName}} = {{modelName}}::orderBy($sort)->paginate($perPage);
+				}
+			}
+			else {
+				${{crudName}} = {{modelName}}::latest()->paginate($perPage);
+			}
         }
         return view('{{viewPath}}{{viewName}}.index', compact('{{crudName}}'));
     }
