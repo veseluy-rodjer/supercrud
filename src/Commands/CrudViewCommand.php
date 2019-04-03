@@ -346,10 +346,10 @@ class CrudViewCommand extends Command
                 $label = '{{ trans(\'' . $this->crudName . '.' . $field . '\') }}';
             }
             $this->formHeadingHtml .= '<th>' . $label . ' <a href="#">
-									@if (request("sort") == "{{ $field }}")
-										<span class="{{ request("toggle") }}" name="{{ $field }}">
+									@if (request("sort") == "' . $field . '")
+										<span class="{{ request("toggle") }}" name="' . $field . '">
 									@else
-										<span class="toggle glyphicon glyphicon-arrow-down" name="{{ $field }}">
+										<span class="toggle glyphicon glyphicon-arrow-down" name="' . $field . '">
 									@endif
 										</span></a></th>';
             if ($value['type'] === 'file') {
