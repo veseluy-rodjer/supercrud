@@ -345,7 +345,13 @@ class CrudViewCommand extends Command
             if ($this->option('localize') == 'yes') {
                 $label = '{{ trans(\'' . $this->crudName . '.' . $field . '\') }}';
             }
-            $this->formHeadingHtml .= '<th>' . $label . '</th>';
+            $this->formHeadingHtml .= '<th>' . $label . ' <a href="#">
+									@if (request("sort") == "{{ $field }}")
+										<span class="{{ request("toggle") }}" name="{{ $field }}">
+									@else
+										<span class="toggle glyphicon glyphicon-arrow-down" name="{{ $field }}">
+									@endif
+										</span></a></th>';
             if ($value['type'] === 'file') {
                 $this->formBodyHtml .= '<td>@if (!empty($item->' . $field . '))<img src="{{ config(\'paths.' . $this->varName . '\') . $item->id . \'/\' . $item->' . $field . ' }}">@endif</td>';
                 $this->formBodyHtmlForShowView .= '<tr><th> ' . $label . ' </th><td>@if (!empty($%%crudNameSingular%%->' . $field . '))<img src="{{ config(\'paths.' . $this->varName . '\') . $%%crudNameSingular%%->id . \'/big\' . $%%crudNameSingular%%->' . $field . ' }}">@endif</td></tr>';
