@@ -77,9 +77,13 @@
                 <span class="caret"></span>
             </button>
             <ul class="dropdown-menu">
-                <li><a href="#">Profile</a></li>
+                <li><a href="{{ route('home') }}">{{ Auth::user()->name ?? null }}</a></li>
                 <li class="divider"></li>
-                <li><a href="login.html">Logout</a></li>
+                <li><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+	                    @csrf
+                    </form>
+				</li>
             </ul>
         </div>
         <!-- user dropdown ends -->
