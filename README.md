@@ -13,7 +13,7 @@ This Generator package provides various generators like CRUD, API, Controller, M
 
 ## Installation
 ```
-composer require veseluy-rodjer/supercrud --forsage
+composer require veseluy-rodjer/supercrud
 ```
 
 ## Documentation

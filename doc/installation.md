@@ -2,13 +2,13 @@
 
 To get started, you should add the `veseluy-rodjer/supercrud` Composer dependency to your project:
 ```
-composer require veseluy-rodjer/supercrud --forsage
+composer require veseluy-rodjer/supercrud
 ```
 Once the package is installed, you should register the `VeseluyRodjer\CrudGenerator\CrudGeneratorServiceProvider` service provider. Normally, Laravel 5.5+ will register the service provider automatically.
 
 After that, publish its assets using the `vendor:publish` Artisan command:
 ```
-php artisan vendor:publish --provider="VeseluyRodjer\CrudGenerator\CrudGeneratorServiceProvider"
+php artisan vendor:publish --provider="VeseluyRodjer\CrudGenerator\CrudGeneratorServiceProvider" --force
 ```
 
 ### Laravel older 5.5
