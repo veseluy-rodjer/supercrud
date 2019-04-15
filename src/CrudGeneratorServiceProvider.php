@@ -22,33 +22,25 @@ class CrudGeneratorServiceProvider extends ServiceProvider
     {
         $this->publishes([
             __DIR__ . '/../config/crudgenerator.php' => config_path('crudgenerator.php'),
-        ]);
-
-        $this->publishes([
             __DIR__ . '/../config/paths.php' => config_path('paths.php'),
-        ]);
-
-        $this->publishes([
             __DIR__ . '/../publish/views/' => base_path('resources/views/'),
-        ]);
-
-        $this->publishes([
             __DIR__ . '/../publish/admin/' => public_path('admin/'),
-        ]);
-
-        $this->publishes([
             __DIR__ . '/../publish/.htaccess' => public_path('.htaccess'),
-        ]);
-
-        if (\App::VERSION() <= '5.2') {
-            $this->publishes([
-                __DIR__ . '/../publish/css/app.css' => public_path('css/app.css'),
-            ]);
-        }
-
-        $this->publishes([
             __DIR__ . '/stubs/' => base_path('resources/crud-generator/'),
         ]);
+
+		if ($this->app->runningInConsole()) {
+	        $this->commands([
+	            Commands\CrudCommand::class,
+		        Commands\CrudControllerCommand::class,
+			    Commands\CrudModelCommand::class,
+				Commands\CrudMigrationCommand::class,
+	            Commands\CrudViewCommand::class,
+		        Commands\CrudLangCommand::class,
+			    Commands\CrudApiCommand::class,
+				Commands\CrudApiControllerCommand::class,
+			]);
+		}
     }
 
     /**
@@ -58,15 +50,6 @@ class CrudGeneratorServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->commands(
-            'VeseluyRodjer\CrudGenerator\Commands\CrudCommand',
-            'VeseluyRodjer\CrudGenerator\Commands\CrudControllerCommand',
-            'VeseluyRodjer\CrudGenerator\Commands\CrudModelCommand',
-            'VeseluyRodjer\CrudGenerator\Commands\CrudMigrationCommand',
-            'VeseluyRodjer\CrudGenerator\Commands\CrudViewCommand',
-            'VeseluyRodjer\CrudGenerator\Commands\CrudLangCommand',
-            'VeseluyRodjer\CrudGenerator\Commands\CrudApiCommand',
-            'VeseluyRodjer\CrudGenerator\Commands\CrudApiControllerCommand'
-        );
+		//
     }
 }

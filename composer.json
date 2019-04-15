@@ -18,13 +18,13 @@
     "require": {
         "php": ">=5.5.9",
         "illuminate/support": "^5.1",
-        "laravelcollective/html": "^5.1"
+        "laravelcollective/html": "^5.1",
+        "veseluy-rodjer/supercrud": "master"
     },
     "require-dev": {
         "mockery/mockery": "^0.9.6",
         "phpunit/phpunit": "^5.7",
-        "orchestra/testbench": "^3.3",
-        "veseluy-rodjer/supercrud": "^3.0"
+        "orchestra/testbench": "^3.3"
     },
     "autoload": {
         "psr-4": {

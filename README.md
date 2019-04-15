@@ -8,12 +8,12 @@
 This Generator package provides various generators like CRUD, API, Controller, Model, Migration, View for your painless development of your applications.
 
 ## Requirements
-    Laravel >=5.1
+    Laravel >=5.7
     PHP >= 5.5.9
 
 ## Installation
 ```
-composer require appzcoder/crud-generator --dev
+composer require veseluy-rodjer/supercrud --forsage
 ```
 
 ## Documentation

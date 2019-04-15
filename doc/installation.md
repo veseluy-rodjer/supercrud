@@ -2,9 +2,9 @@
 
 To get started, you should add the `veseluy-rodjer/supercrud` Composer dependency to your project:
 ```
-composer require veseluy-rodjer/supercrud --dev
+composer require veseluy-rodjer/supercrud --forsage
 ```
-Once the package is installed, you should register the `Appzcoder\CrudGenerator\CrudGeneratorServiceProvider` service provider. Normally, Laravel 5.5+ will register the service provider automatically.
+Once the package is installed, you should register the `VeseluyRodjer\CrudGenerator\CrudGeneratorServiceProvider` service provider. Normally, Laravel 5.5+ will register the service provider automatically.
 
 After that, publish its assets using the `vendor:publish` Artisan command:
 ```
