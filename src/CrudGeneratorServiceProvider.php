@@ -19,7 +19,7 @@ class CrudGeneratorServiceProvider extends RouteServiceProvider
          * Cоздаем префикс для всех маршрутов и устанавливаем посредника
          * Для корректной работы префикса, класс наследуется от RouteServiceProvider
          */
-        Route::prefix(LocaleMiddleware::getLocale())
+        \Route::prefix(LocaleMiddleware::getLocale())
             ->middleware(LocaleMiddleware::class, 'web')
             ->namespace('App\Http\Controllers')
             ->group(base_path('routes/web.php'));
