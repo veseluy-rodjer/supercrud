@@ -1,3 +1,6 @@
-<a href="{{ route('setlocale', ['lang' => 'en']) }}">English</a>
-<a href="{{ route('setlocale', ['lang' => 'ru']) }}">Русский</a>
-<a href="{{ route('setlocale', ['lang' => 'uk']) }}">Українська</a>
+<br>
+@foreach (config('languages.languages') as $lang)
+	<a href="{{ route('setlocale', ['lang' => $lang]) }}">@lang('common.language', [], $lang)</a>
+	<br>
+@endforeach
+
