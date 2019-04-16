@@ -2,9 +2,9 @@
 
 namespace VeseluyRodjer\CrudGenerator;
 
-use Illuminate\Support\ServiceProvider;
+use App\Providers\RouteServiceProvider;
 
-class CrudGeneratorServiceProvider extends ServiceProvider
+class CrudGeneratorServiceProvider extends RouteServiceProvider
 {
     /**
      * Indicates if loading of the provider is deferred.
@@ -20,6 +20,27 @@ class CrudGeneratorServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        parent::boot();
+
+        /*
+         * Cоздаем префикс для всех маршрутов и устанавливаем посредника
+         * Для корректной работы префикса, класс наследуется от RouteServiceProvider
+         */
+        Route::prefix(LocaleMiddleware::getLocale())
+            ->middleware(LocaleMiddleware::class, 'web')
+            ->namespace('App\Http\Controllers')
+            ->group(base_path('routes/web.php'));
+
+        //Загружаем свой файл маршрутов после загрузки сервисов
+		$this->loadRoutesFrom(__DIR__.'/../roures/route.php');
+
+        $language = LocaleMiddleware::getLocale();
+        if($language) Config::set('app.locale', $language);
+
+        $this->publishes([__DIR__ . '/../config/' => config_path() . '/']);
+        $this->publishes([__DIR__ . '/../views/' => resource_path() . '/views/locales/']);
+
+
         $this->publishes([
             __DIR__ . '/../config/crudgenerator.php' => config_path('crudgenerator.php'),
             __DIR__ . '/../config/paths.php' => config_path('paths.php'),
