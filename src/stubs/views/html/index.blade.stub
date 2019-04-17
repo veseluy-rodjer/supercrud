@@ -110,6 +110,7 @@
 
 {{-- Toggle sort --}}
 <script>
+$(document).ready(function() {
 	$(".toggle").click(function(e) {
 		e.preventDefault();
 		$(this).toggleClass('glyphicon-arrow-up glyphicon-arrow-down');
@@ -120,6 +121,7 @@
 		var route = $(location).attr('origin') + $(location).attr('pathname') + pages + search + toggle + sort;
 		$(location).attr('href', route);
 	}); 
+});
 </script>
 
 @endsection
