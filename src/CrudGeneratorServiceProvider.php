@@ -31,6 +31,7 @@ class CrudGeneratorServiceProvider extends RouteServiceProvider
             __DIR__ . '/../config/' => config_path('/'),
             __DIR__ . '/../publish/views/' => base_path('resources/views/'),
             __DIR__ . '/../publish/admin/' => public_path('admin/'),
+            __DIR__ . '/../publish/lang/' => base_path('resources/lang'),
             __DIR__ . '/../publish/.htaccess' => public_path('.htaccess'),
             __DIR__ . '/stubs/' => base_path('resources/crud-generator/'),
         ]);
