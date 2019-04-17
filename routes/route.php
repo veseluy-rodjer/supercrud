@@ -1,7 +1,7 @@
 <?php
 
 //Переключение языков
-Route::get('setlocale/{lang}', function ($lang) {
+Route::get('setlocale/{lang?}', function ($lang) {
 
 	$referer = url()->previous();
 	$uri = parse_url($referer, PHP_URL_PATH);
