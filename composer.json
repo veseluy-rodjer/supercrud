@@ -19,6 +19,7 @@
         "php": ">=5.5.9",
         "illuminate/support": "^5.1",
         "laravelcollective/html": "^5.1",
+		"Intervention/image": "master",
         "veseluy-rodjer/supercrud": "master"
     },
     "require-dev": {
