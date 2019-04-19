@@ -14,6 +14,8 @@ This Generator package provides various generators like CRUD, API, Controller, M
 ## Installation
 ```
 composer require veseluy-rodjer/supercrud
+
+php artisan vendor:publish --provider="VeseluyRodjer\CrudGenerator\CrudGeneratorServiceProvider" --force
 ```
 
 ## Documentation
