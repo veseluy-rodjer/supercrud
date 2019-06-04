@@ -97,7 +97,7 @@
 								Showing {{ $%%crudName%%->total() > 0 ? $%%crudName%%->currentPage() * $%%crudName%%->perPage() - $%%crudName%%->perPage() + 1 : 0 }} to {{ $%%crudName%%->currentPage() * $%%crudName%%->perPage() <= $%%crudName%%->total() ? $%%crudName%%->currentPage() * $%%crudName%%->perPage() : $%%crudName%%->total() }} of {{ $%%crudName%%->total() }} entries
 							</span>
 						</div>
-                        <div class="pagination-wrapper" style="text-align: center"> {{ $%%crudName%%->appends(['pages' => request('pages'), 'search' => request('search')])->links() }} </div>
+                        <div class="pagination-wrapper" style="text-align: center"> {{ $%%crudName%%->appends(['pages' => request('pages'), 'search' => request('search'), 'toggle' => request('toggle'), 'sort' => request('sort')])->links() }} </div>
                     </div>
                 </div>
             </div>
