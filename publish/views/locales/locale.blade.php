@@ -1,5 +1,5 @@
 <p>
-	<select name="language">
+	<select id="select-language" name="language">
 		@foreach (config('languages.languages') as $lang)
 			<option {{ \App::getLocale() == $lang ? 'selected' : null }}>{{ $lang }}</option>
 		@endforeach
@@ -8,12 +8,10 @@
 
 <script>
 // change language
-$(document).ready(function() {
-    $('select[name="language"]').change(function() {
-		var lang = $(this).val();
-		var route = "{{ route('setlocale') }}";
-		console.log(route);
-		$(location).attr('href', route + '/' + lang + '/');
-    });
-});
+let selectLanguage = document.querySelector('#select-language');
+selectLanguage.onchange = function(e) {
+	let lang = this.value;
+	let route = "{{ route('setlocale') }}";
+	document.location.href = route + '/' + lang + '/';
+} 
 </script>
