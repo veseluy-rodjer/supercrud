@@ -283,7 +283,7 @@ class CrudViewCommand extends Command
             : $this->option('route-group');
         $this->routePrefix = ($this->option('route-group')) ? $this->option('route-group') : '';
         $this->routePrefixCap = ucfirst($this->routePrefix);
-        $this->viewName = snake_case($this->argument('name'), '-');
+        $this->viewName = \Str::plural(\Str::kebab($this->argument('name')));
 
         $viewDirectory = config('view.paths')[0] . '/';
         if ($this->option('view-path')) {

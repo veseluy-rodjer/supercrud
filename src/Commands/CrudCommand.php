@@ -177,7 +177,7 @@ class CrudCommand extends Command
      */
     protected function addRoutes()
     {
-		return ["Route::delete('" . $this->routeName . "/arr-delete', '" . $this->controller . "@arrDelete')->name('" . $this->myAddrName . ".arr-delete');\nRoute::resource('" . $this->routeName . "', '" . $this->controller . "');"];
+		return ["Route::delete('" . $this->routeName . "/arr-delete', '" . $this->controller . "@arrDelete')->name('" . \Str::plural(\Str::kebab($name)) . ".arr-delete');\nRoute::resource('" . $this->routeName . "', '" . $this->controller . "');"];
     }
 
     /**
