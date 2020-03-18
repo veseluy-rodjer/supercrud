@@ -16,7 +16,7 @@
         }
     ],
     "require": {
-		"Intervention/image": "master"
+		"intervention/image": "master"
     },
     "require-dev": {
         "mockery/mockery": "^0.9.6",
