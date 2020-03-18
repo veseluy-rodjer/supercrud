@@ -67,12 +67,12 @@ class CrudCommand extends Command
     {
         $name = $this->argument('name');
         $modelName = \Str::singular($name);
-        $migrationName = str_plural(snake_case($name));
+        $migrationName = \Str::plural(\Str::snake($name));
         $tableName = $migrationName;
 		$this->myAddrName = $tableName;
 
         $routeGroup = $this->option('route-group');
-        $this->routeName = ($routeGroup) ? $routeGroup . '/' . snake_case($name, '-') : snake_case($name, '-');
+        $this->routeName = ($routeGroup) ? $routeGroup . '/' . \Str::plural(\Str::kebab($name)) : \Str::plural(\Str::kebab($name));
         $perPage = intval($this->option('pagination'));
 
         $controllerNamespace = ($this->option('controller-namespace')) ? $this->option('controller-namespace') . '\\' : '';
@@ -143,7 +143,7 @@ class CrudCommand extends Command
 
         // Updating list of tables into sidebar.php file
         $pathToListFile = resource_path('views/admin/layouts/list.blade.php');
-        $list ='<li><a class="ajax-link" href="{{ route("' . lcfirst($name) . '.index") }}"><i class="glyphicon glyphicon-align-justify"></i><span> ' . $name . '</span></a></li>';
+        $list ='<li><a class="ajax-link" href="{{ route("' . \Str::plural(\Str::kebab($name)) . '.index") }}"><i class="glyphicon glyphicon-align-justify"></i><span> ' . \Str::plural($name) . '</span></a></li>';
         File::append($pathToListFile, $list . "\n");
 
         // Updating path into config.paths.php file
@@ -177,7 +177,7 @@ class CrudCommand extends Command
      */
     protected function addRoutes()
     {
-		return ["Route::delete('" . $this->routeName . "/arr-delete', '" . $this->controller . "@arrDelete')->name('" . $this->myAddrName . ".arrDelete');\nRoute::resource('" . $this->routeName . "', '" . $this->controller . "');"];
+		return ["Route::delete('" . $this->routeName . "/arr-delete', '" . $this->controller . "@arrDelete')->name('" . $this->myAddrName . ".arr-delete');\nRoute::resource('" . $this->routeName . "', '" . $this->controller . "');"];
     }
 
     /**
