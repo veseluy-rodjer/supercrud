@@ -270,12 +270,12 @@ class CrudViewCommand extends Command
             : __DIR__ . '/../stubs/views/' . $formHelper . '/';
 
 
-        $this->crudName = strtolower($this->argument('name'));
-        $this->varName = lcfirst($this->argument('name'));
-        $this->crudNameCap = ucwords($this->crudName);
-        $this->crudNameSingular = str_singular($this->crudName);
-        $this->modelName = str_singular($this->argument('name'));
-        $this->modelNameCap = ucfirst($this->modelName);
+        $this->crudName = \Str::plural(lcfirst($this->argument('name')));
+        $this->varName = \Str::plural(lcfirst($this->argument('name')));
+        $this->crudNameCap = \Str::plural($this->argument('name'));
+        $this->crudNameSingular = lcfirst($this->argument('name'));
+        $this->modelName = $this->argument('name');
+        $this->modelNameCap = $this->argument('name');
         $this->customData = $this->option('custom-data');
         $this->primaryKey = $this->option('pk');
         $this->routeGroup = ($this->option('route-group'))
