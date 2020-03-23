@@ -354,8 +354,8 @@ class CrudViewCommand extends Command
 									@endif
 										</span></a></th>';
             if ($value['type'] === 'file') {
-                $this->formBodyHtml .= '<td>@if (!empty($item->' . $field . '))<img src="{{ config(\'paths.' . $this->varName . '\') . $item->id . \'/\' . $item->' . $field . ' }}">@endif</td>';
-                $this->formBodyHtmlForShowView .= '<tr><th> ' . $label . ' </th><td>@if (!empty($%%crudNameSingular%%->' . $field . '))<img src="{{ config(\'paths.' . $this->varName . '\') . $%%crudNameSingular%%->id . \'/big\' . $%%crudNameSingular%%->' . $field . ' }}">@endif</td></tr>';
+                $this->formBodyHtml .= '<td>@if (!empty($item->' . $field . '))<img src="{{ config(\'paths.' . $this->viewName . '\') . $item->id . \'/\' . $item->' . $field . ' }}">@endif</td>';
+                $this->formBodyHtmlForShowView .= '<tr><th> ' . $label . ' </th><td>@if (!empty($%%crudNameSingular%%->' . $field . '))<img src="{{ config(\'paths.' . $this->viewName . '\') . $%%crudNameSingular%%->id . \'/big\' . $%%crudNameSingular%%->' . $field . ' }}">@endif</td></tr>';
             }
             elseif ($value['type'] === 'text') {
                 $this->formBodyHtml .= '<td>{!! $item->' . $field . ' !!}</td>';
@@ -540,7 +540,7 @@ class CrudViewCommand extends Command
         $markup = str_replace($start . 'fieldType' . $end, $this->typeLookup[$item['type']], $markup);
         $markup = str_replace($start . 'itemName' . $end, $item['name'], $markup);
         $markup = str_replace($start . 'crudNameSingular' . $end, $this->crudNameSingular, $markup);
-        $markup = str_replace($start . 'crudName' . $end, $this->crudName, $markup);
+        $markup = str_replace($start . 'viewName' . $end, $this->viewName, $markup);
 
         return $this->wrapField(
             $item,
