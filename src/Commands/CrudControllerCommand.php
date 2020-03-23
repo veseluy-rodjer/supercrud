@@ -88,15 +88,15 @@ class CrudControllerCommand extends GeneratorCommand
         $stub = $this->files->get($this->getStub());
 
         $viewPath = $this->option('view-path') ? $this->option('view-path') . '.' : '';
-        $crudName = strtolower($this->option('crud-name'));
-        $crudNameSingular = str_singular($crudName);
+        $crudName = \Str::plural(lcfirst($this->option('crud-name')));
+        $crudNameSingular = lcfirst($this->option('crud-name'));
         $modelName = $this->option('model-name');
         $modelNamespace = $this->option('model-namespace');
         $routeGroup = ($this->option('route-group')) ? $this->option('route-group') . '/' : '';
         $routePrefix = ($this->option('route-group')) ? $this->option('route-group') : '';
         $routePrefixCap = ucfirst($routePrefix);
         $perPage = intval($this->option('pagination'));
-        $viewName = snake_case($this->option('crud-name'), '-');
+        $viewName = \Str::plural(\Str::kebab($this->option('crud-name')));
         $fields = $this->option('fields');
         $validations = rtrim($this->option('validations'), ';');
 
@@ -125,7 +125,7 @@ class CrudControllerCommand extends GeneratorCommand
             $snippetUp = <<<EOD
         if (\$request->hasFile('{{fieldName}}')) {
             \$file = \$request->file('{{fieldName}}');
-            \$fileName = str_random(40) . '.' . \$file->getClientOriginalExtension();
+            \$fileName = \Str::random(40) . '.' . \$file->getClientOriginalExtension();
             \$destinationPath = storage_path('/app/public/uploads');
             \$file->move(\$destinationPath, \$fileName);
             \$requestData['{{fieldName}}'] = 'uploads/' . \$fileName;
@@ -134,13 +134,13 @@ EOD;
         } else {
             $snippetCreateOne = <<<EOD
         if (\$request->has('{{fieldName}}')) {
-            \${{fieldName}}Name = str_random(40) . '.' . \$request->{{fieldName}}->extension();
+            \${{fieldName}}Name = \Str::random(40) . '.' . \$request->{{fieldName}}->extension();
             \$requestData['{{fieldName}}'] = \${{fieldName}}Name;
         }
 EOD;
             $snippetCreateTwo = <<<EOD
         if (\$request->has('{{fieldName}}')) {
-            \$path = '/uploads/{{crudName}}/' . \$store->id . '/';
+            \$path = '/uploads/{{viewName}}/' . \$store->id . '/';
             Storage::makeDirectory(\$path );
             Image::make(\$request->{{fieldName}})->resize(120, 120, function (\$constraint) {
                 \$constraint->aspectRatio();
@@ -152,9 +152,9 @@ EOD;
 EOD;
             $snippetUp = <<<EOD
         if (\$request->has('{{fieldName}}')) {
-            \${{fieldName}}Name = str_random(40) . '.' . \$request->{{fieldName}}->extension();
+            \${{fieldName}}Name = \Str::random(40) . '.' . \$request->{{fieldName}}->extension();
             \$requestData['{{fieldName}}'] = \${{fieldName}}Name;
-            \$path = '/uploads/{{crudName}}/' . \$up->id . '/';
+            \$path = '/uploads/{{viewName}}/' . \$up->id . '/';
             if (!empty(\$up->{{fieldName}})) {
                 Storage::delete(\$path . \$up->{{fieldName}});
                 Storage::delete(\$path . 'big' . \$up->{{fieldName}});
@@ -170,7 +170,7 @@ EOD;
 EOD;
             $snippetDelPicture = <<<EOD
         if (!empty(\$del->{{fieldName}})) {
-            \$path = '/uploads/{{crudName}}/' . \$del->id . '/';
+            \$path = '/uploads/{{viewName}}/' . \$del->id . '/';
                 Storage::deleteDirectory(\$path);
         }
 EOD;
