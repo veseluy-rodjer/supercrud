@@ -540,6 +540,7 @@ class CrudViewCommand extends Command
         $markup = str_replace($start . 'fieldType' . $end, $this->typeLookup[$item['type']], $markup);
         $markup = str_replace($start . 'itemName' . $end, $item['name'], $markup);
         $markup = str_replace($start . 'crudNameSingular' . $end, $this->crudNameSingular, $markup);
+        $markup = str_replace($start . 'crudName' . $end, $this->crudName, $markup);
 
         return $this->wrapField(
             $item,
