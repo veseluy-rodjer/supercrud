@@ -66,7 +66,7 @@ class CrudCommand extends Command
     public function handle()
     {
         $name = $this->argument('name');
-        $modelName = \Str::singular($name);
+        $modelName = $name;
         $migrationName = \Str::plural(\Str::snake($name));
         $tableName = $migrationName;
 		$this->myAddrName = $tableName;
@@ -148,7 +148,7 @@ class CrudCommand extends Command
 
         // Updating path into config.paths.php file
         $pathToPathsFile = config_path('paths.php');
-        File::put($pathToPathsFile, str_replace('];', '"' . lcfirst($name) . '" => env("APP_URL") . "/uploads/' . lcfirst($name) . '/",' . "\n" . '];', File::get($pathToPathsFile)));
+        File::put($pathToPathsFile, str_replace('];', '"' . \Str::plural(lcfirst($name)) . '" => env("APP_URL") . "/uploads/' . \Str::plural(lcfirst($name)) . '/",' . "\n" . '];', File::get($pathToPathsFile)));
 
         // Updating the Http/routes.php file
         $routeFile = app_path('Http/routes.php');
