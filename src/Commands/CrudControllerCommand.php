@@ -191,9 +191,9 @@ EOD;
 
                 if (trim($itemArray[1]) == 'file') {
                     $fileSnippetCreateOne .= str_replace(['{{fieldName}}', '{{crudName}}', '{{modelName}}'], [trim($itemArray[0]), $crudName, $modelName], $snippetCreateOne) . "\n";
-                    $fileSnippetCreateTwo .= str_replace(['{{fieldName}}', '{{crudName}}', '{{modelName}}'], [trim($itemArray[0]), $crudName, $modelName], $snippetCreateTwo) . "\n";
-                    $fileSnippetUp .= str_replace(['{{fieldName}}', '{{crudName}}', '{{modelName}}'], [trim($itemArray[0]), $crudName, $modelName], $snippetUp) . "\n";
-                    $fileSnippetDelPicture .= str_replace(['{{fieldName}}', '{{crudName}}', '{{modelName}}'], [trim($itemArray[0]), $crudName, $modelName], $snippetDelPicture) . "\n";
+                    $fileSnippetCreateTwo .= str_replace(['{{fieldName}}', '{{crudName}}', '{{modelName}}', '{{viewName}}'], [trim($itemArray[0]), $crudName, $modelName, $viewName], $snippetCreateTwo) . "\n";
+                    $fileSnippetUp .= str_replace(['{{fieldName}}', '{{crudName}}', '{{modelName}}', '{{viewName}}'], [trim($itemArray[0]), $crudName, $modelName, $viewName], $snippetUp) . "\n";
+                    $fileSnippetDelPicture .= str_replace(['{{fieldName}}', '{{crudName}}', '{{modelName}}', '{{viewName}}'], [trim($itemArray[0]), $crudName, $modelName, $viewName], $snippetDelPicture) . "\n";
                 }
 
                 $fieldName = trim($itemArray[0]);
