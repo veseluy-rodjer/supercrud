@@ -44,33 +44,19 @@ class CrudViewCommand extends Command
      */
     protected $typeLookup = [
         'string' => 'text',
-        'char' => 'text',
-        'varchar' => 'text',
         'text' => 'textarea',
         'textEdit' => 'textareaEdit',
-        'mediumtext' => 'textarea',
-        'longtext' => 'textarea',
+        'longText' => 'textarea',
         'json' => 'textarea',
-        'jsonb' => 'textarea',
-        'binary' => 'textarea',
         'password' => 'password',
         'email' => 'email',
-        'number' => 'number',
         'integer' => 'number',
-        'bigint' => 'number',
-        'mediumint' => 'number',
-        'tinyint' => 'number',
-        'smallint' => 'number',
+        'bigInteger' => 'number',
         'decimal' => 'number',
-        'double' => 'number',
         'float' => 'number',
-        'date' => 'date',
-        'datetime' => 'datetime-local',
-        'timestamp' => 'datetime-local',
-        'time' => 'time',
+        'timestamp' => 'text',
         'radio' => 'radio',
         'boolean' => 'checkbox',
-        'enum' => 'select',
         'select' => 'select',
         'file' => 'file',
         'checkbox' => 'checkbox',
@@ -512,7 +498,6 @@ class CrudViewCommand extends Command
             case 'textarea':
                 return $this->createTextareaField($item);
             case 'select':
-            case 'enum':
                 return $this->createSelectField($item);
             case 'checkbox':
                 return $this->createCheckboxField($item);
