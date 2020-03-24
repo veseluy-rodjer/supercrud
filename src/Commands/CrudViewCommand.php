@@ -468,8 +468,6 @@ class CrudViewCommand extends Command
         else {
             $formGroup = File::get($this->viewDirectoryPath . 'form-fields/wrap-field.blade.stub');
         }
-//        $formGroup = File::get($this->viewDirectoryPath . 'form-fields/wrap-field.blade.stub');
-
         $labelText = "'" . ucwords(strtolower(str_replace('_', ' ', $item['name']))) . "'";
 
         if ($this->option('localize') == 'yes') {

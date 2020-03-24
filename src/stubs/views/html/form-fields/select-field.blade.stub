@@ -1,16 +1,14 @@
 @if (!empty(old("%%itemName%%")))
 <select name="%%itemName%%" class="form-control" id="%%itemName%%">
-    @foreach (json_decode('%%options%%', true) as $optionKey => $optionValue)
-    <option value="{{ $optionKey }}" {{ $optionKey  == old("%%itemName%%") ? 'selected' : ''}}>{{ $optionValue }}</option>
+    @foreach ($something as $item)
+		<option value="{{ $item->id }}" {{ $item->id  == old("%%itemName%%") ? 'selected' : ''}}>{{ $item->name }}</option>
     @endforeach
 </select>
 @else
 <select name="%%itemName%%" class="form-control" id="%%itemName%%">
-    @foreach (json_decode('%%options%%', true) as $optionKey => $optionValue)
-    <option value="{{ $optionKey }}" {{ (isset($%%crudNameSingular%%->%%itemName%%) && $%%crudNameSingular%%->%%itemName%% == $optionKey) ? 'selected' : ''}}>{{ $optionValue }}</option>
+    @foreach ($something as $item)
+		<option value="{{ $item->id }}" {{ (isset($%%crudNameSingular%%) && $%%crudNameSingular%%->%%itemName%% == $item->id) ? 'selected' : ''}}>{{ $item->name }}</option>
     @endforeach
 </select>
 @endif
-
-
 
