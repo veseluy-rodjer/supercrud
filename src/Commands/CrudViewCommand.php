@@ -47,7 +47,7 @@ class CrudViewCommand extends Command
         'char' => 'text',
         'varchar' => 'text',
         'text' => 'textarea',
-        'textEdit' => 'textareaOnly',
+        'textEdit' => 'textareaEdit',
         'mediumtext' => 'textarea',
         'longtext' => 'textarea',
         'json' => 'textarea',
@@ -69,10 +69,11 @@ class CrudViewCommand extends Command
         'timestamp' => 'datetime-local',
         'time' => 'time',
         'radio' => 'radio',
-        'boolean' => 'radio',
+        'boolean' => 'checkbox',
         'enum' => 'select',
         'select' => 'select',
         'file' => 'file',
+        'checkbox' => 'checkbox',
     ];
 
     /**
@@ -504,20 +505,19 @@ class CrudViewCommand extends Command
         switch ($this->typeLookup[$item['type']]) {
             case 'password':
                 return $this->createPasswordField($item);
-            case 'datetime-local':
-            case 'time':
-                return $this->createInputField($item);
             case 'radio':
                 return $this->createRadioField($item);
-            case 'textareaOnly':
-                return $this->createTextareaOnlyField($item);
+            case 'textareaEdit':
+                return $this->createTextareaEditField($item);
             case 'textarea':
                 return $this->createTextareaField($item);
             case 'select':
             case 'enum':
                 return $this->createSelectField($item);
-            default: // file
-                return $this->createFormField($item);
+            case 'checkbox':
+                return $this->createCheckboxField($item);
+            default: // input
+                return $this->createInputField($item);
         }
     }
 
@@ -648,20 +648,20 @@ class CrudViewCommand extends Command
     }
 
     /**
-     * Create a textareaOnly field using the form helper.
+     * Create a textareaEdit field using the form helper.
      *
      * @param  array $item
      *
      * @return string
      */
-    protected function createTextareaOnlyField($item)
+    protected function createTextareaEditField($item)
     {
         $start = $this->delimiter[0];
         $end = $this->delimiter[1];
 
         $required = $item['required'] ? 'required' : '';
 
-        $markup = File::get($this->viewDirectoryPath . 'form-fields/textareaOnly-field.blade.stub');
+        $markup = File::get($this->viewDirectoryPath . 'form-fields/textarea-edit-field.blade.stub');
         $markup = str_replace($start . 'required' . $end, $required, $markup);
         $markup = str_replace($start . 'fieldType' . $end, $this->typeLookup[$item['type']], $markup);
         $markup = str_replace($start . 'itemName' . $end, $item['name'], $markup);
@@ -690,6 +690,32 @@ class CrudViewCommand extends Command
         $markup = File::get($this->viewDirectoryPath . 'form-fields/select-field.blade.stub');
         $markup = str_replace($start . 'required' . $end, $required, $markup);
         $markup = str_replace($start . 'options' . $end, $item['options'], $markup);
+        $markup = str_replace($start . 'itemName' . $end, $item['name'], $markup);
+        $markup = str_replace($start . 'crudNameSingular' . $end, $this->crudNameSingular, $markup);
+
+        return $this->wrapField(
+            $item,
+            $markup
+        );
+    }
+
+    /**
+     * Create a checkbox field using the form helper.
+     *
+     * @param  array $item
+     *
+     * @return string
+     */
+    protected function createCheckboxField($item)
+    {
+        $start = $this->delimiter[0];
+        $end = $this->delimiter[1];
+
+        $required = $item['required'] ? 'required' : '';
+
+        $markup = File::get($this->viewDirectoryPath . 'form-fields/checkbox-field.blade.stub');
+        $markup = str_replace($start . 'required' . $end, $required, $markup);
+        $markup = str_replace($start . 'fieldType' . $end, $this->typeLookup[$item['type']], $markup);
         $markup = str_replace($start . 'itemName' . $end, $item['name'], $markup);
         $markup = str_replace($start . 'crudNameSingular' . $end, $this->crudNameSingular, $markup);
 
