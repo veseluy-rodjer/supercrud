@@ -1,9 +1,9 @@
 @if (null !== old("%%itemName%%"))
 <div class="radio">
-    <label><input name="%%itemName%%" type="radio" value="1" {{ 1 == old("content") ? 'checked' : '' }}> Yes</label>
+    <label><input name="%%itemName%%" type="radio" value="1" {{ 1 == old("%%itemName%%") ? 'checked' : '' }}> Yes</label>
 </div>
 <div class="radio">
-    <label><input name="%%itemName%%" type="radio" value="0" {{ 0 == old("content") ? 'checked' : '' }}> No</label>
+    <label><input name="%%itemName%%" type="radio" value="0" {{ 0 == old("%%itemName%%") ? 'checked' : '' }}> No</label>
 </div>
 @else
 <div class="radio">
