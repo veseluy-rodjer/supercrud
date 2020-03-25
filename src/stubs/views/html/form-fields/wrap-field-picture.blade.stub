@@ -1,6 +1,6 @@
 <label>{{ %2$s }}</label>
-<div id="div-%1$s" class="image-preview form-group {{ $errors->has('%1$s') ? 'has-error' : ''}}">
-    <label for="%1$s" id="label-%1$s" class="control-label">Загрузить</label>
+<div id="div-%4$s" class="image-preview form-group {{ $errors->has('%1$s') ? 'has-error' : ''}}">
+    <label for="%4$s" id="label-%4$s" class="control-label">Загрузить</label>
     %3$s
 </div>
 @foreach ($errors->get('%1$s') as $message)

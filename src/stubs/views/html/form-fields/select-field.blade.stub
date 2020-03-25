@@ -1,11 +1,11 @@
 @if (!empty(old("%%itemName%%")))
-<select name="%%itemName%%" class="form-control" id="%%itemName%%">
+<select name="%%itemName%%" class="form-control" id="%%itemNameId%%">
     @foreach ($something as $item)
 		<option value="{{ $item->id }}" {{ $item->id  == old("%%itemName%%") ? 'selected' : ''}}>{{ $item->name }}</option>
     @endforeach
 </select>
 @else
-<select name="%%itemName%%" class="form-control" id="%%itemName%%">
+<select name="%%itemName%%" class="form-control" id="%%itemNameId%%">
     @foreach ($something as $item)
 		<option value="{{ $item->id }}" {{ (isset($%%crudNameSingular%%) && $%%crudNameSingular%%->%%itemName%% == $item->id) ? 'selected' : ''}}>{{ $item->name }}</option>
     @endforeach
