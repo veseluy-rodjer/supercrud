@@ -304,15 +304,15 @@ class CrudViewCommand extends Command
                 $this->formFields[$x]['type'] = trim($itemArray[1]);
                 $this->formFields[$x]['required'] = preg_match('/' . $itemArray[0] . '/', $validations) ? true : false;
 
-                if (($this->formFields[$x]['type'] === 'select'
-                    || $this->formFields[$x]['type'] === 'enum')
-                    && isset($itemArray[2])
-                ) {
-                    $options = trim($itemArray[2]);
-                    $options = str_replace('options=', '', $options);
-
-                    $this->formFields[$x]['options'] = $options;
-                }
+                // if (($this->formFields[$x]['type'] === 'select'
+                    // || $this->formFields[$x]['type'] === 'enum')
+                    // && isset($itemArray[2])
+                // ) {
+                    // $options = trim($itemArray[2]);
+                    // $options = str_replace('options=', '', $options);
+//
+                    // $this->formFields[$x]['options'] = $options;
+                // }
 
                 $x++;
             }
@@ -448,8 +448,13 @@ class CrudViewCommand extends Command
      */
     protected function wrapField($item, $field)
     {
+        $start = $this->delimiter[0];
+        $end = $this->delimiter[1];
         if ($item['type'] === 'file') {
             $formGroup = File::get($this->viewDirectoryPath . 'form-fields/wrap-field-picture.blade.stub');
+			$formGroup = str_replace($start . 'itemName' . $end, $item['name'], $markup);
+			$formGroup = str_replace($start . 'crudNameSingular' . $end, $this->crudNameSingular, $markup);
+			$formGroup = str_replace($start . 'viewName' . $end, $this->viewName, $markup);
             $scr ='
             $(document).ready(function() {
             $.uploadPreview({
@@ -678,7 +683,7 @@ class CrudViewCommand extends Command
 
         $markup = File::get($this->viewDirectoryPath . 'form-fields/select-field.blade.stub');
         $markup = str_replace($start . 'required' . $end, $required, $markup);
-        $markup = str_replace($start . 'options' . $end, $item['options'], $markup);
+        // $markup = str_replace($start . 'options' . $end, $item['options'], $markup);
         $markup = str_replace($start . 'itemName' . $end, $item['name'], $markup);
         $markup = str_replace($start . 'itemNameId' . $end, \Str::kebab($item['name']), $markup);
         $markup = str_replace($start . 'crudNameSingular' . $end, $this->crudNameSingular, $markup);

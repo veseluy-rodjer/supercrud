@@ -1,5 +1,9 @@
-<label>{{ %2$s }}</label>
-<div id="div-%4$s" class="image-preview form-group {{ $errors->has('%1$s') ? 'has-error' : ''}}">
+<div>{{ %2$s }}</div>
+@if (!empty($%%crudNameSingular%%->%%itemName%%))
+	<div id="div-%4$s" class="image-preview form-group {{ $errors->has('%1$s') ? 'has-error' : ''}}" style="background-image: url('{{ config('paths.' . '%%viewName%%') . $%%crudNameSingular%%->id . '/' . $%%crudNameSingular%%->%%itemName%% }}'); background-size: cover">
+@else
+	<div id="div-%4$s" class="image-preview form-group {{ $errors->has('%1$s') ? 'has-error' : ''}}">
+@endif
     <label for="%4$s" id="label-%4$s" class="control-label">Загрузить</label>
     %3$s
 </div>
