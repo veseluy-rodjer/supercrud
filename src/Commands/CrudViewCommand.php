@@ -452,15 +452,15 @@ class CrudViewCommand extends Command
         $end = $this->delimiter[1];
         if ($item['type'] === 'file') {
             $formGroup = File::get($this->viewDirectoryPath . 'form-fields/wrap-field-picture.blade.stub');
-			$formGroup = str_replace($start . 'itemName' . $end, $item['name'], $markup);
-			$formGroup = str_replace($start . 'crudNameSingular' . $end, $this->crudNameSingular, $markup);
-			$formGroup = str_replace($start . 'viewName' . $end, $this->viewName, $markup);
+			$formGroup = str_replace($start . 'itemName' . $end, $item['name'], $formGroup);
+			$formGroup = str_replace($start . 'crudNameSingular' . $end, $this->crudNameSingular, $formGroup);
+			$formGroup = str_replace($start . 'viewName' . $end, $this->viewName, $formGroup);
             $scr ='
             $(document).ready(function() {
             $.uploadPreview({
-            input_field: "#' . \Str::kebab($item['name']) . '",   // По умолчанию: .image-upload
-            preview_box: "#div-' . \Str::kebab($item['name']) . '",  // По умолчанию: .image-preview
-            label_field: "#label-' . \Str::kebab($item['name']) . '",    // По умолчанию: .image-label
+            input_field: "#' . str_replace('_', '-', $item['name']) . '",   // По умолчанию: .image-upload
+            preview_box: "#div-' . str_replace('_', '-', $item['name']) . '",  // По умолчанию: .image-preview
+            label_field: "#label-' . str_replace('_', '-', $item['name']) . '",    // По умолчанию: .image-label
             label_default: "Загрузить",   // По умолчанию: Choose File
             label_selected: "Загрузить",  // По умолчанию: Change File
             no_label: false,                // По умолчанию: false
@@ -479,7 +479,7 @@ class CrudViewCommand extends Command
             $labelText = 'trans(\'' . $this->crudName . '.' . $item['name'] . '\')';
         }
 
-        return sprintf($formGroup, $item['name'], $labelText, $field, \Str::kebab($item['name']));
+        return sprintf($formGroup, $item['name'], $labelText, $field, str_replace('_', '-', $item['name']));
     }
 
     /**
@@ -527,7 +527,7 @@ class CrudViewCommand extends Command
         $markup = str_replace($start . 'required' . $end, $required, $markup);
         $markup = str_replace($start . 'fieldType' . $end, $this->typeLookup[$item['type']], $markup);
         $markup = str_replace($start . 'itemName' . $end, $item['name'], $markup);
-        $markup = str_replace($start . 'itemNameId' . $end, \Str::kebab($item['name']), $markup);
+        $markup = str_replace($start . 'itemNameId' . $end, str_replace('_', '-', $item['name']), $markup);
         $markup = str_replace($start . 'crudNameSingular' . $end, $this->crudNameSingular, $markup);
         $markup = str_replace($start . 'viewName' . $end, $this->viewName, $markup);
 
@@ -554,7 +554,7 @@ class CrudViewCommand extends Command
         $markup = File::get($this->viewDirectoryPath . 'form-fields/password-field.blade.stub');
         $markup = str_replace($start . 'required' . $end, $required, $markup);
         $markup = str_replace($start . 'itemName' . $end, $item['name'], $markup);
-        $markup = str_replace($start . 'itemNameId' . $end, \Str::kebab($item['name']), $markup);
+        $markup = str_replace($start . 'itemNameId' . $end, str_replace('_', '-', $item['name']), $markup);
         $markup = str_replace($start . 'crudNameSingular' . $end, $this->crudNameSingular, $markup);
 
         return $this->wrapField(
@@ -581,7 +581,7 @@ class CrudViewCommand extends Command
         $markup = str_replace($start . 'required' . $end, $required, $markup);
         $markup = str_replace($start . 'fieldType' . $end, $this->typeLookup[$item['type']], $markup);
         $markup = str_replace($start . 'itemName' . $end, $item['name'], $markup);
-        $markup = str_replace($start . 'itemNameId' . $end, \Str::kebab($item['name']), $markup);
+        $markup = str_replace($start . 'itemNameId' . $end, str_replace('_', '-', $item['name']), $markup);
         $markup = str_replace($start . 'crudNameSingular' . $end, $this->crudNameSingular, $markup);
 
         return $this->wrapField(
@@ -604,7 +604,7 @@ class CrudViewCommand extends Command
 
         $markup = File::get($this->viewDirectoryPath . 'form-fields/radio-field.blade.stub');
         $markup = str_replace($start . 'itemName' . $end, $item['name'], $markup);
-        $markup = str_replace($start . 'itemNameId' . $end, \Str::kebab($item['name']), $markup);
+        $markup = str_replace($start . 'itemNameId' . $end, str_replace('_', '-', $item['name']), $markup);
         $markup = str_replace($start . 'crudNameSingular' . $end, $this->crudNameSingular, $markup);
 
         return $this->wrapField(
@@ -631,7 +631,7 @@ class CrudViewCommand extends Command
         $markup = str_replace($start . 'required' . $end, $required, $markup);
         $markup = str_replace($start . 'fieldType' . $end, $this->typeLookup[$item['type']], $markup);
         $markup = str_replace($start . 'itemName' . $end, $item['name'], $markup);
-        $markup = str_replace($start . 'itemNameId' . $end, \Str::kebab($item['name']), $markup);
+        $markup = str_replace($start . 'itemNameId' . $end, str_replace('_', '-', $item['name']), $markup);
         $markup = str_replace($start . 'crudNameSingular' . $end, $this->crudNameSingular, $markup);
 
         return $this->wrapField(
@@ -658,7 +658,7 @@ class CrudViewCommand extends Command
         $markup = str_replace($start . 'required' . $end, $required, $markup);
         $markup = str_replace($start . 'fieldType' . $end, $this->typeLookup[$item['type']], $markup);
         $markup = str_replace($start . 'itemName' . $end, $item['name'], $markup);
-        $markup = str_replace($start . 'itemNameId' . $end, \Str::kebab($item['name']), $markup);
+        $markup = str_replace($start . 'itemNameId' . $end, str_replace('_', '-', $item['name']), $markup);
         $markup = str_replace($start . 'crudNameSingular' . $end, $this->crudNameSingular, $markup);
 
         return $this->wrapField(
@@ -685,7 +685,7 @@ class CrudViewCommand extends Command
         $markup = str_replace($start . 'required' . $end, $required, $markup);
         // $markup = str_replace($start . 'options' . $end, $item['options'], $markup);
         $markup = str_replace($start . 'itemName' . $end, $item['name'], $markup);
-        $markup = str_replace($start . 'itemNameId' . $end, \Str::kebab($item['name']), $markup);
+        $markup = str_replace($start . 'itemNameId' . $end, str_replace('_', '-', $item['name']), $markup);
         $markup = str_replace($start . 'crudNameSingular' . $end, $this->crudNameSingular, $markup);
 
         return $this->wrapField(
@@ -712,7 +712,7 @@ class CrudViewCommand extends Command
         $markup = str_replace($start . 'required' . $end, $required, $markup);
         $markup = str_replace($start . 'fieldType' . $end, $this->typeLookup[$item['type']], $markup);
         $markup = str_replace($start . 'itemName' . $end, $item['name'], $markup);
-        $markup = str_replace($start . 'itemNameId' . $end, \Str::kebab($item['name']), $markup);
+        $markup = str_replace($start . 'itemNameId' . $end, str_replace('_', '-', $item['name']), $markup);
         $markup = str_replace($start . 'crudNameSingular' . $end, $this->crudNameSingular, $markup);
 
         return $this->wrapField(
