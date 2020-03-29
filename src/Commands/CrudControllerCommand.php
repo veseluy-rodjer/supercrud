@@ -126,7 +126,7 @@ class CrudControllerCommand extends GeneratorCommand
         if (\$request->hasFile('{{fieldName}}')) {
             \$file = \$request->file('{{fieldName}}');
             \$fileName = \Str::random(40) . '.' . \$file->getClientOriginalExtension();
-            \$destinationPath = storage_path('/app/public/uploads');
+            \$destinationPath = storage_path('/app/public/storage');
             \$file->move(\$destinationPath, \$fileName);
             \$requestData['{{fieldName}}'] = 'uploads/' . \$fileName;
         }
@@ -140,21 +140,21 @@ EOD;
 EOD;
             $snippetCreateTwo = <<<EOD
         if (\$request->has('{{fieldName}}')) {
-            \$path = '/uploads/{{viewName}}/' . \$store->id . '/';
+            \$path = 'images/{{viewName}}/' . \$store->id . '/';
             Storage::makeDirectory(\$path );
             Image::make(\$request->{{fieldName}})->resize(120, 120, function (\$constraint) {
                 \$constraint->aspectRatio();
-            })->save(public_path(\$path . \${{fieldName}}Name));
+            })->save(storage_path('app/public/' . \$path . \${{fieldName}}Name));
             Image::make(\$request->{{fieldName}})->resize(300, 300, function (\$constraint) {
                 \$constraint->aspectRatio();
-            })->save(public_path(\$path . 'big' . \${{fieldName}}Name));
+            })->save(storage_path('app/public/' . \$path . 'big' . \${{fieldName}}Name));
         }
 EOD;
             $snippetUp = <<<EOD
         if (\$request->has('{{fieldName}}')) {
             \${{fieldName}}Name = \Str::random(40) . '.' . \$request->{{fieldName}}->extension();
             \$requestData['{{fieldName}}'] = \${{fieldName}}Name;
-            \$path = '/uploads/{{viewName}}/' . \$up->id . '/';
+            \$path = 'images/{{viewName}}/' . \$up->id . '/';
             if (!empty(\$up->{{fieldName}})) {
                 Storage::delete(\$path . \$up->{{fieldName}});
                 Storage::delete(\$path . 'big' . \$up->{{fieldName}});
@@ -162,15 +162,15 @@ EOD;
             Storage::makeDirectory(\$path );
             Image::make(\$request->{{fieldName}})->resize(120, 120, function (\$constraint) {
                 \$constraint->aspectRatio();
-            })->save(public_path(\$path . \${{fieldName}}Name));
+            })->save(storage_path('app/public/' . \$path . \${{fieldName}}Name));
             Image::make(\$request->{{fieldName}})->resize(300, 300, function (\$constraint) {
                 \$constraint->aspectRatio();
-            })->save(public_path(\$path . 'big' . \${{fieldName}}Name));
+            })->save(storage_path('app/public/' . \$path . 'big' . \${{fieldName}}Name));
         }
 EOD;
             $snippetDelPicture = <<<EOD
         if (!empty(\$del->{{fieldName}})) {
-            \$path = '/uploads/{{viewName}}/' . \$del->id . '/';
+            \$path = 'images/{{viewName}}/' . \$del->id . '/';
                 Storage::deleteDirectory(\$path);
         }
 EOD;
