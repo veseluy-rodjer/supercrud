@@ -59,12 +59,12 @@ class CrudApiCommand extends Command
     public function handle()
     {
         $name = $this->argument('name');
-        $modelName = str_singular($name);
-        $migrationName = str_plural(snake_case($name));
+        $modelName = $name;
+        $migrationName = \Str::plural(\Str::snake($name));
         $tableName = $migrationName;
 
         $routeGroup = $this->option('route-group');
-        $this->routeName = ($routeGroup) ? $routeGroup . '/' . snake_case($name, '-') : snake_case($name, '-');
+        $this->routeName = ($routeGroup) ? $routeGroup . '/' . \Str::plural(\Str::kebab($name)) : \Str::plural(\Str::kebab($name));
         $perPage = intval($this->option('pagination'));
 
         $controllerNamespace = ($this->option('controller-namespace')) ? $this->option('controller-namespace') . '\\' : '';
