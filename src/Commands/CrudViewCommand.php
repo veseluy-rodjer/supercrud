@@ -344,9 +344,13 @@ class CrudViewCommand extends Command
                 $this->formBodyHtml .= '<td>@if (!empty($item->' . $field . '))<img src="{{ config(\'paths.' . $this->viewName . '\') . $item->id . \'/\' . $item->' . $field . ' }}">@endif</td>';
                 $this->formBodyHtmlForShowView .= '<tr><th> ' . $label . ' </th><td>@if (!empty($%%crudNameSingular%%->' . $field . '))<img src="{{ config(\'paths.' . $this->viewName . '\') . $%%crudNameSingular%%->id . \'/big\' . $%%crudNameSingular%%->' . $field . ' }}">@endif</td></tr>';
             }
-            elseif ($value['type'] === 'text') {
+            elseif ($value['type'] === 'textEdit') {
                 $this->formBodyHtml .= '<td>{!! $item->' . $field . ' !!}</td>';
                 $this->formBodyHtmlForShowView .= '<tr><th> ' . $label . ' </th><td> {!! $%%crudNameSingular%%->' . $field . ' !!} </td></tr>';
+            }
+            elseif ($value['type'] === 'text' || $value['type'] === 'longText' || $value['type'] === 'json') {
+                $this->formBodyHtml .= '<td>{!! nl2br($item->' . $field . ') !!}</td>';
+                $this->formBodyHtmlForShowView .= '<tr><th> ' . $label . ' </th><td> {!! nl2br($%%crudNameSingular%%->' . $field . ') !!} </td></tr>';
             }
             else {
                 $this->formBodyHtml .= '<td>{{ $item->' . $field . ' }}</td>';
