@@ -1,5 +1,5 @@
 <div class="form-group {{ $errors->has('%1$s') ? 'has-error' : ''}}">
-    <h3>{{ %2$s }}</h3>
+    <h4>{{ %2$s }}</h3>
     %3$s
     @foreach ($errors->get('%1$s') as $message)
         {!! '<p class="help-block">' . $message . '</p>' !!}

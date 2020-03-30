@@ -39,7 +39,7 @@ class CrudMigrationCommand extends GeneratorCommand
      * @var array
      */
     protected $typeLookup = [
-        'string' => 'sring',
+        'string' => 'string',
         'text' => 'text',
         'textEdit' => 'text',
         'longText' => 'longText',
