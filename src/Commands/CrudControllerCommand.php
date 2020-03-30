@@ -121,39 +121,28 @@ class CrudControllerCommand extends GeneratorCommand
             $validationRules .= "\n\t\t]);";
         }
 
-        if (\App::VERSION() < '5.3') {
-            $snippetUp = <<<EOD
-        if (\$request->hasFile('{{fieldName}}')) {
-            \$file = \$request->file('{{fieldName}}');
-            \$fileName = \Str::random(40) . '.' . \$file->getClientOriginalExtension();
-            \$destinationPath = storage_path('/app/public/storage');
-            \$file->move(\$destinationPath, \$fileName);
-            \$requestData['{{fieldName}}'] = 'uploads/' . \$fileName;
-        }
-EOD;
-        } else {
-            $snippetCreateOne = <<<EOD
+		$snippetCreateOne = <<<EOD
         if (\$request->has('{{fieldName}}')) {
-            \${{fieldName}}Name = \Str::random(40) . '.' . \$request->{{fieldName}}->extension();
-            \$requestData['{{fieldName}}'] = \${{fieldName}}Name;
+            \${{fieldVariable}}Name = \Str::random(40) . '.' . \$request->{{fieldName}}->extension();
+            \$requestData['{{fieldName}}'] = \${{fieldVariable}}Name;
         }
 EOD;
-            $snippetCreateTwo = <<<EOD
+		$snippetCreateTwo = <<<EOD
         if (\$request->has('{{fieldName}}')) {
             \$path = 'images/{{viewName}}/' . \$store->id . '/';
             Storage::makeDirectory(\$path );
             Image::make(\$request->{{fieldName}})->resize(120, 120, function (\$constraint) {
                 \$constraint->aspectRatio();
-            })->save(storage_path('app/public/' . \$path . \${{fieldName}}Name));
+            })->save(storage_path('app/public/' . \$path . \${{fieldVariable}}Name));
             Image::make(\$request->{{fieldName}})->resize(300, 300, function (\$constraint) {
                 \$constraint->aspectRatio();
-            })->save(storage_path('app/public/' . \$path . 'big' . \${{fieldName}}Name));
+            })->save(storage_path('app/public/' . \$path . 'big' . \${{fieldVariable}}Name));
         }
 EOD;
-            $snippetUp = <<<EOD
+		$snippetUp = <<<EOD
         if (\$request->has('{{fieldName}}')) {
-            \${{fieldName}}Name = \Str::random(40) . '.' . \$request->{{fieldName}}->extension();
-            \$requestData['{{fieldName}}'] = \${{fieldName}}Name;
+            \${{fieldVariable}}Name = \Str::random(40) . '.' . \$request->{{fieldName}}->extension();
+            \$requestData['{{fieldName}}'] = \${{fieldVariable}}Name;
             \$path = 'images/{{viewName}}/' . \$up->id . '/';
             if (!empty(\$up->{{fieldName}})) {
                 Storage::delete(\$path . \$up->{{fieldName}});
@@ -162,20 +151,18 @@ EOD;
             Storage::makeDirectory(\$path );
             Image::make(\$request->{{fieldName}})->resize(120, 120, function (\$constraint) {
                 \$constraint->aspectRatio();
-            })->save(storage_path('app/public/' . \$path . \${{fieldName}}Name));
+            })->save(storage_path('app/public/' . \$path . \${{fieldVariable}}Name));
             Image::make(\$request->{{fieldName}})->resize(300, 300, function (\$constraint) {
                 \$constraint->aspectRatio();
-            })->save(storage_path('app/public/' . \$path . 'big' . \${{fieldName}}Name));
+            })->save(storage_path('app/public/' . \$path . 'big' . \${{fieldVariable}}Name));
         }
 EOD;
-            $snippetDelPicture = <<<EOD
+		$snippetDelPicture = <<<EOD
         if (!empty(\$del->{{fieldName}})) {
             \$path = 'images/{{viewName}}/' . \$del->id . '/';
                 Storage::deleteDirectory(\$path);
         }
 EOD;
-        }
-
 
         $fieldsArray = explode(';', $fields);
         $fileSnippetCreateOne = '';
@@ -190,9 +177,9 @@ EOD;
                 $itemArray = explode('#', $item);
 
                 if (trim($itemArray[1]) == 'file') {
-                    $fileSnippetCreateOne .= str_replace(['{{fieldName}}', '{{crudName}}', '{{modelName}}'], [trim($itemArray[0]), $crudName, $modelName], $snippetCreateOne) . "\n";
-                    $fileSnippetCreateTwo .= str_replace(['{{fieldName}}', '{{crudName}}', '{{modelName}}', '{{viewName}}'], [trim($itemArray[0]), $crudName, $modelName, $viewName], $snippetCreateTwo) . "\n";
-                    $fileSnippetUp .= str_replace(['{{fieldName}}', '{{crudName}}', '{{modelName}}', '{{viewName}}'], [trim($itemArray[0]), $crudName, $modelName, $viewName], $snippetUp) . "\n";
+                    $fileSnippetCreateOne .= str_replace(['{{fieldVariable}}', '{{fieldName}}', '{{crudName}}', '{{modelName}}'], [\Str::camel(trim($itemArray[0])), trim($itemArray[0]), $crudName, $modelName], $snippetCreateOne) . "\n";
+                    $fileSnippetCreateTwo .= str_replace(['{{fieldVariable}}', '{{fieldName}}', '{{crudName}}', '{{modelName}}', '{{viewName}}'], [\Str::camel(trim($itemArray[0])), trim($itemArray[0]), $crudName, $modelName, $viewName], $snippetCreateTwo) . "\n";
+                    $fileSnippetUp .= str_replace(['{{fieldVariable}}', '{{fieldName}}', '{{crudName}}', '{{modelName}}', '{{viewName}}'], [\Str::camel(trim($itemArray[0])), trim($itemArray[0]), $crudName, $modelName, $viewName], $snippetUp) . "\n";
                     $fileSnippetDelPicture .= str_replace(['{{fieldName}}', '{{crudName}}', '{{modelName}}', '{{viewName}}'], [trim($itemArray[0]), $crudName, $modelName, $viewName], $snippetDelPicture) . "\n";
                 }
 
