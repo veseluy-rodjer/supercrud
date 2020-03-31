@@ -150,18 +150,15 @@ class CrudCommand extends Command
         $pathToPathsFile = config_path('paths.php');
         File::put($pathToPathsFile, str_replace('];', '"' . \Str::plural(\Str::kebab($name)) . '" => env("APP_URL") . "/storage/images/' . \Str::plural(\Str::kebab($name)) . '/",' . "\n" . '];', File::get($pathToPathsFile)));
 
-        // Updating the Http/routes.php file
-        $routeFile = app_path('Http/routes.php');
+        // Updating body data-routes
+        $pathToBodyFile = resource_path('views/admin/layouts/body.blade.php');
+        File::put($pathToBodyFile, str_replace('>', ' data-route-' . \Str::plural(\Str::kebab($name)) . '-store="{{ route(\'' . \Str::plural(\Str::kebab($name)) . '.store\') }}" data-route-' . \Str::plural(\Str::kebab($name)) . '-update="{{ route(\'' . \Str::plural(\Str::kebab($name)) . '.update\') }}">', File::get($pathToBodyFile)));
 
-        if (\App::VERSION() >= '5.3') {
-            $routeFile = base_path('routes/web.php');
-        }
-
+        // Updating the routes/web.php file
+		$routeFile = base_path('routes/web.php');
         if (file_exists($routeFile) && (strtolower($this->option('route')) === 'yes')) {
             $this->controller = ($controllerNamespace != '') ? $controllerNamespace . $name . 'Controller' : $name . 'Controller';
-
             $isAdded = File::append($routeFile, "\n" . implode("\n", $this->addRoutes()));
-
             if ($isAdded) {
                 $this->info('Crud/Resource route added to ' . $routeFile);
             } else {

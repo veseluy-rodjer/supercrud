@@ -56,7 +56,9 @@
 
 </head>
 
-<body>
+{{-- Tag body with data-rouets --}}
+@include('admin.layouts.body')
+
 <!-- topbar starts -->
 <div class="navbar navbar-default" role="navigation">
 
