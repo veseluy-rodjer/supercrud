@@ -56,8 +56,7 @@
 
 </head>
 
-{{-- Tag body with data-rouets --}}
-@include('admin.layouts.body')
+<body>
 
 <!-- topbar starts -->
 <div class="navbar navbar-default" role="navigation">
@@ -229,6 +228,8 @@
 <script src="{{ asset('admin/js/jquery.editorSummernote.js') }}"></script>
 <!-- myScripts -->
 <script src="{{ asset('admin/js/jquery.myJs.js') }}"></script>
+<!-- myNativScripts -->
+<script src="{{ asset('admin/js/myNativJs.js') }}"></script>
 
 </body>
 </html>

@@ -151,8 +151,8 @@ class CrudCommand extends Command
         File::put($pathToPathsFile, str_replace('];', '"' . \Str::plural(\Str::kebab($name)) . '" => env("APP_URL") . "/storage/images/' . \Str::plural(\Str::kebab($name)) . '/",' . "\n" . '];', File::get($pathToPathsFile)));
 
         // Updating body data-routes
-        $pathToBodyFile = resource_path('views/admin/layouts/body.blade.php');
-        File::put($pathToBodyFile, str_replace('>', ' data-route-' . \Str::plural(\Str::kebab($name)) . '-store="{{ route(\'' . \Str::plural(\Str::kebab($name)) . '.store\') }}" data-route-' . \Str::plural(\Str::kebab($name)) . '-update="{{ route(\'' . \Str::plural(\Str::kebab($name)) . '.update\') }}">', File::get($pathToBodyFile)));
+        // $pathToBodyFile = resource_path('views/admin/layouts/body.blade.php');
+        // File::put($pathToBodyFile, str_replace('>', ' data-route-' . \Str::plural(\Str::kebab($name)) . '-store="{{ route(\'' . \Str::plural(\Str::kebab($name)) . '.store\') }}" data-route-' . \Str::plural(\Str::kebab($name)) . '-update="{{ route(\'' . \Str::plural(\Str::kebab($name)) . '.update\') }}">', File::get($pathToBodyFile)));
 
         // Updating the routes/web.php file
 		$routeFile = base_path('routes/web.php');

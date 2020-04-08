@@ -77,7 +77,7 @@ class DummyClass extends Controller
         {{fileSnippetCreateOne}}
         $store = {{modelName}}::create($requestData);
         {{fileSnippetCreateTwo}}
-        return redirect()->route('{{viewName}}.index')->with('flash_message', '{{modelName}} added!');
+		return response()->json(['status' => true, 'urlBack' => route('{{viewName}}.index')]);
     }
 
     /**
@@ -121,7 +121,7 @@ class DummyClass extends Controller
         $requestData = $request->all();
         {{fileSnippetUp}}
         $up->update($requestData);
-        return redirect()->route('{{viewName}}.index')->with('flash_message', '{{modelName}} updated!');
+		return response()->json(['status' => true, 'urlBack' => route('{{viewName}}.index')]);
     }
 
     /**
