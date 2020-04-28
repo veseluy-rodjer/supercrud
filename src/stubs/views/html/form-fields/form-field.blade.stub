@@ -1,8 +1,0 @@
-@if ('%%fieldType%%' === 'file' && !empty($%%crudNameSingular%%->%%itemName%%))
-    <img src="{{ config('paths.' . '%%viewName%%') . $%%crudNameSingular%%->id . '/' . $%%crudNameSingular%%->%%itemName%% }}">
-@endif
-@if (!empty(old("%%itemName%%")))
-<input class="form-control" name="%%itemName%%" type="%%fieldType%%" id="%%itemNameId%%" value="{{ old("%%itemName%%") }}">
-@else
-<input class="form-control" name="%%itemName%%" type="%%fieldType%%" id="%%itemNameId%%" value="{{ $%%crudNameSingular%%->%%itemName%% ?? ''}}">
-@endif
