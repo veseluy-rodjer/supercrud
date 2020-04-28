@@ -102,18 +102,19 @@
 
 {{-- Toggle sort --}}
 <script>
-$(document).ready(function() {
-	$(".toggle").click(function(e) {
-		e.preventDefault();
-		$(this).toggleClass('glyphicon-arrow-up glyphicon-arrow-down');
-		var pages = '?pages=' + '{{ request("pages") }}';
-		var search = '&search=' + '{{ request("search") }}';
-		var toggle = '&toggle=' + $(this).attr("class");
-		var sort = '&sort=' + $(this).attr("name");
-		var route = $(location).attr('origin') + $(location).attr('pathname') + pages + search + toggle + sort;
-		$(location).attr('href', route);
-	}); 
-});
+	let toggles = document.querySelectorAll('.toggle');
+	for (let toggle of toggles) {
+		toggle.onclick = function(event) {
+			event.preventDefault();
+			this.classList.toggle('glyphicon-arrow-up glyphicon-arrow-down');
+			let pages = '?pages=' + '{{ request("pages") }}';
+			let search = '&search=' + '{{ request("search") }}';
+			let toggle = '&toggle=' + this.className;
+			let sort = '&sort=' + this.name;
+			let route = document.location.href + pages + search + toggle + sort;
+			document.location.href=route;
+		}
+	}
 </script>
 
 @endsection
