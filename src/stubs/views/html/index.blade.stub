@@ -9,8 +9,8 @@
             <div class="card-header">
 
 				<div>
-					<div style="text-align: left">
-						<form method="GET" action="{{ route('%%viewName%%.index') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-right">
+					<div style="float: left">
+						<form method="GET" action="{{ route('%%viewName%%.index') }}" accept-charset="UTF-8">
 							<p><select name="pages">
 									<option {{ (request('pages') == 10 || request('pages') === null) ? 'selected' : null }} value="10">10</option>
 									<option {{ request('pages') == 25 ? 'selected' : null }} value="25">25</option>
@@ -23,8 +23,8 @@
 							<p><input type="submit" style="display: none"></p>
 						</form>
 					</div>
-					<div style="text-align: right">
-						<form method="GET" action="{{ route('%%viewName%%.index') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-right" role="search">
+					<div style="float: right">
+						<form method="GET" action="{{ route('%%viewName%%.index') }}" accept-charset="UTF-8" role="search">
 							<div class="input-group">
 								<input type="text" class="glyphicon glyphicon-search" name="search" placeholder="Search..." value="{{ request('search') }}">
 								<input type="hidden" name="pages" value="{{ request('pages') }}">
