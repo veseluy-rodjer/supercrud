@@ -111,5 +111,12 @@
 <script src="{{ asset('admin/dist/js/pages/dashboard.js') }}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{ asset('admin/dist/js/demo.js') }}"></script>
+<!-- show picture by upload -->
+<script src="{{ asset('admin/js/jquery.uploadPreview.js') }}"></script>
+<!-- myJQueryScript -->
+<script src="{{ asset('admin/js/jquery.myJs.js') }}"></script>
+<!-- myNativScript -->
+<script src="{{ asset('admin/js/myNativJs.js') }}"></script>
+
 </body>
 </html>
