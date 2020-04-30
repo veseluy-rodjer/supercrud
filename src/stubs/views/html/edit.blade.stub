@@ -27,7 +27,6 @@
 
                 <form method="POST" action="{{ route('%%viewName%%.update', [$%%crudNameSingular%%->%%primaryKey%%]) }}" accept-charset="UTF-8" class="n-form form-horizontal" enctype="multipart/form-data">
                     {{ method_field('PATCH') }}
-                    {{ csrf_field() }}
 
                     @include ('%%viewTemplateDir%%.form', ['formMode' => 'edit'])
 

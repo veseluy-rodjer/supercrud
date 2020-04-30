@@ -5,7 +5,7 @@ for (let item of formPosts) {
 		let response = await fetch(item.action, {
 			headers: {
 				'Accept': 'application/json',
-				'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+				'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
 			},
 			method: 'POST',
 			body: new FormData(item)
