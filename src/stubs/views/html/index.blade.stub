@@ -41,12 +41,12 @@
 					<div style="float: right">
 						<form method="GET" action="{{ route('%%viewName%%.index') }}" accept-charset="UTF-8" role="search">
 							<div class="input-group">
-								<input type="text" class="glyphicon glyphicon-search" name="search" placeholder="Search..." value="{{ request('search') }}">
+								<input type="text" name="search" placeholder="Search..." value="{{ request('search') }}">
 								<input type="hidden" name="pages" value="{{ request('pages') }}">
 								<input type="hidden" name="toggle" value="{{ request('toggle') }}">
 								<input type="hidden" name="sort" value="{{ request('sort') }}">
 								<span class="input-group-append">
-									<button class="glyphicon glyphicon-search" type="submit">
+									<button type="submit">
 										<i class="fa fa-search"></i>
 									</button>
 								</span>
@@ -65,7 +65,7 @@
 					%%formHeadingHtml%%
 					<th>
 						<a href="{{ route('%%viewName%%.create') }}" class="btn btn-success">
-							<i class="glyphicon glyphicon-plus" aria-hidden="true"></i> Добавить
+							Добавить
 						</a>
 						<form style="text-align: right" id="arrDelete" action="{{ route('%%viewName%%.arr-delete') }}" method="post">
 							{{ csrf_field() }}
@@ -82,13 +82,13 @@
 							<td><input class="arrDelete" type="checkbox" form="arrDelete" name="{{ $item->%%primaryKey%% }}" value="1"></td>
 							%%formBodyHtml%%
 							<td>
-								<a class="btn btn-success" href="{{ route('%%viewName%%.show', [$item->%%primaryKey%%]) }}"><i class="glyphicon glyphicon-zoom-in icon-white"></i></a>
-								<a class="btn btn-info" href="{{ route('%%viewName%%.edit', [$item->%%primaryKey%%]) }}"><i class="glyphicon glyphicon-edit icon-white"></i></a>
+								<a class="btn btn-primary btn-sm" href="{{ route('%%viewName%%.show', [$item->%%primaryKey%%]) }}"><i class="fas fa-folder"></i>View</a>
+								<a class="btn btn-info btn-sm" href="{{ route('%%viewName%%.edit', [$item->%%primaryKey%%]) }}"><i class="fas fa-pencil-alt"></i>Edit</a>
 
 								<form method="POST" action="{{ route('%%viewName%%.destroy', [$item->%%primaryKey%%]) }}" accept-charset="UTF-8" style="display:inline">
 									{{ method_field('DELETE') }}
 									{{ csrf_field() }}
-									<button type="submit" class="btn btn-danger" onclick="return confirm(&quot;Confirm delete?&quot;)"><i class="glyphicon glyphicon-trash icon-white"></i></button>
+									<button type="submit" class="btn btn-danger btn-sm" onclick="return confirm(&quot;Confirm delete?&quot;)"><i class="fas fa-trash"></i>Delete</button>
 								</form>
 							</td>
 						</tr>
