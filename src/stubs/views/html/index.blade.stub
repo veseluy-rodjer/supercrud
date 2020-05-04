@@ -67,7 +67,7 @@
 						<a href="{{ route('%%viewName%%.create') }}" class="btn btn-success">
 							Добавить
 						</a>
-						<form style="text-align: right" id="arrDelete" action="{{ route('%%viewName%%.arr-delete') }}" method="post">
+						<form style="float: right" id="arrDelete" action="{{ route('%%viewName%%.arr-delete') }}" method="post">
 							{{ csrf_field() }}
 							{{ method_field('DELETE') }}
 							<input onclick="return confirm(&quot;Confirm delete?&quot;)" type="submit" class="del" id="del" value="Удалить отмеченные" disabled>
