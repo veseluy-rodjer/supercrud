@@ -22,7 +22,7 @@ class DummyClass extends Controller
         $keyword = $request->search;
         $perPage = $request->pages ?? 10;
 		$sort = $request->sort;
-		$toggle = stripos($request->toggle, 'glyphicon-arrow-up');
+		$toggle = stripos($request->toggle, 'sorting_desc');
 
 		if (!empty($keyword)) {
 			if (!empty($sort)) {

@@ -58,7 +58,7 @@
             </div>
             <!-- /.card-header -->
             <div class="card-body">
-              <table id="example1" class="table table-bordered table-striped">
+              <table class="table table-bordered table-striped dataTable">
                 <thead>
                 <tr>
 					<th><input type="checkbox" id="arrDeleteAll" value="1"></th>
@@ -121,15 +121,21 @@
 
 {{-- Toggle sort --}}
 <script>
-	let toggles = document.querySelectorAll('.toggle');
+	let toggles = document.querySelectorAll('.sorting');
 	for (let toggle of toggles) {
 		toggle.onclick = function(event) {
 			event.preventDefault();
-			this.classList.toggle('glyphicon-arrow-up glyphicon-arrow-down');
+			if (false === this.classList.contains("sorting_asc") && false === this.classList.contains("sorting_desc")) {
+				this.classList.add('sorting_asc');
+			}
+			else {
+				this.classList.toggle('sorting_asc');
+				this.classList.toggle('sorting_desc');
+			}
 			let pages = '?pages=' + '{{ request("pages") }}';
 			let search = '&search=' + '{{ request("search") }}';
 			let toggle = '&toggle=' + this.className;
-			let sort = '&sort=' + this.name;
+			let sort = '&sort=' + this.dataset.name;
 			let route = document.location.href + pages + search + toggle + sort;
 			document.location.href=route;
 		}
