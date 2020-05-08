@@ -99,6 +99,7 @@ class CrudControllerCommand extends GeneratorCommand
         $viewName = \Str::plural(\Str::kebab($this->option('crud-name')));
         $fields = $this->option('fields');
         $validations = rtrim($this->option('validations'), ';');
+        $titlePage = \Str::plural($this->option('crud-name'));
 
         $validationRules = '';
         if (trim($validations) != '') {
@@ -196,6 +197,7 @@ EOD;
             ->replaceViewName($stub, $viewName)
             ->replaceCrudName($stub, $crudName)
             ->replaceCrudNameSingular($stub, $crudNameSingular)
+			->replaceTitlePage($stub, $titlePage)
             ->replaceModelName($stub, $modelName)
             ->replaceModelNamespace($stub, $modelNamespace)
             ->replaceModelNamespaceSegments($stub, $modelNamespace)
@@ -268,6 +270,21 @@ EOD;
     protected function replaceCrudNameSingular(&$stub, $crudNameSingular)
     {
         $stub = str_replace('{{crudNameSingular}}', $crudNameSingular, $stub);
+
+        return $this;
+    }
+
+    /**
+     * Replace the titlePage for the given stub.
+     *
+     * @param  string  $stub
+     * @param  string  $titlePage
+     *
+     * @return $this
+     */
+    protected function replaceTitlePage(&$stub, $titlePage)
+    {
+        $stub = str_replace('{{titlePage}}', $titlePage, $stub);
 
         return $this;
     }
