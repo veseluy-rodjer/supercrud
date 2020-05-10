@@ -1,7 +1,6 @@
-<div class="form-group {{ $errors->has('%1$s') ? 'has-error' : ''}}">
-    <h4>{{ %2$s }}</h3>
-    %3$s
-    @foreach ($errors->get('%1$s') as $message)
-        {!! '<p class="help-block">' . $message . '</p>' !!}
-    @endforeach
+<div class="form-group">
+	<div class="custom-control custom-checkbox">
+		%3$s
+		<label for="%4$s" class="custom-control-label">{{ %2$s }}</label>
+	</div>
 </div>
