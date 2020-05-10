@@ -1,2 +1,2 @@
-    <input name="%%itemName%%" type="radio" id="%%itemNameId%%" value="1" @if (isset($%%crudNameSingular%%)) {{ (1 == $%%crudNameSingular%%->%%itemName%%) ? 'checked' : '' }} @else {{ 'checked' }} @endif>
-    <input name="%%itemName%%" type="radio" id="%%itemNameId%%" value="0" {{ (isset($%%crudNameSingular%%) && 0 == $%%crudNameSingular%%->%%itemName%%) ? 'checked' : '' }}>
+    <input class="custom-control-input" name="%%itemName%%" type="radio" id="%%itemNameId%%" value="1" @if (isset($%%crudNameSingular%%)) {{ (1 == $%%crudNameSingular%%->%%itemName%%) ? 'checked' : '' }} @else {{ 'checked' }} @endif>
+    <input class="custom-control-input" name="%%itemName%%" type="radio" id="%%itemNameId%%" value="0" {{ (isset($%%crudNameSingular%%) && 0 == $%%crudNameSingular%%->%%itemName%%) ? 'checked' : '' }}>
