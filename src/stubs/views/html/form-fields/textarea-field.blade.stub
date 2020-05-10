@@ -1,7 +1,1 @@
-@if (!empty(old("%%itemName%%")))
-    <textarea class="form-control" rows="5" name="%%itemName%%" id="%%itemNameId%%">{{ old("%%itemName%%") }}</textarea>
-@else
     <textarea class="form-control" rows="5" name="%%itemName%%" id="%%itemNameId%%">{{ $%%crudNameSingular%%->%%itemName%% ?? ''}}</textarea>
-@endif
-
-

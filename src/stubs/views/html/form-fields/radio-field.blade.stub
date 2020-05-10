@@ -1,15 +1,2 @@
-@if (null !== old("%%itemName%%"))
-<div class="radio">
-    <label><input name="%%itemName%%" type="radio" id="%%itemNameId%%" value="1" {{ 1 == old("%%itemName%%") ? 'checked' : '' }}> Yes</label>
-</div>
-<div class="radio">
-    <label><input name="%%itemName%%" type="radio" id="%%itemNameId%%" value="0" {{ 0 == old("%%itemName%%") ? 'checked' : '' }}> No</label>
-</div>
-@else
-<div class="radio">
-    <label><input name="%%itemName%%" type="radio" id="%%itemNameId%%" value="1" @if (isset($%%crudNameSingular%%)) {{ (1 == $%%crudNameSingular%%->%%itemName%%) ? 'checked' : '' }} @else {{ 'checked' }} @endif> Yes</label>
-</div>
-<div class="radio">
-    <label><input name="%%itemName%%" type="radio" id="%%itemNameId%%" value="0" {{ (isset($%%crudNameSingular%%) && 0 == $%%crudNameSingular%%->%%itemName%%) ? 'checked' : '' }}> No</label>
-</div>
-@endif
+    <input name="%%itemName%%" type="radio" id="%%itemNameId%%" value="1" @if (isset($%%crudNameSingular%%)) {{ (1 == $%%crudNameSingular%%->%%itemName%%) ? 'checked' : '' }} @else {{ 'checked' }} @endif>
+    <input name="%%itemName%%" type="radio" id="%%itemNameId%%" value="0" {{ (isset($%%crudNameSingular%%) && 0 == $%%crudNameSingular%%->%%itemName%%) ? 'checked' : '' }}>
