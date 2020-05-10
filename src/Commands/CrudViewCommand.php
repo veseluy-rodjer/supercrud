@@ -474,10 +474,10 @@ class CrudViewCommand extends Command
             File::append(public_path('admin/js/jquery.uploadPreview.js'), $scr);
         }
         elseif ($item['type'] === 'checkbox') {
-            $formGroup = File::get($this->viewDirectoryPath . 'form-fields/wrap-field-radio.blade.stub');
+            $formGroup = File::get($this->viewDirectoryPath . 'form-fields/wrap-field-checkbox.blade.stub');
         }
         elseif ($item['type'] === 'radio') {
-            $formGroup = File::get($this->viewDirectoryPath . 'form-fields/wrap-field-checkbox.blade.stub');
+            $formGroup = File::get($this->viewDirectoryPath . 'form-fields/wrap-field-radio.blade.stub');
         }
         else {
             $formGroup = File::get($this->viewDirectoryPath . 'form-fields/wrap-field.blade.stub');
