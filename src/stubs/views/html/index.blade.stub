@@ -64,7 +64,7 @@
 					<th><input type="checkbox" id="arrDeleteAll" value="1"></th>
 					%%formHeadingHtml%%
 					<th>
-						<a href="{{ route('%%viewName%%.create') }}" class="btn btn-success">
+						<a href="{{ route('%%viewName%%.create') }}" class="btn btn-success btn-sm">
 							Добавить
 						</a>
 						<form style="float: right" id="arrDelete" action="{{ route('%%viewName%%.arr-delete') }}" method="post">
