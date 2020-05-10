@@ -56,7 +56,7 @@ class CrudViewCommand extends Command
         'float' => 'number',
         'timestamp' => 'text',
         'radio' => 'radio',
-        'boolean' => 'checkbox',
+		// 'boolean' => 'checkbox',
         'select' => 'select',
         'file' => 'file',
         'checkbox' => 'checkbox',
@@ -473,8 +473,11 @@ class CrudViewCommand extends Command
             ';
             File::append(public_path('admin/js/jquery.uploadPreview.js'), $scr);
         }
-        elseif ($item['type'] === 'radio' || $item['type'] === 'boolean' || $item['type'] === 'checkbox') {
-            $formGroup = File::get($this->viewDirectoryPath . 'form-fields/wrap-field-radio-checkbox.blade.stub');
+        elseif ($item['type'] === 'checkbox') {
+            $formGroup = File::get($this->viewDirectoryPath . 'form-fields/wrap-field-radio.blade.stub');
+        }
+        elseif ($item['type'] === 'radio') {
+            $formGroup = File::get($this->viewDirectoryPath . 'form-fields/wrap-field-checkbox.blade.stub');
         }
         else {
             $formGroup = File::get($this->viewDirectoryPath . 'form-fields/wrap-field.blade.stub');
@@ -607,7 +610,6 @@ class CrudViewCommand extends Command
 
         $markup = File::get($this->viewDirectoryPath . 'form-fields/textarea-field.blade.stub');
         $markup = str_replace($start . 'required' . $end, $required, $markup);
-        $markup = str_replace($start . 'fieldType' . $end, $this->typeLookup[$item['type']], $markup);
         $markup = str_replace($start . 'itemName' . $end, $item['name'], $markup);
         $markup = str_replace($start . 'itemNameId' . $end, str_replace('_', '-', $item['name']), $markup);
         $markup = str_replace($start . 'crudNameSingular' . $end, $this->crudNameSingular, $markup);
@@ -634,7 +636,6 @@ class CrudViewCommand extends Command
 
         $markup = File::get($this->viewDirectoryPath . 'form-fields/textarea-edit-field.blade.stub');
         $markup = str_replace($start . 'required' . $end, $required, $markup);
-        $markup = str_replace($start . 'fieldType' . $end, $this->typeLookup[$item['type']], $markup);
         $markup = str_replace($start . 'itemName' . $end, $item['name'], $markup);
         $markup = str_replace($start . 'itemNameId' . $end, str_replace('_', '-', $item['name']), $markup);
         $markup = str_replace($start . 'crudNameSingular' . $end, $this->crudNameSingular, $markup);
@@ -688,7 +689,6 @@ class CrudViewCommand extends Command
 
         $markup = File::get($this->viewDirectoryPath . 'form-fields/checkbox-field.blade.stub');
         $markup = str_replace($start . 'required' . $end, $required, $markup);
-        $markup = str_replace($start . 'fieldType' . $end, $this->typeLookup[$item['type']], $markup);
         $markup = str_replace($start . 'itemName' . $end, $item['name'], $markup);
         $markup = str_replace($start . 'itemNameId' . $end, str_replace('_', '-', $item['name']), $markup);
         $markup = str_replace($start . 'crudNameSingular' . $end, $this->crudNameSingular, $markup);

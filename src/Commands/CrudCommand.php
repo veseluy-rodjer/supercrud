@@ -105,7 +105,7 @@ class CrudCommand extends Command
         foreach ($fieldsArray as $item) {
             $spareParts = explode('#', trim($item));
             $fillableArray[] = $spareParts[0];
-            $modifier = !empty($spareParts[2]) ? $spareParts[2] : 'nullable';
+            $modifier = !empty($spareParts[2]) ? $spareParts[2] : '';
 
             // Process migration fields
             $migrationFields .= $spareParts[0] . '#' . $spareParts[1];
