@@ -1,1 +1,1 @@
-    <input class="custom-control-input" name="%%itemName%%" type="checkbox" id="%%itemNameId%%" value="1" {{ (isset($%%crudNameSingular%%) && 1 == $%%crudNameSingular%%->%%itemName%%) ? 'checked' : '' }}>
+<input class="custom-control-input" name="%%itemName%%" type="checkbox" id="%%itemNameId%%" value="1" {{ (isset($%%crudNameSingular%%) && 1 == $%%crudNameSingular%%->%%itemName%%) ? 'checked' : '' }}>

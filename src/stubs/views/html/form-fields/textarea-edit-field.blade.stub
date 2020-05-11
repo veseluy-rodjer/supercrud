@@ -1,1 +1,1 @@
-    <textarea class="form-control summernote" rows="5" name="%%itemName%%" id="%%itemNameId%%">{!! $%%crudNameSingular%%->%%itemName%% ?? '' !!}</textarea>
+<textarea class="form-control summernote" rows="5" name="%%itemName%%" id="%%itemNameId%%">{!! $%%crudNameSingular%%->%%itemName%% ?? '' !!}</textarea>
