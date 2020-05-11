@@ -10,6 +10,8 @@
   <link rel="stylesheet" href="{{ asset('admin/dist/css/adminlte.min.css') }}">
   <!-- summernote -->
   <link rel="stylesheet" href="{{ asset('admin/plugins/summernote/summernote-bs4.css') }}">
+  {{-- upload preview css --}}
+  <link rel="stylesheet" href="{{ asset('admin/css/uploadPreview.css') }}">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 
@@ -72,8 +74,8 @@
 <script src="{{ asset('admin/dist/js/demo.js') }}"></script>
 <!-- Summernote -->
 <script src="{{ asset('admin/plugins/summernote/summernote-bs4.min.js') }}"></script>
-<!-- myJQueryScript -->
-<script src="{{ asset('admin/js/jquery.myJs.js') }}"></script>
+{{-- upload preview js --}}
+<script src="{{ asset('admin/js/jquery.uploadPreview.js') }}"></script>
 <!-- myNativScript -->
 <script src="{{ asset('admin/js/myNativJs.js') }}"></script>
 <script>
@@ -84,5 +86,4 @@
 </script>
 
 @endsection
-
 

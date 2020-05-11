@@ -1,3 +1,4 @@
+// send post to server
 let formPosts = document.querySelectorAll('.n-form');
 for (let item of formPosts) {
 	item.onsubmit = async function(e) {
