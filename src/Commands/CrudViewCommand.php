@@ -449,7 +449,7 @@ class CrudViewCommand extends Command
      *
      * @return string
      */
-    protected function wrapField($item, $field)
+    protected function wrapField($item, $field, $fieldForRadioTwo = null)
     {
         $start = $this->delimiter[0];
         $end = $this->delimiter[1];
@@ -482,13 +482,13 @@ class CrudViewCommand extends Command
         else {
             $formGroup = File::get($this->viewDirectoryPath . 'form-fields/wrap-field.blade.stub');
         }
-        $labelText = "'" . ucwords(strtolower(str_replace('_', ' ', $item['name']))) . "'";
+        $labelText = "'" . ucwords(str_replace('_', ' ', \Str::snake($item['name']))) . "'";
 
         if ($this->option('localize') == 'yes') {
             $labelText = 'trans(\'' . $this->crudName . '.' . $item['name'] . '\')';
         }
 
-        return sprintf($formGroup, $item['name'], $labelText, $field, str_replace('_', '-', $item['name']));
+        return sprintf($formGroup, $item['name'], $labelText, $field, str_replace('_', '-', $item['name']), $fieldForRadioTwo);
     }
 
     /**
@@ -583,14 +583,20 @@ class CrudViewCommand extends Command
         $start = $this->delimiter[0];
         $end = $this->delimiter[1];
 
-        $markup = File::get($this->viewDirectoryPath . 'form-fields/radio-field.blade.stub');
-        $markup = str_replace($start . 'itemName' . $end, $item['name'], $markup);
-        $markup = str_replace($start . 'itemNameId' . $end, str_replace('_', '-', $item['name']), $markup);
-        $markup = str_replace($start . 'crudNameSingular' . $end, $this->crudNameSingular, $markup);
+        $markupOne = File::get($this->viewDirectoryPath . 'form-fields/radio-field-1.blade.stub');
+        $markupOne = str_replace($start . 'itemName' . $end, $item['name'], $markupOne);
+        $markupOne = str_replace($start . 'itemNameId' . $end, str_replace('_', '-', $item['name']), $markupOne);
+        $markupOne = str_replace($start . 'crudNameSingular' . $end, $this->crudNameSingular, $markupOne);
+
+        $markupTwo = File::get($this->viewDirectoryPath . 'form-fields/radio-field-0.blade.stub');
+        $markupTwo = str_replace($start . 'itemName' . $end, $item['name'], $markupTwo);
+        $markupTwo = str_replace($start . 'itemNameId' . $end, str_replace('_', '-', $item['name']), $markupTwo);
+        $markupTwo = str_replace($start . 'crudNameSingular' . $end, $this->crudNameSingular, $markupTwo);
 
         return $this->wrapField(
             $item,
-            $markup
+            $markupOne,
+            $markupTwo
         );
     }
 

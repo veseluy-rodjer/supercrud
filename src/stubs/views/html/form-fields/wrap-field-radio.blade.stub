@@ -1,6 +1,12 @@
 <div class="form-group">
 	<div class="custom-control custom-radio">
 		%3$s
-		<label for="%4$s" class="custom-control-label">{{ %2$s }}</label>
+		<label for="%4$s-1" class="custom-control-label">{{ %2$s }}</label>
+	</div>
+</div>
+<div class="form-group">
+	<div class="custom-control custom-radio">
+		%5$s
+		<label for="%4$s-0" class="custom-control-label">{{ %2$s }}</label>
 	</div>
 </div>

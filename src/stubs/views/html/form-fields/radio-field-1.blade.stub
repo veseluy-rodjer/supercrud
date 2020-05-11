@@ -1,0 +1,1 @@
+<input class="custom-control-input" name="%%itemName%%" type="radio" id="%%itemNameId%%-1" value="1" @if (isset($%%crudNameSingular%%)) {{ (1 == $%%crudNameSingular%%->%%itemName%%) ? 'checked' : '' }} @else {{ 'checked' }} @endif>
