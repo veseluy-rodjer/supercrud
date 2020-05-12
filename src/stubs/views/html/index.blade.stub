@@ -62,7 +62,7 @@
                 <thead>
                 <tr>
 					<th><input type="checkbox" id="arrDeleteAll" value="1"></th>
-					%%formHeadingHtml%%
+%%formHeadingHtml%%
 					<th>
 						<a href="{{ route('%%viewName%%.create') }}" class="btn btn-success btn-sm">
 							Добавить
@@ -70,7 +70,7 @@
 						<form style="float: right" id="arrDelete" action="{{ route('%%viewName%%.arr-delete') }}" method="post">
 							{{ csrf_field() }}
 							{{ method_field('DELETE') }}
-							<input onclick="return confirm(&quot;Confirm delete?&quot;)" type="submit" class="del" id="del" value="Удалить отмеченные" disabled>
+							<button type="submit" class="btn btn-secondary btn-sm" id="del" onclick="return confirm(&quot;Confirm delete?&quot;)" disabled>Удалить отмеченные</button>
 						</form>
 					</th>
                 </tr>
@@ -80,7 +80,7 @@
 						<tr>
 							{{-- <td>{{ $loop->iteration ?? $item->%%primaryKey%% }}</td> --}}
 							<td><input class="arrDelete" type="checkbox" form="arrDelete" name="{{ $item->%%primaryKey%% }}" value="1"></td>
-							%%formBodyHtml%%
+%%formBodyHtml%%
 							<td>
 								<a class="btn btn-primary btn-sm" href="{{ route('%%viewName%%.show', [$item->%%primaryKey%%]) }}"><i class="fas fa-folder"></i>View</a>
 								<a class="btn btn-info btn-sm" href="{{ route('%%viewName%%.edit', [$item->%%primaryKey%%]) }}"><i class="fas fa-pencil-alt"></i>Edit</a>

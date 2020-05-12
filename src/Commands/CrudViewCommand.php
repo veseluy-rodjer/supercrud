@@ -333,26 +333,26 @@ class CrudViewCommand extends Command
             if ($this->option('localize') == 'yes') {
                 $label = '{{ trans(\'' . $this->crudName . '.' . $field . '\') }}';
             }
-            $this->formHeadingHtml .= '@if (request("sort") == "' . $field . '")
-										<th class="{{ request("toggle") }}" data-name="' . $field . '">' . $label . '
-									@else
-										<th class="sorting" data-name="' . $field . '">' . $label . '
-									@endif
-										</th>' . "\n";
+            $this->formHeadingHtml .= '                @if (request("sort") == "' . $field . '")
+						<th class="{{ request("toggle") }}" data-name="' . $field . '">' . $label . '
+					@else
+						<th class="sorting" data-name="' . $field . '">' . $label . '
+					@endif
+						</th>' . "\n";
             if ($value['type'] === 'file') {
-                $this->formBodyHtml .= '<td>@if (!empty($item->' . $field . '))<img src="{{ config(\'paths.' . $this->viewName . '\') . $item->id . \'/\' . $item->' . $field . ' }}">@endif</td>';
+                $this->formBodyHtml .= '							<td>@if (!empty($item->' . $field . '))<img src="{{ config(\'paths.' . $this->viewName . '\') . $item->id . \'/\' . $item->' . $field . ' }}">@endif</td>' . "\n";
                 $this->formBodyHtmlForShowView .= '<tr><th> ' . $label . ' </th><td>@if (!empty($%%crudNameSingular%%->' . $field . '))<img src="{{ config(\'paths.' . $this->viewName . '\') . $%%crudNameSingular%%->id . \'/big\' . $%%crudNameSingular%%->' . $field . ' }}">@endif</td></tr>';
             }
             elseif ($value['type'] === 'textEdit') {
-                $this->formBodyHtml .= '<td>{!! $item->' . $field . ' !!}</td>';
+                $this->formBodyHtml .= '							<td>{!! $item->' . $field . ' !!}</td>' . "\n";
                 $this->formBodyHtmlForShowView .= '<tr><th> ' . $label . ' </th><td> {!! $%%crudNameSingular%%->' . $field . ' !!} </td></tr>';
             }
             elseif ($value['type'] === 'text' || $value['type'] === 'longText' || $value['type'] === 'json') {
-                $this->formBodyHtml .= '<td>{!! nl2br($item->' . $field . ') !!}</td>';
+                $this->formBodyHtml .= '							<td>{!! nl2br($item->' . $field . ') !!}</td>' . "\n";
                 $this->formBodyHtmlForShowView .= '<tr><th> ' . $label . ' </th><td> {!! nl2br($%%crudNameSingular%%->' . $field . ') !!} </td></tr>';
             }
             else {
-                $this->formBodyHtml .= '<td>{{ $item->' . $field . ' }}</td>';
+                $this->formBodyHtml .= '							<td>{{ $item->' . $field . ' }}</td>' . "\n";
                 $this->formBodyHtmlForShowView .= '<tr><th> ' . $label . ' </th><td> {{ $%%crudNameSingular%%->' . $field . ' }} </td></tr>';
             }
 
