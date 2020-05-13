@@ -1,7 +1,6 @@
 <div class="form-group">
 	<div class="custom-control custom-checkbox">
-		%3$s
-		<label for="%4$s" class="custom-control-label">{{ %2$s }}</label>
+		%3$s		<label for="%4$s" class="custom-control-label">{{ %2$s }}</label>
 	</div>
 </div>
 

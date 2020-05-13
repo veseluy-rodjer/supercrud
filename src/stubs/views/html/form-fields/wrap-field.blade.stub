@@ -1,5 +1,4 @@
 <div class="form-group">
     <label for="%4$s">{{ %2$s }}</label>
-    %3$s
-</div>
+    %3$s		</div>
 

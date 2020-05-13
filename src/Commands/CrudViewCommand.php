@@ -333,7 +333,7 @@ class CrudViewCommand extends Command
             if ($this->option('localize') == 'yes') {
                 $label = '{{ trans(\'' . $this->crudName . '.' . $field . '\') }}';
             }
-            $this->formHeadingHtml .= '                @if (request("sort") == "' . $field . '")
+            $this->formHeadingHtml .= '                    @if (request("sort") == "' . $field . '")
 						<th class="{{ request("toggle") }}" data-name="' . $field . '">' . $label . '
 					@else
 						<th class="sorting" data-name="' . $field . '">' . $label . '
