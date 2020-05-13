@@ -19,7 +19,9 @@ for (let item of formPosts) {
 			let result = await response.json();
 			for (let [key, val] of Object.entries(result.errors)) {
 				let elem = document.querySelector('#' + key.replace(/_/g, '-'));
-				elem.insertAdjacentHTML('afterend', '<span class="invalid-feedback" role="alert"><strong>' + val + '</strong></span>');
+				elem.classList.add('is-invalid');
+				elem.classList.add('error');
+				elem.insertAdjacentHTML('afterend', '<span class="invalid-feedback" role="alert">' + val + '</span>');
 				return;
 			}
 		}
