@@ -29,7 +29,8 @@ Go through to the [detailed documentation](doc#readme)
 
 ## Author
 
-[Sohel Amin](http://sohelamin.com) :email: [Email Me](mailto:sohelamincse@gmail.com)
+<!-- [Sohel Amin](http://sohelamin.com) :email: [Email Me](mailto:sohelamincse@gmail.com) -->
+Me
 
 ## License
 
