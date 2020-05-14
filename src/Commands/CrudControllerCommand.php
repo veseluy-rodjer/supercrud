@@ -99,7 +99,8 @@ class CrudControllerCommand extends GeneratorCommand
         $viewName = \Str::plural(\Str::kebab($this->option('crud-name')));
         $fields = $this->option('fields');
         $validations = rtrim($this->option('validations'), ';');
-        $titlePage = \Str::plural($this->option('crud-name'));
+        $titleForIndexPage = \Str::plural(ucfirst(str_replace('_', ' ', \Str::snake($this->option('crud-name')))));
+        $titleForSinglePage = ucfirst(str_replace('_', ' ', \Str::snake($this->option('crud-name'))));
 
         $validationRules = '';
         if (trim($validations) != '') {
@@ -197,7 +198,8 @@ EOD;
             ->replaceViewName($stub, $viewName)
             ->replaceCrudName($stub, $crudName)
             ->replaceCrudNameSingular($stub, $crudNameSingular)
-			->replaceTitlePage($stub, $titlePage)
+			->replaceTitleForIndexPage($stub, $titleForIndexPage)
+			->replaceTitleForSinglePage($stub, $titleForSinglePage)
             ->replaceModelName($stub, $modelName)
             ->replaceModelNamespace($stub, $modelNamespace)
             ->replaceModelNamespaceSegments($stub, $modelNamespace)
@@ -275,16 +277,31 @@ EOD;
     }
 
     /**
-     * Replace the titlePage for the given stub.
+     * Replace the titleForIndexPage for the given stub.
      *
      * @param  string  $stub
-     * @param  string  $titlePage
+     * @param  string  $titleForIndexPage
      *
      * @return $this
      */
-    protected function replaceTitlePage(&$stub, $titlePage)
+    protected function replaceTitleForIndexPage(&$stub, $titleForIndexPage)
     {
-        $stub = str_replace('{{titlePage}}', $titlePage, $stub);
+        $stub = str_replace('{{titleForIndexPage}}', $titleForIndexPage, $stub);
+
+        return $this;
+    }
+
+    /**
+     * Replace the titleForSinglePage for the given stub.
+     *
+     * @param  string  $stub
+     * @param  string  $titleForSinglePage
+     *
+     * @return $this
+     */
+    protected function replaceTitleForSinglePage(&$stub, $titleForSinglePage)
+    {
+        $stub = str_replace('{{titleForSinglePage}}', $titleForSinglePage, $stub);
 
         return $this;
     }

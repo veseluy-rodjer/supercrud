@@ -50,8 +50,8 @@ class DummyClass extends Controller
 				${{crudName}} = {{modelName}}::latest()->paginate($perPage);
 			}
         }
-		$titlePage = '{{titlePage}}';
-        return view('{{viewPath}}{{viewName}}.index', compact('{{crudName}}', 'titlePage'));
+		$titleForIndexPage = '{{titleForIndexPage}}';
+        return view('{{viewPath}}{{viewName}}.index', compact('{{crudName}}', 'titleForIndexPage'));
     }
 
     /**
@@ -61,7 +61,8 @@ class DummyClass extends Controller
      */
     public function create()
     {
-        return view('{{viewPath}}{{viewName}}.create');
+		$titleForSinglePage = '{{titleForSinglePage}}';
+        return view('{{viewPath}}{{viewName}}.create', compact('titleForSinglePage'));
     }
 
     /**
@@ -91,7 +92,8 @@ class DummyClass extends Controller
     public function show($id)
     {
         ${{crudNameSingular}} = {{modelName}}::findOrFail($id);
-        return view('{{viewPath}}{{viewName}}.show', compact('{{crudNameSingular}}'));
+		$titleForSinglePage = '{{titleForSinglePage}}';
+        return view('{{viewPath}}{{viewName}}.show', compact('{{crudNameSingular}}', 'titleForSinglePage'));
     }
 
     /**
@@ -104,7 +106,8 @@ class DummyClass extends Controller
     public function edit($id)
     {
         ${{crudNameSingular}} = {{modelName}}::findOrFail($id);
-        return view('{{viewPath}}{{viewName}}.edit', compact('{{crudNameSingular}}'));
+		$titleForSinglePage = '{{titleForSinglePage}}';
+        return view('{{viewPath}}{{viewName}}.edit', compact('{{crudNameSingular}}, 'titleForSinglePage''));
     }
 
     /**

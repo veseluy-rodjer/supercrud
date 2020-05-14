@@ -329,7 +329,7 @@ class CrudViewCommand extends Command
 //            }
 
             $field = $value['name'];
-            $label = ucwords(str_replace('_', ' ', \Str::snake($field)));
+            $label = ucfirst(str_replace('_', ' ', \Str::snake($field)));
             if ($this->option('localize') == 'yes') {
                 $label = '{{ trans(\'' . $this->crudName . '.' . $field . '\') }}';
             }
@@ -482,7 +482,7 @@ class CrudViewCommand extends Command
         else {
             $formGroup = File::get($this->viewDirectoryPath . 'form-fields/wrap-field.blade.stub');
         }
-        $labelText = "'" . ucwords(str_replace('_', ' ', \Str::snake($item['name']))) . "'";
+        $labelText = "'" . ucfirst(str_replace('_', ' ', \Str::snake($item['name']))) . "'";
 
         if ($this->option('localize') == 'yes') {
             $labelText = 'trans(\'' . $this->crudName . '.' . $item['name'] . '\')';
