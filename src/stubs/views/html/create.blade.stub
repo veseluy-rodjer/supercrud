@@ -27,15 +27,16 @@
             <!-- form elements -->
             <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Quick Example <small>jQuery Validation</small></h3>
-				<div>
-					<a class="btn btn-warning btn-sm" href="{{ route('%%viewName%%.index') }}">back</a>
-				</div>
+                <h3 class="card-title">Quick Example</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
 			  <form class="n-form" method="POST" action="{{ route('%%viewName%%.store') }}" accept-charset="UTF-8" enctype="multipart/form-data">
 				<div class="card-body">
+				<div>
+					<a class="btn btn-warning btn-sm" href="{{ route('%%viewName%%.index') }}">back</a>
+				</div>
+				<br>
 
                     @include ('%%viewTemplateDir%%.form')
 
