@@ -28,7 +28,7 @@
               </div>
               <!-- /.card-header -->
               <div class="card-body">
-				<div>
+				<div style="float: right">
 					<a class="btn btn-warning btn-sm" href="{{ route('%%viewName%%.index') }}">back</a>
 					<a class="btn btn-info btn-sm" href="{{ route('%%viewName%%.edit', [$%%crudNameSingular%%->%%primaryKey%%]) }}">edit</a>
 					<form method="POST" action="{{ route('%%viewName%%.destroy', [$%%crudNameSingular%%->%%primaryKey%%]) }}" accept-charset="UTF-8" style="display:inline">
