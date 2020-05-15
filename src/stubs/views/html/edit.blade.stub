@@ -35,6 +35,11 @@
 				<div class="card-body">
 				<div style="float: right">
 					<a class="btn btn-warning btn-sm" href="{{ route('%%viewName%%.index') }}">back</a>
+					<form method="POST" action="{{ route('%%viewName%%.destroy', [$%%crudNameSingular%%->%%primaryKey%%]) }}" accept-charset="UTF-8" style="display:inline">
+						@csrf
+						@method('DELETE')
+						<button class="btn btn-danger btn-sm" type="submit" onclick="return confirm(&quot;Confirm delete?&quot;)">delete</button>
+					</form>
 				</div>
 				<br>
 					@method('PATCH')
