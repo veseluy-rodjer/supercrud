@@ -48,6 +48,14 @@ class CrudGeneratorServiceProvider extends RouteServiceProvider
 				Commands\CrudApiControllerCommand::class,
 			]);
 		}
+
+		// Enter auth user variable in every page admin
+        \View::composer('admin/*', function ($view) {
+			$user = \Auth::user();
+
+            //можно передать переменные в вид:
+            $view->with(compact('user'));
+        });
     }
 
     /**
