@@ -162,7 +162,7 @@ EOD;
 		$snippetDelPicture = <<<EOD
         if (!empty(\$del->{{fieldName}})) {
             \$path = 'images/{{viewName}}/' . \$del->id . '/';
-                Storage::deleteDirectory(\$path);
+			Storage::deleteDirectory(\$path);
         }
 EOD;
 
@@ -179,10 +179,10 @@ EOD;
                 $itemArray = explode('#', $item);
 
                 if (trim($itemArray[1]) == 'file') {
-                    $fileSnippetCreateOne .= str_replace(['{{fieldVariable}}', '{{fieldName}}', '{{crudName}}', '{{modelName}}'], [\Str::camel(trim($itemArray[0])), trim($itemArray[0]), $crudName, $modelName], $snippetCreateOne) . "\n";
-                    $fileSnippetCreateTwo .= str_replace(['{{fieldVariable}}', '{{fieldName}}', '{{crudName}}', '{{modelName}}', '{{viewName}}'], [\Str::camel(trim($itemArray[0])), trim($itemArray[0]), $crudName, $modelName, $viewName], $snippetCreateTwo) . "\n";
-                    $fileSnippetUp .= str_replace(['{{fieldVariable}}', '{{fieldName}}', '{{crudName}}', '{{modelName}}', '{{viewName}}'], [\Str::camel(trim($itemArray[0])), trim($itemArray[0]), $crudName, $modelName, $viewName], $snippetUp) . "\n";
-                    $fileSnippetDelPicture .= str_replace(['{{fieldName}}', '{{crudName}}', '{{modelName}}', '{{viewName}}'], [trim($itemArray[0]), $crudName, $modelName, $viewName], $snippetDelPicture) . "\n";
+                    $fileSnippetCreateOne .= str_replace(['{{fieldVariable}}', '{{fieldName}}', '{{crudName}}', '{{modelName}}'], [\Str::camel(trim($itemArray[0])), trim($itemArray[0]), $crudName, $modelName], $snippetCreateOne);
+                    $fileSnippetCreateTwo .= str_replace(['{{fieldVariable}}', '{{fieldName}}', '{{crudName}}', '{{modelName}}', '{{viewName}}'], [\Str::camel(trim($itemArray[0])), trim($itemArray[0]), $crudName, $modelName, $viewName], $snippetCreateTwo);
+                    $fileSnippetUp .= str_replace(['{{fieldVariable}}', '{{fieldName}}', '{{crudName}}', '{{modelName}}', '{{viewName}}'], [\Str::camel(trim($itemArray[0])), trim($itemArray[0]), $crudName, $modelName, $viewName], $snippetUp);
+                    $fileSnippetDelPicture .= str_replace(['{{fieldName}}', '{{crudName}}', '{{modelName}}', '{{viewName}}'], [trim($itemArray[0]), $crudName, $modelName, $viewName], $snippetDelPicture);
                 }
 
                 $fieldName = trim($itemArray[0]);

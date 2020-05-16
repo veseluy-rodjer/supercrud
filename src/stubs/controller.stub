@@ -76,9 +76,9 @@ class DummyClass extends Controller
     {
         {{validationRules}}
         $requestData = $request->all();
-        {{fileSnippetCreateOne}}
+{{fileSnippetCreateOne}}
         $store = {{modelName}}::create($requestData);
-        {{fileSnippetCreateTwo}}
+{{fileSnippetCreateTwo}}
 		return response()->json(['status' => true, 'urlBack' => route('{{viewName}}.index')]);
     }
 
@@ -123,7 +123,7 @@ class DummyClass extends Controller
         {{validationRules}}
         $up = {{modelName}}::findOrFail($id);
         $requestData = $request->all();
-        {{fileSnippetUp}}
+{{fileSnippetUp}}
         $up->update($requestData);
 		return response()->json(['status' => true, 'urlBack' => route('{{viewName}}.index')]);
     }
@@ -138,7 +138,7 @@ class DummyClass extends Controller
     public function destroy($id)
     {
         $del = {{modelName}}::findOrFail($id);
-        {{fileSnippetDelPicture}}
+{{fileSnippetDelPicture}}
         $del->delete();
         return redirect()->route('{{viewName}}.index')->with('flash_message', '{{modelName}} deleted!');
     }
@@ -155,7 +155,7 @@ class DummyClass extends Controller
 		foreach ($request->all() as $key => $value) {
 			if ($value == 1) {
 				$del = {{modelName}}::findOrFail($key);
-				{{fileSnippetDelPicture}}
+		{{fileSnippetDelPicture}}
 				$del->delete();
 			}
 		}
