@@ -79,7 +79,7 @@ class DummyClass extends Controller
 {{fileSnippetCreateOne}}
         $store = {{modelName}}::create($requestData);
 {{fileSnippetCreateTwo}}
-		return response()->json(['status' => true, 'urlBack' => route('{{viewName}}.index')]);
+		return response()->json(['status' => trans('Success create!'), 'urlBack' => route('{{viewName}}.index')]);
     }
 
     /**
@@ -125,7 +125,7 @@ class DummyClass extends Controller
         $requestData = $request->all();
 {{fileSnippetUp}}
         $up->update($requestData);
-		return response()->json(['status' => true, 'urlBack' => route('{{viewName}}.index')]);
+		return response()->json(['status' => trans('Success update!'), 'urlBack' => route('{{viewName}}.index')]);
     }
 
     /**

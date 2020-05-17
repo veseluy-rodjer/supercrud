@@ -26,10 +26,16 @@ for (let item of formPosts) {
 			}
 		}
 		let result = await response.json();
-		if (result.status === true) {
+		if (result.status != null) {
+			localStorage.setItem('presentToastr', result.status);
 			return document.location.href = result.urlBack;
+			// toastr.subscribe(function(args){
+				// return document.location.href = result.urlBack;
+			// });
 		}
-		console.log('fail');
+		else {
+			console.log('fail');
+		}
 	}
 }
 
