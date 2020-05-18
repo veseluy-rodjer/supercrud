@@ -79,7 +79,7 @@
 						<form style="float: right" id="arrDelete" action="{{ route('%%viewName%%.arr-delete') }}" method="post">
 							@csrf
 							@method('DELETE')
-							<button type="submit" class="btn btn-secondary btn-sm" id="del" onclick="return confirm(&quot;Confirm delete?&quot;)" disabled>Удалить отмеченные</button>
+							<button type="button" class="btn btn-secondary btn-sm" id="del" data-modal-danger-button="danger" data-modal-danger-form="arrDelete" disabled>Удалить отмеченные</button>
 						</form>
 					</th>
                 </tr>
@@ -123,6 +123,8 @@
       </div>
       <!-- /.row -->
     </section>
+
+	@include('admin.layouts.modal-danger')
 
 @endsection
 
@@ -172,6 +174,18 @@
 		let toastrMessage = localStorage.getItem('presentToastr');
 		localStorage.removeItem('presentToastr');
 		toastr.success(toastrMessage, userName + '!', {"positionClass": "toast-top-center", "timeOut": "1500"}) 
+	}
+</script>
+{{-- Pop up denger modal with delete model --}}
+<script>
+	let dangerButtons = document.querySelectorAll('[data-modal-danger-button="danger"]');
+	for (let item of dangerButtons) {
+		item.onclick = () => {
+			let modalDangerNative = document.querySelector('#modal-danger');
+			modalDangerNative.querySelector('[type="submit"]').setAttribute('form', item.dataset.modalDangerForm);
+			let modalDanger = $('#modal-danger');
+			modalDanger.modal('show');
+		}
 	}
 </script>
 <!-- page script -->
