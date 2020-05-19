@@ -35,7 +35,7 @@
 				<div class="card-body">
 				<div style="float: right">
 					<a class="btn btn-warning btn-sm" href="{{ route('%%viewName%%.index') }}">back</a>
-					<button form="{{ $%%crudNameSingular%%->%%primaryKey%% }}" class="btn btn-danger btn-sm" type="submit" onclick="return confirm(&quot;Confirm delete?&quot;)">delete</button>
+					<button type="button" class="btn btn-danger btn-sm" data-modal-danger-button="danger" data-modal-danger-form="{{ $%%crudNameSingular%%->%%primaryKey%% }}">delete</button>
 				</div>
 				<br>
 					@method('PATCH')
@@ -66,6 +66,8 @@
       </div><!-- /.container-fluid -->
     </section>
 
+	@include('admin.layouts.modal-danger')
+
 @endsection
 
 @section('jscripts')
@@ -74,21 +76,33 @@
 <script src="{{ asset('admin/plugins/jquery/jquery.min.js') }}"></script>
 <!-- Bootstrap 4 -->
 <script src="{{ asset('admin/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+<!-- Summernote -->
+<script src="{{ asset('admin/plugins/summernote/summernote-bs4.min.js') }}"></script>
 <!-- AdminLTE App -->
 <script src="{{ asset('admin/dist/js/adminlte.js') }}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{ asset('admin/dist/js/demo.js') }}"></script>
-<!-- Summernote -->
-<script src="{{ asset('admin/plugins/summernote/summernote-bs4.min.js') }}"></script>
 {{-- upload preview js --}}
 <script src="{{ asset('admin/js/jquery.uploadPreview.js') }}"></script>
 <!-- myNativScript -->
 <script src="{{ asset('admin/js/myNativJs.js') }}"></script>
+{{-- Summernote function --}}
 <script>
   $(function () {
-    // Summernote
     $('.summernote').summernote()
   })
+</script>
+{{-- Pop up denger modal with delete model --}}
+<script>
+	let dangerButtons = document.querySelectorAll('[data-modal-danger-button="danger"]');
+	for (let item of dangerButtons) {
+		item.onclick = () => {
+			let modalDangerNative = document.querySelector('#modal-danger');
+			modalDangerNative.querySelector('[type="submit"]').setAttribute('form', item.dataset.modalDangerForm);
+			let modalDanger = $('#modal-danger');
+			modalDanger.modal('show');
+		}
+	}
 </script>
 
 @endsection
