@@ -130,6 +130,23 @@
 
 @section('jscripts')
 
+<!-- jQuery -->
+<script src="{{ asset('admin/plugins/jquery/jquery.min.js') }}"></script>
+<!-- Bootstrap 4 -->
+<script src="{{ asset('admin/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+<!-- Toastr -->
+<script src="{{ asset('admin/plugins/toastr/toastr.min.js') }}"></script>
+<!-- DataTables -->
+{{-- <script src="{{ asset('admin/plugins/datatables/jquery.dataTables.js') }}"></script> --}}
+{{-- <script src="{{ asset('admin/plugins/datatables-bs4/js/dataTables.bootstrap4.js') }}"></script> --}}
+<!-- AdminLTE App -->
+<script src="{{ asset('admin/dist/js/adminlte.js') }}"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="{{ asset('admin/dist/js/demo.js') }}"></script>
+<!-- paginate and delete all lines in index -->
+<script src="{{ asset('admin/js/paginate-and-delete-all-lines-in-index.js') }}"></script>
+{{-- Pop up denger modal with delete model --}}
+<script src="{{ asset('admin/js/pop-up-danger-modal.js') }}"></script>
 {{-- Toggle sort --}}
 <script>
 	let toggles = document.querySelectorAll('.sorting');
@@ -152,21 +169,6 @@
 		}
 	}
 </script>
-<!-- jQuery -->
-<script src="{{ asset('admin/plugins/jquery/jquery.min.js') }}"></script>
-<!-- Bootstrap 4 -->
-<script src="{{ asset('admin/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-<!-- Toastr -->
-<script src="{{ asset('admin/plugins/toastr/toastr.min.js') }}"></script>
-<!-- DataTables -->
-{{-- <script src="{{ asset('admin/plugins/datatables/jquery.dataTables.js') }}"></script> --}}
-{{-- <script src="{{ asset('admin/plugins/datatables-bs4/js/dataTables.bootstrap4.js') }}"></script> --}}
-<!-- AdminLTE App -->
-<script src="{{ asset('admin/dist/js/adminlte.js') }}"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="{{ asset('admin/dist/js/demo.js') }}"></script>
-<!-- myJQueryScript -->
-<script src="{{ asset('admin/js/jquery.myJs.js') }}"></script>
 {{-- Pop up with create or update model --}}
 <script>
 	if (null != localStorage.getItem('presentToastr')) {
@@ -174,18 +176,6 @@
 		let toastrMessage = localStorage.getItem('presentToastr');
 		localStorage.removeItem('presentToastr');
 		toastr.success(toastrMessage, userName + '!', {"positionClass": "toast-top-center", "timeOut": "1500"}) 
-	}
-</script>
-{{-- Pop up denger modal with delete model --}}
-<script>
-	let dangerButtons = document.querySelectorAll('[data-modal-danger-button="danger"]');
-	for (let item of dangerButtons) {
-		item.onclick = () => {
-			let modalDangerNative = document.querySelector('#modal-danger');
-			modalDangerNative.querySelector('[type="submit"]').setAttribute('form', item.dataset.modalDangerForm);
-			let modalDanger = $('#modal-danger');
-			modalDanger.modal('show');
-		}
 	}
 </script>
 <!-- page script -->

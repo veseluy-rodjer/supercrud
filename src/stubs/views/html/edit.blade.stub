@@ -84,25 +84,15 @@
 <script src="{{ asset('admin/dist/js/demo.js') }}"></script>
 {{-- upload preview js --}}
 <script src="{{ asset('admin/js/jquery.uploadPreview.js') }}"></script>
-<!-- myNativScript -->
-<script src="{{ asset('admin/js/myNativJs.js') }}"></script>
+<!-- send post to server.js -->
+<script src="{{ asset('admin/js/send-post-to-server.js') }}"></script>
+{{-- Pop up denger modal with delete model --}}
+<script src="{{ asset('admin/js/pop-up-danger-modal.js') }}"></script>
 {{-- Summernote function --}}
 <script>
   $(function () {
     $('.summernote').summernote()
   })
-</script>
-{{-- Pop up denger modal with delete model --}}
-<script>
-	let dangerButtons = document.querySelectorAll('[data-modal-danger-button="danger"]');
-	for (let item of dangerButtons) {
-		item.onclick = () => {
-			let modalDangerNative = document.querySelector('#modal-danger');
-			modalDangerNative.querySelector('[type="submit"]').setAttribute('form', item.dataset.modalDangerForm);
-			let modalDanger = $('#modal-danger');
-			modalDanger.modal('show');
-		}
-	}
 </script>
 
 @endsection

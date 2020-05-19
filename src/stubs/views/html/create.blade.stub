@@ -76,8 +76,8 @@
 <script src="{{ asset('admin/dist/js/demo.js') }}"></script>
 {{-- upload preview js --}}
 <script src="{{ asset('admin/js/jquery.uploadPreview.js') }}"></script>
-<!-- myNativScript -->
-<script src="{{ asset('admin/js/myNativJs.js') }}"></script>
+<!-- send post to server.js -->
+<script src="{{ asset('admin/js/send-post-to-server.js') }}"></script>
 {{-- Summernote function --}}
 <script>
   $(function () {
