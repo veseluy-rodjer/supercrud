@@ -164,7 +164,7 @@
 			let search = '&search=' + '{{ request("search") }}';
 			let toggle = '&toggle=' + this.className;
 			let sort = '&sort=' + this.dataset.name;
-			let route = document.location.href + pages + search + toggle + sort;
+			let route = document.location.origin + document.location.pathname + pages + search + toggle + sort;
 			document.location.href=route;
 		}
 	}
