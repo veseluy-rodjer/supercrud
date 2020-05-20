@@ -51,7 +51,9 @@ class DummyClass extends Controller
 			}
         }
 		$titlePage = '{{titleForIndexPage}}';
-        return view('{{viewPath}}{{viewName}}.index', compact('{{crudName}}', 'titlePage'));
+		$indexUrl = url()->full();
+		$indexUrlGetQuery = parse_url($indexUrl)['query'] ?? null;
+        return view('{{viewPath}}{{viewName}}.index', compact('{{crudName}}', 'titlePage', 'indexUrlGetQuery'));
     }
 
     /**
@@ -62,7 +64,9 @@ class DummyClass extends Controller
     public function create()
     {
 		$titlePage = '{{titleForSinglePage}}';
-        return view('{{viewPath}}{{viewName}}.create', compact('titlePage'));
+		$indexUrl = url()->full();
+		$indexUrlGetQuery = parse_url($indexUrl)['query'] ?? null;
+        return view('{{viewPath}}{{viewName}}.create', compact('titlePage', 'indexUrlGetQuery'));
     }
 
     /**
@@ -93,7 +97,9 @@ class DummyClass extends Controller
     {
         ${{crudNameSingular}} = {{modelName}}::findOrFail($id);
 		$titlePage = '{{titleForSinglePage}}';
-        return view('{{viewPath}}{{viewName}}.show', compact('{{crudNameSingular}}', 'titlePage'));
+		$indexUrl = url()->full();
+		$indexUrlGetQuery = parse_url($indexUrl)['query'] ?? null;
+        return view('{{viewPath}}{{viewName}}.show', compact('{{crudNameSingular}}', 'titlePage', 'indexUrlGetQuery'));
     }
 
     /**
@@ -107,7 +113,9 @@ class DummyClass extends Controller
     {
         ${{crudNameSingular}} = {{modelName}}::findOrFail($id);
 		$titlePage = '{{titleForSinglePage}}';
-        return view('{{viewPath}}{{viewName}}.edit', compact('{{crudNameSingular}}', 'titlePage'));
+		$indexUrl = url()->full();
+		$indexUrlGetQuery = parse_url($indexUrl)['query'] ?? null;
+        return view('{{viewPath}}{{viewName}}.edit', compact('{{crudNameSingular}}', 'titlePage', 'indexUrlGetQuery'));
     }
 
     /**

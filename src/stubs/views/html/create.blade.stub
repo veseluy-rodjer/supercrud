@@ -34,7 +34,7 @@
 			  <form class="n-form" method="POST" action="{{ route('%%viewName%%.store') }}" accept-charset="UTF-8" enctype="multipart/form-data">
 				<div class="card-body">
 				<div style="float: right">
-					<a class="btn btn-warning btn-sm" href="{{ route('%%viewName%%.index') }}">back</a>
+					<a class="btn btn-warning btn-sm" href="{{ route('%%viewName%%.index') }}{{ $indexUrlGetQuery ? '/?' . $indexUrlGetQuery : null }}">back</a>
 				</div>
 				<br>
 

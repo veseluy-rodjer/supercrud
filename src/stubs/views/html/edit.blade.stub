@@ -34,7 +34,7 @@
 			  <form class="n-form" method="POST" action="{{ route('%%viewName%%.update', [$%%crudNameSingular%%->%%primaryKey%%]) }}" accept-charset="UTF-8" enctype="multipart/form-data">
 				<div class="card-body">
 				<div style="float: right">
-					<a class="btn btn-warning btn-sm" href="{{ route('%%viewName%%.index') }}">back</a>
+					<a class="btn btn-warning btn-sm" href="{{ route('%%viewName%%.index') }}{{ $indexUrlGetQuery ? '/?' . $indexUrlGetQuery : null }}">back</a>
 					<button type="button" class="btn btn-danger btn-sm" data-modal-danger-button="danger" data-modal-danger-form="{{ $%%crudNameSingular%%->%%primaryKey%% }}">delete</button>
 				</div>
 				<br>
