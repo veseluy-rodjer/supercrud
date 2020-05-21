@@ -79,11 +79,13 @@ class DummyClass extends Controller
     public function store(Request $request)
     {
         {{validationRules}}
-        $requestData = $request->all();
+        $requestData = $request->post();
 {{fileSnippetCreateOne}}
         $store = {{modelName}}::create($requestData);
 {{fileSnippetCreateTwo}}
-		return response()->json(['status' => trans('Success create!'), 'urlBack' => route('{{viewName}}.index')]);
+		$indexUrl = url()->full();
+		$indexUrlGetQuery = parse_url($indexUrl)['query'] ?? null;
+		return response()->json(['status' => trans('Success create!'), 'urlBack' => route('{{viewName}}.index') . ($indexUrlGetQuery ? '/?' . $indexUrlGetQuery : null)]);
     }
 
     /**
@@ -130,10 +132,12 @@ class DummyClass extends Controller
     {
         {{validationRules}}
         $up = {{modelName}}::findOrFail($id);
-        $requestData = $request->all();
+        $requestData = $request->post();
 {{fileSnippetUp}}
         $up->update($requestData);
-		return response()->json(['status' => trans('Success update!'), 'urlBack' => route('{{viewName}}.index')]);
+		$indexUrl = url()->full();
+		$indexUrlGetQuery = parse_url($indexUrl)['query'] ?? null;
+		return response()->json(['status' => trans('Success update!'), 'urlBack' => route('{{viewName}}.index') . ($indexUrlGetQuery ? '/?' . $indexUrlGetQuery : null)]);
     }
 
     /**
@@ -162,7 +166,7 @@ class DummyClass extends Controller
      */
 	public function arrDelete(Request $request)
 	{
-		foreach ($request->all() as $key => $value) {
+		foreach ($request->post() as $key => $value) {
 			if ($value == 1) {
 				$del = {{modelName}}::findOrFail($key);
 		{{fileSnippetDelPicture}}
