@@ -76,7 +76,7 @@
 						<a href="{{ route('%%viewName%%.create') }}{{ $indexUrlGetQuery ? '/?' . $indexUrlGetQuery : null }}" class="btn btn-success btn-sm">
 							Добавить
 						</a>
-						<form style="float: right" id="arrDelete" action="{{ route('%%viewName%%.arr-delete') }}" method="post">
+						<form style="float: right" id="arrDelete" action="{{ route('%%viewName%%.arr-delete') }}{{ $indexUrlGetQuery ? '/?' . $indexUrlGetQuery : null }}" method="post">
 							@csrf
 							@method('DELETE')
 							<button type="button" class="btn btn-secondary btn-sm" id="del" data-modal-danger-button="danger" data-modal-danger-form="arrDelete" disabled>Удалить отмеченные</button>
@@ -94,7 +94,7 @@
 								<a class="btn btn-primary btn-sm" href="{{ route('%%viewName%%.show', [$item->%%primaryKey%%]) }}{{ $indexUrlGetQuery ? '/?' . $indexUrlGetQuery : null }}"><i class="fas fa-folder"></i>View</a>
 								<a class="btn btn-info btn-sm" href="{{ route('%%viewName%%.edit', [$item->%%primaryKey%%]) }}{{ $indexUrlGetQuery ? '/?' . $indexUrlGetQuery : null }}"><i class="fas fa-pencil-alt"></i>Edit</a>
 
-								<form id="{{ $item->%%primaryKey%% }}" method="POST" action="{{ route('%%viewName%%.destroy', [$item->%%primaryKey%%]) }}" accept-charset="UTF-8" style="display:inline">
+								<form id="{{ $item->%%primaryKey%% }}" method="POST" action="{{ route('%%viewName%%.destroy', [$item->%%primaryKey%%]) }}{{ $indexUrlGetQuery ? '/?' . $indexUrlGetQuery : null }}" accept-charset="UTF-8" style="display:inline">
 									@csrf
 									@method('DELETE')
 									<button type="button" class="btn btn-danger btn-sm" data-modal-danger-button="danger" data-modal-danger-form="{{ $item->%%primaryKey%% }}"><i class="fas fa-trash"></i>Delete</button>

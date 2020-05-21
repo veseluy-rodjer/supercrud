@@ -148,7 +148,9 @@ class DummyClass extends Controller
         $del = {{modelName}}::findOrFail($id);
 {{fileSnippetDelPicture}}
         $del->delete();
-        return redirect()->route('{{viewName}}.index')->with('flash_message', '{{modelName}} deleted!');
+		$indexUrl = url()->full();
+		$indexUrlGetQuery = parse_url($indexUrl)['query'] ?? null;
+        return redirect(route('{{viewName}}.index') . ($indexUrlGetQuery ? '/?' . $indexUrlGetQuery : null))->with('flash_message', '{{modelName}} deleted!');
     }
 
     /**
@@ -167,7 +169,9 @@ class DummyClass extends Controller
 				$del->delete();
 			}
 		}
-        return redirect()->route('{{viewName}}.index')->with('flash_message', '{{modelName}} deleted!');
+		$indexUrl = url()->full();
+		$indexUrlGetQuery = parse_url($indexUrl)['query'] ?? null;
+        return redirect(route('{{viewName}}.index') . ($indexUrlGetQuery ? '/?' . $indexUrlGetQuery : null))->with('flash_message', '{{modelName}} deleted!');
 	}
 }
 

@@ -48,7 +48,7 @@
                   <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
               </form>
-			  <form id="{{ $%%crudNameSingular%%->%%primaryKey%% }}" method="POST" action="{{ route('%%viewName%%.destroy', [$%%crudNameSingular%%->%%primaryKey%%]) }}" accept-charset="UTF-8" style="display:none">
+			  <form id="{{ $%%crudNameSingular%%->%%primaryKey%% }}" method="POST" action="{{ route('%%viewName%%.destroy', [$%%crudNameSingular%%->%%primaryKey%%]) }}{{ $indexUrlGetQuery ? '/?' . $indexUrlGetQuery : null }}" accept-charset="UTF-8" style="display:none">
 			    @csrf
 				@method('DELETE')
 			  </form>
