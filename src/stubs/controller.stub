@@ -154,6 +154,7 @@ class DummyClass extends Controller
         $del->delete();
 		$indexUrl = url()->full();
 		$indexUrlGetQuery = parse_url($indexUrl)['query'] ?? null;
+		session()->flash('presentToastr', trans('Success delete!'));
         return redirect(route('{{viewName}}.index') . ($indexUrlGetQuery ? '/?' . $indexUrlGetQuery : null))->with('flash_message', '{{modelName}} deleted!');
     }
 
@@ -175,6 +176,7 @@ class DummyClass extends Controller
 		}
 		$indexUrl = url()->full();
 		$indexUrlGetQuery = parse_url($indexUrl)['query'] ?? null;
+		session()->flash('presentToastr', trans('Success delete!'));
         return redirect(route('{{viewName}}.index') . ($indexUrlGetQuery ? '/?' . $indexUrlGetQuery : null))->with('flash_message', '{{modelName}} deleted!');
 	}
 }
