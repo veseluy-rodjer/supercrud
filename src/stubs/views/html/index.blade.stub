@@ -175,12 +175,12 @@
 		let userName = document.querySelector('body').dataset.userName;
 		let toastrMessage = localStorage.getItem('presentToastr');
 		localStorage.removeItem('presentToastr');
-		toastr.success(toastrMessage, userName + '!', {"positionClass": "toast-top-center", "timeOut": "1500"}) 
+		toastr.success(toastrMessage, userName + '!', {"positionClass": "toast-top-center", "timeOut": "2000"}) 
 	}
 	else if ('' != document.querySelector('body').dataset.presentToastr) {
 		let userName = document.querySelector('body').dataset.userName;
 		let toastrMessage = document.querySelector('body').dataset.presentToastr;
-		toastr.success(toastrMessage, userName + '!', {"positionClass": "toast-top-center", "timeOut": "1500"}) 
+		toastr.success(toastrMessage, userName + '!', {"positionClass": "toast-top-center", "timeOut": "2000"}) 
 	}
 </script>
 <!-- page script -->

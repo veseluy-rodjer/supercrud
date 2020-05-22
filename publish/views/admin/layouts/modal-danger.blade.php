@@ -1,5 +1,5 @@
 {{-- Modal for delete model --}}
-<div class="modal fade" id="modal-danger">
+<div class="modal fade" id="modal-danger" tabindex="-1">
 	<div class="modal-dialog">
 	  <div class="modal-content bg-danger">
 		<div class="modal-header">
