@@ -10,12 +10,13 @@
     RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
 
     # Redirect Trailing Slashes If Not A Folder...
-    RewriteRule ^admin/bower_components/(.*)$ admin/bower_components/$1 [L]
+    RewriteRule ^admin/build/(.*)$ admin/build/$1 [L]
     RewriteRule ^admin/css/(.*)$ admin/css/$1 [L]
-    RewriteRule ^admin/fonts/(.*)$ admin/fonts/$1 [L]
-    RewriteRule ^admin/img/(.*)$ admin/img/$1 [L]
+    RewriteRule ^admin/dist/(.*)$ admin/dist/$1 [L]
+    RewriteRule ^admin/docs/(.*)$ admin/docs/$1 [L]
     RewriteRule ^admin/js/(.*)$ admin/js/$1 [L]
-    RewriteRule ^admin/misc/(.*)$ admin/misc/$1 [L]
+    RewriteRule ^admin/pages/(.*)$ admin/pages/$1 [L]
+    RewriteRule ^admin/plugins/(.*)$ admin/plugins/$1 [L]
     RewriteRule ^admin/(.*)$ index.php [L]
     RewriteCond %{REQUEST_URI} (.+)/$
     RewriteRule ^ %1 [L,R=301]
