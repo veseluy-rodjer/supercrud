@@ -50,7 +50,7 @@ class CrudGeneratorServiceProvider extends RouteServiceProvider
 		}
 
 		// Enter auth user variable in every page admin
-        \View::composer('admin/*', function ($view) {
+        \View::composer(['admin/*', 'home/*'], function ($view) {
 			$user = \Auth::user();
 
             //можно передать переменные в вид:
