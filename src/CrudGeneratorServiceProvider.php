@@ -33,7 +33,7 @@ class CrudGeneratorServiceProvider extends RouteServiceProvider
             __DIR__ . '/../publish/admin/' => public_path('admin/'),
             __DIR__ . '/../publish/lang/' => base_path('resources/lang'),
             __DIR__ . '/../publish/.htaccess' => public_path('.htaccess'),
-            __DIR__ . '/stubs/' => base_path('resources/crud-generator/'),
+            // __DIR__ . '/stubs/' => base_path('resources/crud-generator/'),
         ]);
 
 		if ($this->app->runningInConsole()) {
@@ -46,6 +46,7 @@ class CrudGeneratorServiceProvider extends RouteServiceProvider
 		        Commands\CrudLangCommand::class,
 			    Commands\CrudApiCommand::class,
 				Commands\CrudApiControllerCommand::class,
+				Commands\CrudCalendarCommand::class,
 			]);
 		}
 

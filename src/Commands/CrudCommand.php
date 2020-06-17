@@ -137,15 +137,16 @@ class CrudCommand extends Command
             $this->call('crud:lang', ['name' => $name, '--fields' => $fields, '--locales' => $locales]);
         }
 
-        // For optimizing the class loader
-        if (\App::VERSION() < '5.6') {
-            $this->callSilent('optimize');
-        }
-
         // Updating list of tables into sidebar.php file
         $pathToListFile = resource_path('views/admin/layouts/list.blade.php');
-        $list ='<li><a class="ajax-link" href="{{ route("' . \Str::plural(\Str::kebab($name)) . '.index") }}"><i class="glyphicon glyphicon-align-justify"></i><span> ' . \Str::plural($name) . '</span></a></li>';
-        File::append($pathToListFile, $list . "\n");
+		$list ='<li class="nav-item">
+	<a href="{{ route(\'' . \Str::plural(\Str::kebab($name)) . '.index\') }}" class="nav-link">
+	  <i class="fas fa-circle nav-icon"></i>
+	  <p>' . \Str::plural($name) . '</p>
+	</a>
+</li>';
+// '<li><a class="ajax-link" href="{{ route("' . \Str::plural(\Str::kebab($name)) . '.index") }}"><i class="glyphicon glyphicon-align-justify"></i><span> ' . \Str::plural($name) . '</span></a></li>';
+        File::append($pathToListFile, "\n" . $list);
 
         // Updating path into config.paths.php file
         $pathToPathsFile = config_path('paths.php');
@@ -159,12 +160,12 @@ class CrudCommand extends Command
 		$routeFile = base_path('routes/web.php');
         if (file_exists($routeFile) && (strtolower($this->option('route')) === 'yes')) {
             $this->controller = ($controllerNamespace != '') ? $controllerNamespace . $name . 'Controller' : $name . 'Controller';
-            $isAdded = File::append($routeFile, "\n" . implode("\n", $this->addRoutes()));
-            if ($isAdded) {
-                $this->info('Crud/Resource route added to ' . $routeFile);
-            } else {
-                $this->info('Unable to add the route to ' . $routeFile);
-            }
+            $isAdded = File::append($routeFile, "\n" . $this->addRoutes());
+            // if ($isAdded) {
+                // $this->info('Crud/Resource route added to ' . $routeFile);
+            // } else {
+                // $this->info('Unable to add the route to ' . $routeFile);
+            // }
         }
     }
 
@@ -175,7 +176,7 @@ class CrudCommand extends Command
      */
     protected function addRoutes()
     {
-		return ["Route::delete('" . $this->routeName . "/arr-delete', '" . $this->controller . "@arrDelete')->name('" . \Str::plural(\Str::kebab($this->argument('name'))) . ".arr-delete');\nRoute::resource('" . $this->routeName . "', '" . $this->controller . "');"];
+		return "Route::delete('" . $this->routeName . "/arr-delete', '" . $this->controller . "@arrDelete')->name('" . \Str::plural(\Str::kebab($this->argument('name'))) . ".arr-delete');\nRoute::resource('" . $this->routeName . "', '" . $this->controller . "');";
     }
 
     /**

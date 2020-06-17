@@ -1,0 +1,6 @@
+// Routes for calendar
+Route::delete('/admin/calendar/destroy', 'Admin\CalendarController@destroy')->name('calendar.destroy');
+Route::post('/admin/calendar/update', 'Admin\CalendarController@update')->name('calendar.update');
+Route::resource('/admin/calendar', 'Admin\CalendarController')->except(['update', 'destroy']);
+Route::post('/admin/event/store', 'Admin\EventController@store')->name('event.store');
+Route::delete('/admin/event/destroy', 'Admin\EventController@destroy')->name('event.destroy');
