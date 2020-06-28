@@ -1,48 +1,28 @@
 {{-- In /resources/views/layouts/app.blade.php
 	include
-	    <!-- Styles flag-icon-->
-	    <link href="{{ asset('flag-icon-css-master/css/flag-icon.css') }}" rel="stylesheet">
+  <!-- flag-icon-css -->
+  <link rel="stylesheet" href="{{ asset('admin/plugins/flag-icon-css/css/flag-icon.min.css') }}">
 --}}
 
-<div class="dropdown">
-    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-		<span class="flag-icon flag-icon-{{ \App::getLocale() }}"></span>
-    </a>
-    <div class="dropdown-menu">
-		@foreach (config('languages.languages') as $lang)
-			<a class="dropdown-item" href="#" onclick="selectLanguage(this); event.preventDefault()" data-lang="{{ $lang }}"><span class="flag-icon flag-icon-{{ $lang }}"></span></a>
-		@endforeach
-    </div>
-</div>
+      <li class="nav-item dropdown">
+        <a class="nav-link" data-toggle="dropdown" href="#">
+          <i class="flag-icon flag-icon-{{ \App::getLocale() }}"></i>
+        </a>
+        <div class="dropdown-menu dropdown-menu-right p-0">
+			@foreach (config('languages.languages') as $lang)
+				<a class="dropdown-item {{ $lang === \App::getLocale() ? 'active' : ''}}" href="#" onclick="event.preventDefault(); selectLanguage(this)" data-lang="{{ $lang }}">
+					<i class="flag-icon flag-icon-{{ $lang }} mr-2"></i> {{ $lang }}
+				</a>
+			@endforeach
+        </div>
+      </li>
 
 <script>
 // change language
-function selectLanguage(e) {
-	let lang = e.dataset.lang;
+function selectLanguage(t) {
+	let lang = t.dataset.lang;
 	let route = "{{ route('setlocale') }}";
 	document.location.href = route + '/' + lang + '/';
 }
 </script>
 
-{{-- Change language by select tag --}}
-@php
-	/*
-<p>
-	<select id="select-language" name="language">
-		@foreach (config('languages.languages') as $lang)
-			<option {{ \App::getLocale() == $lang ? 'selected' : null }}>{{ $lang }}</option>
-		@endforeach
-	</select>
-</p>
-
-<script>
-// change language
-let selectLanguage = document.querySelector('#select-language');
-selectLanguage.onchange = function(e) {
-	let lang = this.value;
-	let route = "{{ route('setlocale') }}";
-	document.location.href = route + '/' + lang + '/';
-} 
-</script>
-	*/
-@endphp
