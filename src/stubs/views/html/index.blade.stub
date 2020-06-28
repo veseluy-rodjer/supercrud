@@ -17,6 +17,15 @@
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 
+  <style>
+	.flag-icon-en {
+	  background-image: url("{{ asset('admin/plugins/flag-icon-css/flags/4x3/gb.svg') }}");
+	}
+	.flag-icon-en.flag-icon-squared {
+	  background-image: url("{{ asset('admin/plugins/flag-icon-css/flags/1x1/gb.svg') }}");
+	}
+  </style>
+
   {{-- Font size in toastr text --}}
   <style>
 	.toast {
