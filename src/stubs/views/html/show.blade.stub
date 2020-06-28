@@ -70,6 +70,14 @@
 <script src="{{ asset('admin/dist/js/demo.js') }}"></script>
 {{-- Pop up denger modal with delete model --}}
 <script src="{{ asset('admin/js/pop-up-danger-modal.js') }}"></script>
+{{-- change language --}}
+<script>
+function selectLanguage(t) {
+	let lang = t.dataset.lang;
+	let route = "{{ route('setlocale') }}";
+	document.location.href = route + '/' + lang + '/';
+}
+</script>
 
 @endsection
 

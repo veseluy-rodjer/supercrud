@@ -80,6 +80,14 @@
 <script src="{{ asset('admin/js/jquery.uploadPreview.js') }}"></script>
 <!-- send post to server.js -->
 <script src="{{ asset('admin/js/send-post-to-server.js') }}"></script>
+{{-- change language --}}
+<script>
+function selectLanguage(t) {
+	let lang = t.dataset.lang;
+	let route = "{{ route('setlocale') }}";
+	document.location.href = route + '/' + lang + '/';
+}
+</script>
 {{-- Summernote function --}}
 <script>
   $(function () {
