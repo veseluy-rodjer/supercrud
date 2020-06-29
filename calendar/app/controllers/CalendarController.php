@@ -32,7 +32,8 @@ class CalendarController extends Controller
 			}
 			return response()->json($data);
         }
-        return view('admin.calendar.calendar');
+		$titlePage = 'Calendar';
+        return view('admin.calendar.calendar', compact('titlePage'));
     }
 
     /**
