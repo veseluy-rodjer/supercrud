@@ -14,7 +14,7 @@
           <img src="{{ asset('admin/dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="{{ route('home.index') ?? '' }}" class="d-block">{{ $user->name ?? 'Stranger'}}</a>
+          <a href="{{ \Route::has('home.index') ? route('home.index') : '' }}" class="d-block">{{ $user->name ?? 'Stranger'}}</a>
         </div>
       </div>
 
