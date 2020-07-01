@@ -3,7 +3,7 @@
 	<div class="modal-dialog">
 	  <div class="modal-content bg-danger">
 		<div class="modal-header">
-		  <h4 style="text-align: center;" class="modal-title">{{ $user->name ?? 'Stranger'}}!</h4>
+		  <h4 style="margin: 0 auto;" class="modal-title">{{ $user->name ?? 'Stranger'}}!</h4>
 		  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 			<span aria-hidden="true">&times;</span>
 		  </button>
