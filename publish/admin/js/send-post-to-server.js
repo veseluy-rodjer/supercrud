@@ -22,8 +22,8 @@ for (let item of formPosts) {
 				elem.classList.add('is-invalid');
 				elem.classList.add('error');
 				elem.insertAdjacentHTML('afterend', '<span class="invalid-feedback" role="alert">' + val + '</span>');
-				return;
 			}
+			return;
 		}
 		let result = await response.json();
 		if (result.status != null) {
