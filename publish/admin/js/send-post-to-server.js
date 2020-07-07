@@ -1,8 +1,8 @@
 // send post to server
 let formPosts = document.querySelectorAll('.n-form');
 for (let item of formPosts) {
-	item.onsubmit = async function(e) {
-		e.preventDefault();
+	item.onsubmit = async function() {
+		event.preventDefault();
 		let response = await fetch(item.action, {
 			headers: {
 				'Accept': 'application/json',
