@@ -15,6 +15,11 @@ for (let item of formPosts) {
 		for (let elementError of elementErrors) {
 			elementError.remove();
 		}
+		let	elementInvalids = document.querySelectorAll('.is-invalid.error');
+		for (let elementInvalid of elementInvalids) {
+			elementInvalid.classList.remove('is-invalid');
+			elementInvalid.classList.remove('error');
+		}
 		if (response.status == 422) {
 			let result = await response.json();
 			for (let [key, val] of Object.entries(result.errors)) {
