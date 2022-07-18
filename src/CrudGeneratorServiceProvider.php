@@ -2,7 +2,7 @@
 
 namespace VeseluyRodjer\CrudGenerator;
 
-use App\Providers\RouteServiceProvider;
+use Illuminate\Foundation\Support\Providers\RouteServiceProvider;
 
 class CrudGeneratorServiceProvider extends RouteServiceProvider
 {
