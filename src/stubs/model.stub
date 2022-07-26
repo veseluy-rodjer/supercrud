@@ -2,6 +2,7 @@
 
 namespace DummyNamespace;
 
+use App\Builders\DummyClassBuilder;
 use Illuminate\Database\Eloquent\Model;
 use VeseluyRodjer\CrudGenerator\HasTranslations;
 {{useSoftDeletes}}
@@ -19,6 +20,11 @@ class DummyClass extends Model
     {{primaryKey}}
 
     protected $guarded = ['id'];
+
+    public function newEloquentBuilder($query): DummyClassBuilder
+    {
+        return new DummyClassBuilder($query);
+    }
 
     {{relationships}}
 }
