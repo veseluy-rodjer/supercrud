@@ -80,7 +80,7 @@
                   <div class="row" id="external-events">
 
 					@if (isset($user))
-						@foreach ($user->events as $item)
+						@foreach ($user->events ?? [] as $item)
 							<div class="col-11 external-event ui-draggable ui-draggable-handle" data-url="{{ $item->url }}" style="background-color: {{ $item->background_color }}; border-color: {{ $item->border_color }}; color: rgb(255, 255, 255); position: relative;">{{ $item->title }}</div>
 							<button type="button" class="col-1 btn btn-danger btn-sm" onclick="openModalRemoveLeftEvent(this)" data-left-event-id="{{ $item->id }}"><i class="fas fa-trash"></i></button>
 						@endforeach
