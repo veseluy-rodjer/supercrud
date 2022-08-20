@@ -37,8 +37,8 @@ class CrudCalendarCommand extends Command
      */
     public function handle()
     {
-		\File::copy(__DIR__ . '/../../calendar/app/Calendar.php', app_path('Calendar.php'));
-		\File::copy(__DIR__ . '/../../calendar/app/Event.php', app_path('Event.php'));
+		\File::copy(__DIR__ . '/../../calendar/app/Calendar.php', app_path('Models/Calendar.php'));
+		\File::copy(__DIR__ . '/../../calendar/app/Event.php', app_path('Models/Event.php'));
 		if (! \File::exists(app_path('Http/Controllers/Admin'))) {
 			\File::makeDirectory(app_path('Http/Controllers/Admin'));
 		}
@@ -66,7 +66,7 @@ class CrudCalendarCommand extends Command
         \File::append($pathToListFile, "\n" . $list);
 
 		// Add dependents into User model
-		$userModel = \File::get(app_path('User.php'));
+		$userModel = \File::get(app_path('Models/User.php'));
 		$replace = '
     public function calendars()
     {
@@ -78,6 +78,6 @@ class CrudCalendarCommand extends Command
         return $this->hasMany(\'App\Event\');
     }';
 		$replaceLast = \Str::replaceLast('}', $replace . "\n" . '}', $userModel);
-		\File::put(app_path('User.php'), $replaceLast);
+		\File::put(app_path('Models/User.php'), $replaceLast);
     }
 }
