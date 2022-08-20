@@ -70,12 +70,12 @@ class CrudCalendarCommand extends Command
 		$replace = '
     public function calendars()
     {
-        return $this->hasMany(\'App\Calendar\');
+        return $this->hasMany(Calendar::class);
     }
 
     public function events()
     {
-        return $this->hasMany(\'App\Event\');
+        return $this->hasMany(Event::class);
     }';
 		$replaceLast = \Str::replaceLast('}', $replace . "\n" . '}', $userModel);
 		\File::put(app_path('Models/User.php'), $replaceLast);
