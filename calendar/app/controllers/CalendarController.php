@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\User;
+use App\Models\Calendar;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Calendar;
-use App\User;
 
 class CalendarController extends Controller
 {
@@ -16,7 +16,7 @@ class CalendarController extends Controller
      */
     public function index()
     {
-        if(request()->acceptsAnyContentType()) 
+        if(request()->acceptsAnyContentType())
         {
 			$user = \Auth::user();
 			$start = request()->has('start') ? date('Y-m-d 0:0:0', strtotime(request()->start)) : '';
