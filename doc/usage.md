@@ -3,7 +3,7 @@
 ### CRUD Command
 
 ```
-php artisan crud:generate Posts --fields='title#string; content#text; category#select#options={"technology": "Technology", "tips": "Tips", "health": "Health"}' --view-path=admin --controller-namespace=Admin --route-group=admin --form-helper=html
+php artisan crud:generate PurchasedServices --fields='number#integer; date_purchase#timestamp; date_start#timestamp; service_name#string; user_name#string; phone#string; comment#string' --view-path=admin --validations='name#required|string|max:125' --model-namespace=Models --controller-namespace=Admin --relationships='category#belongsTo#App\Models\Category' --route-group=admin --form-helper=html
 ```
 
 #### CRUD fields from a JSON file:
