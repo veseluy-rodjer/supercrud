@@ -77,7 +77,7 @@ class CrudModelCommand extends GeneratorCommand
 
         if (!empty($primaryKey)) {
             $primaryKey = <<<EOD
-    protected \$primaryKey = '$primaryKey';
+protected \$primaryKey = '$primaryKey';
 EOD;
         }
 
