@@ -16,7 +16,7 @@
         }
     ],
     "require": {
-		"intervention/image": "master"
+		"intervention/image": "dev-master"
     },
     "require-dev": {
         "orchestra/testbench": "^5.0"
