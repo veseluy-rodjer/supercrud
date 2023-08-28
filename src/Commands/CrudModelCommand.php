@@ -106,7 +106,7 @@ EOD;
                     continue;
                 }
 
-                $argsString .= "'" . trim($v) . "', ";
+                $argsString .= trim($v) . ", ";
             }
 
             $argsString = substr($argsString, 0, -2); // remove last comma

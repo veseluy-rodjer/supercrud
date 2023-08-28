@@ -52,7 +52,6 @@ class CrudMigrationCommand extends GeneratorCommand
         'float' => 'float',
         'timestamp' => 'timestamp',
         'radio' => 'boolean',
-        // 'boolean' => 'boolean',
         'select' => 'unsignedBigInteger',
         'file' => 'string',
         'checkbox' => 'boolean',

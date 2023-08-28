@@ -56,7 +56,6 @@ class CrudViewCommand extends Command
         'float' => 'number',
         'timestamp' => 'text',
         'radio' => 'radio',
-		// 'boolean' => 'checkbox',
         'select' => 'select',
         'file' => 'file',
         'checkbox' => 'checkbox',
